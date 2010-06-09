@@ -888,7 +888,7 @@ list.
 
 =head3 See also
 
-L<< /X -> Y >> in L<perlopref>, L<perlreftut>, and L<perlref>
+L<< /X -> Y >>, L<perlreftut>, and L<perlref>
 
 =head2 +X
 
