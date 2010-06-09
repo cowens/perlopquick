@@ -1,0 +1,227 @@
+Mon May 24 10:32:59 2010 -0400
+
+    modified ** and ~~, and added pseudo-operators
+
+Date:   Sat May 22 15:21:06 2010 -0700
+
+    added missing sections and fixed See also sections
+
+Date:   Wed May 12 09:16:42 2010 -0400
+
+    Removed non-ASCII characters
+
+Date:   Mon Nov 9 09:33:00 2009 -0500
+
+    added a Changes file
+
+Date:   Mon Nov 9 09:27:34 2009 -0500
+
+    added qoute and quote-like operators
+
+Date:   Wed Nov 4 07:04:35 2009 -0500
+
+    fixed README
+
+Date:   Wed Nov 4 06:58:50 2009 -0500
+
+    added license info
+
+Date:   Sun Sep 13 18:15:20 2009 -0400
+
+    separated X[Y] and (X)[Y] and fixed them
+
+Date:   Sun Sep 13 17:53:29 2009 -0400
+
+    massive changes based on feedback from Philip Potter and Telemachus
+
+Date:   Sun Sep 13 14:12:58 2009 -0400
+
+    fixed typo in %
+
+Date:   Sun Sep 13 14:11:39 2009 -0400
+
+    added "X" and qq(X)
+
+Date:   Sun Sep 13 05:26:35 2009 -0400
+
+    added %{X} and fixed issues with @{X}
+
+Date:   Sun Sep 13 04:46:14 2009 -0400
+
+    change postition of some of the terms
+
+Date:   Sun Sep 13 03:59:39 2009 -0400
+
+    added a class to each operator
+
+Date:   Sun Sep 13 02:23:56 2009 -0400
+
+    fixed links and line length
+
+Date:   Sun Sep 13 02:07:36 2009 -0400
+
+    added ${X}, ${X}[Y], @{X}, and more to index ops
+
+Date:   Fri Sep 11 18:25:39 2009 -0400
+
+    changed all uses of ' to "
+
+Date:   Fri Sep 11 18:22:05 2009 -0400
+
+    added deprecated use of ~~X to mean ~(~X)
+
+Date:   Fri Sep 11 17:51:19 2009 -0400
+
+    clarified ?: a little
+
+Date:   Fri Sep 11 03:26:27 2009 -0400
+
+    fixed links containing || and //
+
+Date:   Thu Sep 10 21:33:48 2009 -0400
+
+    fixed links in <<= and >>= See also section
+
+Date:   Thu Sep 10 17:08:40 2009 -0400
+
+    modified PRECEDENCE, added skeleton for filetests
+
+Date:   Thu Sep 10 14:47:06 2009 -0400
+
+    added xor and fixed ^ to say exclusive-or
+
+Date:   Thu Sep 10 14:39:02 2009 -0400
+
+    fixed ||
+
+Date:   Thu Sep 10 14:37:34 2009 -0400
+
+    added and and or
+
+Date:   Thu Sep 10 14:23:25 2009 -0400
+
+    added See also to !, &&, and ||, fixed links in ~
+
+Date:   Thu Sep 10 14:19:50 2009 -0400
+
+    added comma, =>, and not
+
+Date:   Wed Sep 9 11:46:46 2009 -0400
+
+    noted the used of !!
+
+Date:   Tue Sep 8 14:26:02 2009 -0400
+
+    added ||=
+
+Date:   Tue Sep 8 14:15:50 2009 -0400
+
+    fixed &&=
+
+Date:   Tue Sep 8 14:13:51 2009 -0400
+
+    fixed && again
+
+Date:   Tue Sep 8 14:11:00 2009 -0400
+
+    fixed the description of &&
+
+Date:   Tue Sep 8 13:18:16 2009 -0400
+
+    dded |=, ^=, <<=, >>=, and &&=
+
+Date:   Tue Sep 8 12:56:10 2009 -0400
+
+    fixed %; fixed **=,+=,-=,.=; added *=,/=,%=,x=,&=
+
+Date:   Tue Sep 8 12:10:47 2009 -0400
+
+    added . and .=
+
+Date:   Tue Sep 8 03:38:21 2009 -0400
+
+    added =, **=, +=, -=, .=
+
+Date:   Mon Sep 7 01:03:07 2009 -0400
+
+    added &&, ||, //, .., and ...
+
+Date:   Tue Sep 1 22:18:03 2009 -0400
+
+    fixed bitwise xor's example
+
+Date:   Tue Sep 1 22:16:53 2009 -0400
+
+    added bitwise and, or, and xor (&, |, and ^)
+
+Date:   Mon Aug 17 16:16:41 2009 -0400
+
+    added &
+
+Date:   Sun Aug 16 16:01:40 2009 -0400
+
+    copped out on the smartmatch operator
+
+Date:   Sun Aug 16 15:50:57 2009 -0400
+
+    added eq, ne, and cmp
+
+Date:   Sun Aug 16 15:36:54 2009 -0400
+
+    added <=> and corrected spelling errors
+
+Date:   Sun Aug 16 02:13:37 2009 -0400
+
+    added !=
+
+Date:   Sun Aug 16 01:50:48 2009 -0400
+
+    fixed examples for lt, gt, le, and ge
+
+Date:   Sun Aug 16 01:48:47 2009 -0400
+
+    added le, ge, and ==
+
+Date:   Sat Aug 15 20:34:23 2009 -0400
+
+    fixed lt and added gt
+
+Date:   Sat Aug 15 20:30:12 2009 -0400
+
+    added lt operator
+
+Date:   Sat Aug 15 20:14:34 2009 -0400
+
+    added text to addition and subtraction ops
+
+Date:   Sat Aug 15 20:12:35 2009 -0400
+
+    added a vim modeline
+
+Date:   Sat Aug 15 20:09:50 2009 -0400
+
+    fixed unary minus, added more examples
+
+Date:   Sat Aug 15 19:49:08 2009 -0400
+
+    formated all Ps to 76 chrs, add num conversion msg
+
+Date:   Sat Aug 15 19:07:59 2009 -0400
+
+    Merge branch 'master' of git://github.com/telemachus/perlopref
+
+Date:   Sat Aug 15 19:07:16 2009 -0400
+
+    cleaned up spaces in <<, added <, >, <=, >=
+
+Date:   Sat Aug 15 11:38:11 2009 -0700
+
+    And then I immediately found a handful more. Sorry.
+
+Date:   Sat Aug 15 11:34:17 2009 -0700
+
+    Add a space after line 29 to clean up POD formatting
+
+Date:   Sat Aug 15 11:32:09 2009 -0400
+
+    first checkin, 27 operators done

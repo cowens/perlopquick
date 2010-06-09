@@ -1,0 +1,3227 @@
+# vi: ts=4 sw=4 ht=4 et textwidth=76 :
+
+=head1 PRECEDENCE
+
+    Associativity     Precedence
+    left              terms and list operators (leftward)
+    left              ->
+    nonassoc          ++ --
+    right             **
+    right             ! ~ \ and unary + and -
+    left              =~ !~
+    left              * / % x
+    left              + - .
+    left              << >>
+    nonassoc          named unary operators, filetest operators
+    nonassoc          < > <= >= lt gt le ge
+    nonassoc          == != <=> eq ne cmp ~~
+    left              &
+    left              | ^
+    left              &&
+    left              || //
+    nonassoc          ..  ...
+    right             ?:
+    right             = += -= *= etc.
+    left              , =>
+    nonassoc          list operators (rightward)
+    right             not
+    left              and
+    left              or xor
+
+=head1 OPERATORS
+
+=head2 "X"
+
+=head3 Class
+
+This belongs to L<perlop/Terms and List Operators (Leftward)> and 
+L<perlop/Quote and Quote-like Operators>.
+
+=head3 Description
+
+This is the double quote operator (aka the interpolating string operator).
+It creates a string literal out of X.  If a scalar, array, or an index into
+a array or hash is in X, the value of that variable is inserted into the
+string in place if the variable.  Arrays are formated using C<$">:
+
+    my $interpolated_value = join $", @array;
+
+To place a C<"> inside the string, you must escape it with C<\>:
+
+    my $quote = "He said \"I like quotes.\"";
+
+There are many special escapes such as C<\t> for tab and C<\n> for newline,
+as well as a generalized form of escape that uses Unicode ordinal numbers:
+
+    my $string = "Please provide references with your r\x{e9}sum\x{e9}.";
+
+Here C<\x{e9}> creates the character associated with the ordinal number 233
+(0xe9 in hexadecimal) in Unicode: LATIN SMALL LETTER E WITH ACUTE.
+
+For a full discussion of how strings work, see 
+L<perlop/Quote and Quote-like Operators>. 
+
+=head3 Example
+
+    my $name   = "World";
+    my $string = "Hello, $name!\n"; #$string is now "Hello World!\n";
+
+=head3 See also
+
+L</qq(X)>, L</'X'>, L</q(X)>, L<perlvar/$">, 
+and L<perlop/Quote and Quote-like Operators>
+
+=head2 qq(X)
+
+=head3 Class
+
+This belongs to L<perlop/Terms and List Operators (Leftward)> and 
+L<perlop/Quote and Quote-like Operators>.
+
+=head3 Description
+
+This is the generalized double quote operator (aka the generalized
+interpolating string operator).  It creates a string literal out of X.  If a
+scalar, array, or an index into a array or hash is in X, the value of that
+variable is inserted into the string in place if the variable.  Arrays are
+formated using C<$">:
+
+    my $interpolated_value = join $", @array;
+
+The delimiters C<()> are chosen by the user and may consist of either
+bracketing characters (C<< qq<> >>, C<qq()>, C<qq{}>, and C<qq[]>) or
+matching characters (C<qq##>, C<qqaa>, etc.).  It is generally used to allow
+the user to avoid having to escape characters:
+
+     my $quote = qq/He said "I like quotes."/;
+
+If the delimiter is not a bracketing pair, or if the brackets are
+unbalanced, you will need to escape the delimiter with C<\> if you wish to
+have that character in the string:
+
+    my $quote = qq{I have too many \} characters};
+
+But it is often better to just choose a delimiter that does not conflict
+with the string:
+
+    my $better = qq/I have too many } characters/;
+
+There are many special escapes such as C<\t> for tab and C<\n> for newline,
+as well as a generalized form of escape that uses Unicode ordinal numbers:
+
+    my $string = qq{provide references with your r\x{e9}sum\x{e9}.};
+
+Here C<\x{e9}> creates the character associated with the ordinal number 233
+(0xe9 in hexadecimal) in Unicode: LATIN SMALL LETTER E WITH ACUTE.
+
+For a full discussion of how strings work, see 
+L<perlop/Quote and Quote-like Operators>. 
+
+=head3 Example
+
+    my $name   = "World";
+    my $string = qq/Hello, $name!\n/; #$string is now "Hello World!\n";
+
+=head3 See also
+
+L</q(X)>, L</'X'> L</"X">, L<perlvar/$">, 
+and L<perlop/Quote and Quote-like Operators>
+
+=head2 'X'
+
+=head3 Class
+
+This belongs to L<perlop/Terms and List Operators (Leftward)> and 
+L<perlop/Quote and Quote-like Operators>.
+
+=head3 Description
+
+This is the single quote operator (aka the non-interpolating string operator).
+It creates a string literal out of X.
+
+To place a C<'> inside the string, you must escape it with C<\>:
+
+    my $quote = 'He said \'I like quotes.\'';
+
+Unlike double quoted strings, that is the only escape sequence.
+
+For a full discussion of how strings work, see 
+L<perlop/Quote and Quote-like Operators>. 
+
+=head3 Example
+
+    my $name   = 'World';
+    my $string = 'Hello, $name!\n'; #$string is now "Hello \$name!\n";
+
+=head3 See also
+
+L</"X">, L</qq(X)>, L</q(X)>, L<perlvar/$">, 
+and L<perlop/Quote and Quote-like Operators>
+
+=head2 q(X)
+
+=head3 Class
+
+This belongs to L<perlop/Terms and List Operators (Leftward)> and 
+L<perlop/Quote and Quote-like Operators>.
+
+=head3 Description
+
+This is the generalized single quote operator (aka the generalized
+non-interpolating string operator).  It creates a string literal out of X.
+
+The delimiters C<()> are chosen by the user and may consist of either
+bracketing characters (C<< q<> >>, C<q()>, C<q{}>, and C<q[]>) or matching
+characters (C<q##>, C<qaa>, etc.).  It is generally used to allow the user
+to avoid having to escape characters:
+
+     my $quote = q/He said 'I like quotes.'/;
+
+If the delimiter is not a bracketing pair, or if the brackets are
+unbalanced, you will need to escape the delimiter with C<\> if you wish to
+have that character in the string:
+
+    my $quote = q{I have too many \} characters};
+
+But it is often better to just choose a delimiter that does not conflict
+with the string:
+
+    my $better = q/I have too many } characters/;
+
+Unlike double quoted strings, the escaping of the delimiter is the only
+escape.
+
+For a full discussion of how strings work, see 
+L<perlop/Quote and Quote-like Operators>. 
+
+=head3 Example
+
+    my $name   = "World";
+    my $string = q/Hello, $name!\n/; #$string is now "Hello \$name!\n";
+
+=head3 See also
+
+L</"X">, L</'X'>, L</qq(X)>, L<perlvar/$">, 
+and L<perlop/Quote and Quote-like Operators>
+
+=head2 qw(X)
+
+=head3 Class
+
+This belongs to L<perlop/Terms and List Operators (Leftward)> and 
+L<perlop/Quote and Quote-like Operators>.
+
+=head3 Description
+
+This is the quote word operator.  It creates a list of strings.  The
+individual strings are whitespace separated.  It does not interpolate.
+
+The delimiters C<()> are chosen by the user and may consist of either
+bracketing characters (C<< qw<> >>, C<qw()>, C<qw{}>, and C<qw[]>) or
+matching characters (C<qw##>, C<qwaa>, etc.).  It is generally used to allow
+the user to avoid having to escape characters:
+
+     my @list = qw/'a' 'b' 'c'/; #@list is now ("'a'", "'b'", "'c'")
+
+If the delimiter is not a bracketing pair, or if the brackets are
+unbalanced, you will need to escape the delimiter with C<\> if you wish to
+have that character in the string:
+
+    my @broken   = qw{I have too many } characters};        #broken
+    my @works    = qw{I have too many \} characters};       #works
+    my @balanced = qw{this works {} because it is balanced} #works
+
+But it is often better to just choose a delimiter that does not conflict
+with the string:
+
+    my $better = qw/I have too many } characters/;
+
+Unlike double quoted strings, the escaping of the delimiter is the only
+escape.
+
+=head3 Example
+
+    my @a = qw/ a b c /;     #@a is now ("a", "b", "c", "d")
+    my @b = qw/ $foo $bar /; #@b is now ('$foo', '$bar')
+
+=head3 See Also
+
+L</'X'>, L</q(X)>, and L<perlop/Quote and Quote-like Operators>
+
+=head2 X[Y]
+
+=head3 Class
+
+This belongs to L<perlop/Terms and List Operators (Leftward)> and 
+L<perlop/Quote and Quote-like Operators>.
+
+=head3 Description
+
+This is the array index operator.  Indexes are C<0> based (unless C<$[> has
+been set to a non-zero value).  Negative indexes count backwards from the
+end of the list or array.
+
+If X's sigil is C<$>, then the expression Y is placed in scalar context when
+it is evaluated and then treated as a number, so, it is converted to a
+number before it is used.  If it cannot be converted then it is turned
+into C<0> (and a warning is thrown if L<warnings> are turned on).  It
+returns the Yth item from X.
+
+If X's sigil is C<@> instead, then the expression Y is placed in list
+context when it is evaluated and each item in the resulting list is then
+treated as a number, so, they are converted to a number before it is used.
+Each one will be turned into C<0> if it cannot be converted (and a warning
+is thrown if L<warnings> are turned on).  It returns a list of items from
+the array X at the indexes in the list generated by Y.
+
+=head3 Example
+
+    my @a = ("a", "b", "c", "d");
+    my $x = $a[2];    #$x is now equal to "c"
+    my $y = $a[-3];   #$y is now equal to "b"
+    my @b = @a[1, 2]; #@b is now ("b", "c")
+
+    $a[2]    = 'e';      #@a is now ('a', 'b', 'e', 'd')
+    @b[0, 1] = @b[1, 0]; #swap values @b is now ('c', 'b')
+
+=head3 See also
+
+L</(X)[Y]> and L<</X->[Y]>>
+
+=head2 (X)[Y]
+
+=head3 Class
+
+This belongs to L<perlop/Terms and List Operators (Leftward)>.
+
+=head3 Description
+
+This is the list index operator.  The expression Y is placed in list context
+when it is evaluated and each item in the resulting list is then treated as
+a number, so, they are converted to a number before it is used.  Each one
+will be turned into C<0> if it cannot be converted (and a warning is thrown
+if L<warnings> are turned on).  It returns a list of items from the list X
+at the indexes in the list generated by Y.
+
+=head3 Example
+
+     my $i = 4;
+     my $x = ("a" .. "z")[$i];      #$x is now "e"
+     my $y = ("a" .. "z")[-$i];     #$y is now "w"
+     my @a = ("a" .. "z")[0 .. $i]; #@a is now ("a", "b", "c", "d", "e")
+     my @b = ("a" .. "z")[1, 0, 3]; #@b is now ("b", "a", "d")
+
+=head3 See also
+
+L</(X)[Y]> 
+
+=head2 X{Y}
+
+=head3 Class
+
+This belongs to L<perlop/Terms and List Operators (Leftward)>.
+
+=head3 Description
+
+This is the hash index operator.  It retrieves the value associated with the
+key Y from X.  If Y is a list of keys then a slice is returned (see
+L<perldata> for information about slices).
+
+=head3 Example
+
+    my %h = (a => 1, b => 2, c => 3);
+    my $x = $h{c};        #$x is now 3
+    my @a = @h{"a", "b"}; #@a is now (1, 2)
+
+    $h{d}       = 4;      #%h is now (a => 1, b => 2, c => 3, d => 4)
+    @h{qw/a d/} = (0, 1); #%h is now (a => 0, b => 1, c => 3, d => 4)
+
+=head3 See also
+
+L</(X){Y}> and L<</X->{Y}>>
+
+=head2 X->[Y]
+
+=head3 Class
+
+This belongs to L<perlop/The Arrow Operator>.
+
+=head3 Description
+
+This is the infix array dereferencing operator (AKA The Arrow Operator).  It
+fetches the value at position Y in an array reference returned by the
+expression X.  When dealing with multiple levels of dereferencing (such as
+with a reference to an array of arrays) only the first level requires the
+arrow operator.
+
+If X does not evaluate to an array reference, then a runtime error occurs.
+
+=head3 Example
+
+    my @a         = ("a", "b", "c");
+    my $aref      = \@a;
+    my $x         = $aref->[1]; #$x is now "b"
+    $aref->[4]    = "d";        #@a is now ("a", "b", "c", "d")
+
+    my $aoa = [
+        [0,   1,   2  ],
+        ["a", "b", "c"],
+    ];
+
+    my $y = $aoa->[1][1];       #$y is now "b"
+
+=head3 See also
+
+L</\X>, L</@{X}>, L</$X[Y]>, L<perlreftut>, and L<perlref>
+
+=head2 X->{Y}
+
+=head3 Class
+
+This belongs to L<perlop/The Arrow Operator>.
+
+=head3 Description
+
+This is the infix hash dereferencing operator (AKA The Arrow Operator).  It
+fetches the value associated with the key Y in a hash reference returned 
+by the expression X.  When dealing with multiple levels of dereferencing
+(such as with a reference to a hash of hashes) only the first level requires
+the arrow operator.
+
+If X does not evaluate to a hash reference, then a runtime error occurs.
+
+=head3 Example
+
+    my %h      = (a => 1, b => 2, c => 3);
+    my $href   = \%h;
+    my $x      = $href->{b}; #$x is now 2
+    $href->{d} = 4;          #%h is now (a => 1, b => 2, c => 3, d => 4)
+
+    my $hoh    = {
+        a => { a => 1, b => 2, c => 3 }
+        b => { a => 4, b => 5, c => 6 }
+    };
+
+    my $y = $hoh->{a}{b};    #$y is now 2
+
+=head3 See also
+
+L</\X>, L</%{X}>, L</$X{Y}>, L<perlreftut>, and L<perlref>
+
+=head2 X->(Y)
+
+=head3 Class
+
+This belongs to L<perlop/The Arrow Operator>.
+
+=head3 Description
+
+This is the infix dereferencing function call operator (AKA The Arrow
+Operator).  It calls the function referred to by X with the arguments Y.
+When dealing with multiple levels of dereferencing (such as with a reference
+to a hash of functions) only the first level requires the arrow operator;
+however, it is recommended you do not use this feature as it tends to cause
+confusion.
+
+If X does not evaluate to a code reference, then a runtime error occurs.
+
+=head3 Example
+
+    my $sub = sub {
+        my ($arg1, $arg2, $arg3) = @_;
+        print "$arg1 = $arg2 + $arg3\n";
+    };
+    my $href = {
+        func => $sub,
+    };
+
+    $sub->("a", "b", "c");  #prints "a = b + c\n"
+    $href->{func}(1, 2, 3); #prints "1 = 2 + 3\n"
+
+=head3 See also
+
+L</\X>, L<perlsub>, L<perlreftut>, and L<perlref>
+
+=head2 ${X}
+
+=head3 Class
+
+This belongs to L<perlop/Terms and List Operators (Leftward)>.
+
+=head3 Description
+
+If X is the name of a scalar variable, then this is just another way of
+saying C<$X>.  This form is handy during interpolation when the name of a
+variable would be ambiguous:
+
+    my $base = "foo"; 
+    my $s    = "${base}bar"; #$s is now "foobar"
+
+When X is an expression, this is the scalar dereferencing operator.  If X
+evaluates to a scalar reference then the value of the referenced item it
+returned.  If X does not evaluate to a scalar reference a runtime error
+occurs.  If X is a simple scalar variable the braces are unnecessary.
+
+If strict is turned off, and it shouldn't be, and X evaluates to a string
+then C<${X}> returns a scalar variable whose name is the same as the string.
+
+=head3 Example
+
+    my $x    = 5;
+    my $sref = \$x;
+    my @a    = ($sref);
+
+    $$sref   = 6; #$x is now 6
+    ${$a[0]} = 7; #$x is now 7
+
+    no strict "refs";
+
+    my $bad = "x";
+    $$bad = 8;     #$x is now 8
+
+=head3 See also
+
+L</\X>, L<perlreftut>, and L<perlref>
+
+=head2 ${X}[Y]
+
+=head3 Class
+
+This belongs to L<perlop/Terms and List Operators (Leftward)>.
+
+=head3 Description
+
+If X is the name of an array variable, then this is just another way of
+saying C<$X[Y]>.
+
+When X is an expression, this is the indexing array dereferencing operator.
+If X evaluates to an array reference then it returns value of the Yth item
+of the referenced array.  If X does not evaluate to an array reference a
+runtime error occurs.  If X is a simple scalar variable the braces are
+unnecessary.  The use of this operator is discouraged, see the 
+L<< /X->[Y] >> operator for a better solution.
+
+If strict is turned off, and it shouldn't be, and X evaluates to a string
+then C<${X}[Y]> returns the Yth item from the array whose name is the same
+as the string.
+
+=head3 Example
+
+    my @a    = qw(a b c);
+    my $aref = \@a;
+    
+    ${$aref}[0] = 1; #@a is now (1, "b", "c");
+
+    no strict "refs";
+
+    my $bad = "a";
+    ${$bad}[5] = "d"; #@a is now (1, "b", "c", undef, undef, "d")
+
+=head3 See also
+
+L</\X>, L<< /X->[Y] >>, L<perlreftut>, and L<perlref>
+
+=head2 ${X}{Y}
+
+=head3 Class
+
+This belongs to L<perlop/Terms and List Operators (Leftward)>.
+
+=head3 Description
+
+If X is the name of a hash variable, then this is just another way of saying
+C<$X{Y}>.
+
+When X is an expression, this is the indexing hash dereferencing operator.
+If X evaluates to an hash reference then it returns value associated with
+the key Y of the referenced hash.  If X does not evaluate to an hash
+reference a runtime error occurs.  If X is a simple scalar variable the
+braces are unnecessary.  The use of this operator is discouraged, see the
+L<< /X->{Y} >> operator for a better solution.
+
+If strict is turned off, and it shouldn't be, and X evaluates to a string
+then C<${X}{Y}> returns the value associated with the key Y from the hash
+whose name is the same as the string.
+
+=head3 Example
+
+    my %h    = (a => 1, b => 2, c => 3);
+    my $href = \%h;
+    
+    ${$href}{a} = 4; #%h is now (a => 4, b => 2, c => 3);
+
+    no strict "refs";
+
+    my $bad = "h";
+    ${$bad}{d} = 4;  #%h is now (a => 4, b => 2, c => 3, d => 4);
+
+=head3 See also
+
+L</\X>, L<< /X->{Y} >>, L<perlreftut>, and L<perlref>
+
+=head2 @{X}
+
+=head3 Class
+
+This belongs to L<perlop/Terms and List Operators (Leftward)>.
+
+=head3 Description
+
+If X is the name of an array variable then this is just another way of
+saying @X.  This form is handy during interpolation when the name of a
+variable would be ambiguous:
+
+    my @a = (1 .. 5);
+    my $x = "@{a}bar"; #$x is now "1 2 3bar"
+
+When X is an expression, this is the array dereferencing operator.  If X
+evaluates to a array reference then the value of the referenced item is
+returned.  If X does not evaluate to a array reference a runtime error
+occurs.  If X is a simple scalar variable the braces are unnecessary.
+
+If strict is turned off, and it shouldn't be, and X evaluates to a string
+then @{X} returns an array variable whose name is the same as the string.
+
+=head3 Example
+
+    my @a;
+    my $aref = \@a;
+    my @b    = ($aref);
+
+    @$aref      = (1, 2, 3); #@a is now (1, 2, 3)
+    @{$b[0]}    = (4, 5, 6); #@a is now (4, 5, 6)
+
+    no strict "refs";
+
+    my $bad = "a";
+    @{$bad}[0,1] = 8;     #$x is now 8
+
+=head3 See also
+
+L</\X>, L<perlreftut>, and L<perlref>
+
+=head2 %{X}
+
+=head3 Class
+
+This belongs to L<perlop/Terms and List Operators (Leftward)>.
+
+=head3 Description
+
+If X is the name of an array variable then this is just another way of
+saying %X.
+
+When X is an expression, this is the hash dereferencing operator.  If X
+evaluates to a hash reference then the value of the referenced item is
+returned.  If X does not evaluate to a hash reference a runtime error
+occurs.  If X is a simple scalar variable the braces are unnecessary.
+
+If strict is turned off, and it shouldn't be, and X evaluates to a string
+then @{X} returns an array variable whose name is the same as the string.
+
+=head3 Example
+
+    my %h;
+    my $href = \%h;
+    my @a    = ($href);
+
+    %$href   = (a => 1); #%h is now (a => 1)
+
+    no strict "refs";
+
+    my $bad = "h";
+    @{$bad}{"c", "d"} = (3, 4); #%h is now (a => 1, c => 3, d => 4)
+
+=head3 See also
+
+L</\X>, L<perlreftut>, and L<perlref>
+
+=head2 ++X
+
+=head3 Class
+
+This belongs to L<perlop/Auto-increment and Auto-decrement>.
+
+=head3 Description
+
+This is the prefix auto-increment operator.  It is roughly equivalent to C<X
+= X + 1>, but there is a bit of extra magic to it.  If you increment a
+variable that is numeric, or that has ever been used in a numeric context,
+you get a normal increment.  If, however, the variable has been used in only
+string contexts since it was set, and has a value that is not the empty
+string and matches the pattern C</^[a-zA-Z]*[0-9]*\z/>, the increment is
+done as a string, preserving each character within its range, with carry:
+
+    print ++($foo = "99");      # prints "100"
+    print ++($foo = "a0");      # prints "a1"
+    print ++($foo = "Az");      # prints "Ba"
+    print ++($foo = "zz");      # prints "aaa"
+
+C<undef> is always treated as numeric, and in particular is changed to C<0>
+before incrementing (so that a post-increment of an undef value will return
+C<0> rather than C<undef>).
+
+The incrementing occurs before the use of the value.
+
+=head3 Example
+
+    my $x = 4;
+    my $y = ++$x; #$x and $y are now 5
+
+    my $s = "a";
+    my $t = ++$s; #$s and $t are now "b"
+
+=head3 See also
+
+L</X++>
+
+=head2 X++
+
+=head3 Class
+
+This belongs to L<perlop/Auto-increment and Auto-decrement>.
+
+=head3 Description
+
+This is the postfix auto-increment operator.  It behaves the same way as the
+prefix auto-increment operator C<++X>, including the magic, but the value is
+taken before the incrementing is done. So, the after the following code
+C<$x> will be C<5> and C<$y> will be 4.  Whereas with the prefix
+auto-increment operator, both values would be C<5>.
+
+=head3 Example
+
+    my $x = 4;
+    my $y = $x++; #$x is now 5 and $y is now 4
+
+    my $s = "a";
+    my $t = $s++; #$s is now "b" and $t is now "a"
+
+=head3 See also
+
+L</++X>
+
+=head2 --X
+
+=head3 Class
+
+This belongs to L<perlop/Auto-increment and Auto-decrement>.
+
+=head3 Description
+
+This is the prefix auto-decrement operator.  It is equivalent to 
+C<X = X - 1>.  The value returned is reflects the decrementing, so after the
+following code runs, C<$x> and C<$y> will be C<4>.
+
+X will be converted to a number before decrementing, and if it cannot be
+converted it will turned into C<0> (and a warning is thrown if L<warnings>
+are turned on).
+
+=head3 Example
+
+    my $x = 5;
+    my $y = --$x;  #$x and $y are now 4
+
+    my $s = "foo";
+    my $t = --$s;  #$s and $t are now -1
+
+=head3 See also
+
+L</X-->
+
+=head2 X--
+
+=head3 Class
+
+This belongs to L<perlop/Auto-increment and Auto-decrement>.
+
+=head3 Description
+
+This is the postfix auto-decrement operator.  It is equivalent to 
+C<X = X - 1>.  The value returned is the value before decrementing, so after
+the following code runs, C<$x> will be 4 and C<$y> will be C<5>.
+
+X will be converted to a number before the operation, and if it cannot be
+converted it will turned into C<0> (and a warning is thrown if L<warnings>
+are turned on).
+
+=head3 Example
+
+    my $x = 5;
+    my $y = $x--;  #$x is now 4 and $y is now 5
+
+    my $q = "200 Quatloos for the newcomer";
+    my $r = $q--;  #$q is now 199 and $r is "200 Quatloos for the newcomer"
+
+    my $s = "foo";
+    my $t = $s--;  #$s is now -1 and $t is "foo"
+
+=head3 See also
+
+L</--X>
+
+=head2 X ** Y
+
+=head3 Class
+
+This belongs to L<perlop/Exponentiation>
+
+=head3 Description
+
+This is the exponentiation operator.  It raises X to the Yth power.
+Warning: it binds more tightly than unary minus, so C<-2**4> is C<-(2**4)>,
+not C<(-2)**4>. 
+
+Both X and Y will be converted to numbers before the operation; if they
+cannot be converted they will turned into C<0> (and a warning is thrown if
+L<warnings> are turned on).
+
+=head3 Example
+
+    my $x = 2 ** 8;             #$x is now 256
+    my $y = log(2 ** 8)/log(2); #$y is now 8;
+
+    my $s = 2 ** "foo";         #$s is now 1 (2 ** 0 is 1)
+    my $t = 2 ** "4ever";       #$t is now 16
+
+=head3 See also
+
+L</X **= Y> and L<perlfunc/log>
+
+=head2 !X
+
+=head3 Class
+
+This belongs to L<perlop/Symbolic Unary Operators>.
+
+=head3 Description
+
+This is the high-precedence logical negation operator.  It performs logical
+negation, i.e., "not".  If X is a true value it returns an empty string,
+otherwise it returns 1.  There is a low-precedence version: C<not>.
+
+It is occasionally used in pairs (C<!!>) to convert any false value to 
+C<""> and any true value to C<1>.  
+
+=head3 Example
+
+    my $m = !5;      #$m is now the empty string ("")
+    my $n = !0;      #$n is now 1
+    my $o = !"";     #$o is now 1
+    my $p = !undef;  #$p is now 1
+
+    my $q = !!5;     #$q is now 1
+    my $r = !!0;     #$r is now ""
+    my $s = !!"";    #$s is now ""
+    my $t = !!undef; #$t is now ""
+
+=head3 See also
+
+L</not X>
+
+=head2 ~X
+
+=head3 Class
+
+This belongs to L<perlop/Symbolic Unary Operators>.
+
+=head3 Description
+
+This is the bitwise negation operator (AKA C<1>'s complement operator).  The
+width of the result is platform-dependent: C<~0> is C<32> bits wide on a
+C<32>-bit platform, but C<64> bits wide on a C<64>-bit platform, so if you
+are expecting a certain bit width, remember to use the C<&> operator to mask
+off the excess bits.
+
+X will be converted to a number before the operation, and if it cannot be
+converted it will turned into C<0> (and a warning is thrown if L<warnings>
+are turned on).
+
+=head3 Example
+
+    my $x = ~0x00_00_00_00 #$x is now 0xFF_FF_FF_FF on 32-bit machines
+
+=head3 See also
+
+L<perlop/Bitwise String Operators> and L<perlop/Integer Arithmetic> 
+
+=head2 \X
+
+=head3 Class
+
+This belongs to L<perlop/Symbolic Unary Operators>.
+
+=head3 Description
+
+This is the backslash operator (AKA the reference operator).  If X is a
+variable, function, or a scalar literal, then it creates a reference to X.
+If X is a list, then it creates a list of references to the items in the
+list.
+
+=head3 Example
+
+    my $c       = \1024; #$c is now a reference to the literal 1024
+
+    my $s       = 5;
+    my $sref    = \$s; #$sref is now a reference to $s
+    $$sref      = 6;   #$s is now 6
+
+    my @a       = (1, 2, 3);
+    my $aref    = \@a; #$aref is now a reference to @a
+    $aref->[0]  = 5;   #@a is now (5, 2, 3)
+    push @$aref, 6;   #@a is now (5, 2, 3, 6)
+
+    my %h       = (a => 1, b => 2, c => 3);
+    my $href    = \%h;         #$href is now a reference to %h
+    $href->{b}  = 5;           #%h is now (a => 1, b => 5, c => 3)
+    my @keys    = keys %$href; #@keys is now ("a", "b", "c")
+
+    sub foo {
+        return join "|", @_;
+    }
+    my $coderef = \&foo;
+    my $x       = $coderef->(1, 2, 3); #$x is now "1|2|3";
+    my $y       = &$coderef(4, 5, 6);  #$y is now "4|5|6";
+
+    #@refs now holds references to $s, @a, and %h
+    my @refs    = \($s, @a, %h);
+
+=head3 See also
+
+L<< /X -> Y >> in L<perlopref>, L<perlreftut>, and L<perlref>
+
+=head2 +X
+
+=head3 Class
+
+This belongs to L<perlop/Symbolic Unary Operators>.
+
+=head3 Description
+
+This is the unary plus operator.  It has no effect whatsoever, even on
+strings.  It is useful syntactically for separating a function name from a
+parenthesized expression that would otherwise be interpreted as the complete
+list of function arguments.
+
+=head3 Example
+
+    print (split ",", "a,b,c,d")[2], "\n";  #syntax error
+    print +(split ",", "a,b,c,d")[2], "\n"; #prints "c\n"
+
+=head3 See also
+
+L</-X>
+
+=head2 -X
+
+=head3 Class
+
+This belongs to L<perlop/Symbolic Unary Operators>.
+
+=head3 Description
+
+The unary minus operator performs arithmetic negation if X is numeric.
+
+If X is a bareword it returns a string consisting of C<-> and the bareword.
+
+If X is a string that starts with a character that matches /[_a-zA-Z]/ it
+returns a string consisting of C<-> followed by the original string.
+
+If X begins with C<-> or C<+> then the first character is converted to the
+opposite sign.
+
+In all other cases, X will be converted to a number before the operation,
+and if it cannot be converted it will turned into C<0> (and a warning is
+thrown if L<warnings> are turned on).
+
+=head3 Example
+
+    my $x = 10;
+    $x    = -$x;     #$x is now -10
+    $x    = -$x;     #$x is now 10 again
+    my $y = -option; #$y is now "-option"
+    my $z = -"foo":  #$z is now "-foo"
+    $z = -$z;        #$z is now "+foo"
+    $z = -$z;        #$z is now "-foo"
+    $z = -"*foo"     #$z is now -0
+    
+    $x = "\x{e9}";   #$x is now e acute
+    $x = -$x;        #$x is now -0 because e acute is not in [_a-zA-Z]
+
+=head3 See also
+
+L</+X>
+
+=head2 X =~ Y
+
+=head3 Class
+
+This belongs to L<perlop/Binding Operators>.
+
+=head3 Description
+
+This is the binding operator.  It applies a regex match (C<m//>),
+substitution (C<s///>), or transliteration (C<tr///> or C<y///>) Y against a
+string X.  When used in scalar context, the return value generally indicates
+the success of the operation.  Behavior in list context depends on the
+particular operator.  See L<perlop/"Regexp Quote-Like Operators"> for
+details and L<perlretut> for examples using these operators.
+
+If Y is an expression rather than a search pattern, substitution, or
+transliteration, it is interpreted as a search pattern at run time. Note
+that this means that its contents will be interpolated twice, so
+
+  "\\" =~ "\\";
+
+is not ok, as the regex engine will end up trying to compile the pattern
+C<\>, which it will consider a syntax error.
+
+=head3 Example
+
+    my $x = "foo bar baz";
+
+    #prints "matched\n"
+    if ($x =~ /foo/) {
+        print "matched\n";
+    }
+
+=head3 See also
+
+L<perlop>, L<perlretut>, and L<prelre>
+
+=head2 X !~ Y
+
+=head3 Class
+
+This belongs to L<perlop/Binding Operators>.
+
+=head3 Description
+
+This is the negative binding operator.  It behaves like the C<=~> operator,
+but the return is logically negated.
+
+=head3 Example
+
+    #prints "matched\n"
+    if ("foo bar baz" !~ /foo/) {
+        print "didn't match\n";
+    } else {
+        print "matched\n";
+    }
+
+=head3 See also
+
+L</X =~ Y>
+
+=head2 X * Y
+
+=head3 Class
+
+This belongs to L<perlop/Multiplicative Operators>.
+
+=head3 Description
+
+This is the multiplication operator.  It returns X multiplied by Y.
+
+Both X and Y will be converted to numbers before the operation; if they
+cannot be converted they will turned into C<0> (and a warning is thrown if
+L<warnings> are turned on).
+
+=head3 Example
+
+    my $x = 2 * 21;      #$x is now 42
+    my $y = 2 * "five";  #$y is now 0 (2 * 0)
+    my $z = 2 * "80s";   #$z is now 160
+
+=head3 See also
+
+L</X *= Y>
+
+=head2 X / Y
+
+=head3 Class
+
+This belongs to L<perlop/Multiplicative Operators>.
+
+=head3 Description
+
+This is the division operator.  It divides X by Y.
+
+Both X and Y will be converted to numbers before the operation; if they
+cannot be converted they will turned into C<0> (and a warning is thrown if
+L<warnings> are turned on).
+
+Warning: If Y is 0 or evaluates to 0 the program will die with a message
+like C<Illegal division by zero>.
+
+=head3 Example
+
+    my $x = 84/2;     #$x is now 42
+    my $y = 84/"2";   #$y is now 42
+    my $z = "five"/2  #$z is now 0 (0/2)
+
+=head3 See Also
+
+L</X E<sol>= Y>
+
+=head2 X % Y
+
+=head3 Class
+
+This belongs to L<perlop/Multiplicative Operators>.
+
+=head3 Description
+
+This is the modulo operator.  It computes the remainder of X divided by Y.
+The remainder is determined differently depending on the whether the numbers
+are integers or floating point and whether they are positive or negative.
+
+Given integer operands X and Y: If Y is positive, then "X % Y" is X minus 
+the largest multiple of Y less than or equal to X.  If Y is negative, then
+"X % Y" is X minus the smallest multiple of Y that is not less than X (i.e.
+the result will be less than or equal to zero).  To illustrate this, here
+are the results of modding C<-9> through C<9> with C<4>:
+
+    when X is  -9 -8 -7 -6 -5 -4 -3 -2 -1  0  1  2  3  4  5  6  7  8  9
+    result is   3  0  1  2  3  0  1  2  3  0  1  2  3  0  1  2  3  0  1
+
+And here is C<-9> through C<9> modded with C<-4>:
+
+    when X is  -9 -8 -7 -6 -5 -4 -3 -2 -1  0  1  2  3  4  5  6  7  8  9
+    result is  -1  0 -3 -2 -1  0 -3 -2 -1  0 -3 -2 -1  0 -3 -2 -1  0 -3 
+
+From this we can see a positive Y constrains X to a range from C<0> to 
+C<(Y - 1)> that wraps around and a negative Y constrains X to a range from
+C<(Y + 1)> to C<0>.
+
+When Y is a floating point number whose absolute value is in the range of
+C<0> to C<(UV_MAX + 1)> (where UV_MAX is the maximum of the unsigned 
+integer type) X and Y are truncated to integers.  If the absolute value of
+Y is larger than C<(UV_MAX + 1)> then the formula C<(X - I * Y)> (where I
+is a certain integer that makes the result have the same sign as Y).  For
+example, on 32-bit systems C<4.5 % (2 ** 32 - 1)> is C<4>, but 
+C<4.5 % 2 ** 32> is C<4.5>.
+
+Note: when the L<integer> pragma is in scope C<%> gives you direct access to
+the modulo operator as implemented by your C compiler.  This operator is not
+as well defined for negative operands, but it will execute faster.
+
+Both X and Y will be converted to numbers before the operation; if they
+cannot be converted they will turned into C<0> (and a warning is thrown if
+L<warnings> are turned on).
+
+Warning: If Y is 0 or evaluates to 0 the program will die with a message
+like C<Illegal modulus zero>.
+
+=head3 Example
+
+    my $odd = $x % 2; #$odd is 1 when $x is odd and 0 when $x is even
+
+    my $hour = ($hour + 1) % 24; # 23 (11pm) plus 1 hour is 0 (12am). 
+
+    my $x = "foo" % 3;           #$x is now 0 (0 % 3)
+    my $y = "5" % 4;             #$y is now 1
+
+=head3 See also
+
+L</X E<sol> Y> and L</X %= Y>
+
+=head2 X x Y
+
+=head3 Class
+
+This belongs to L<perlop/Multiplicative Operators>.
+
+=head3 Description
+
+This is the repetition operator.  When X is a scalar value it returns
+a string made up of X repeated Y times.  When X is a list it returns
+a list made up of X repeated Y times.  If Y is less than 1 an empty string
+is returned.
+
+Y will be converted to a number before the operation, and if it cannot be
+converted it will turned into C<0> (and a warning is thrown if L<warnings>
+are turned on).
+
+=head3 Example
+
+    my $x = "abc" x 3;    #$x is now the string "abcabcabc"
+    my @a = ("abc") x 3;  #@a is now ("abc", "abc", "abc")
+
+    my $s = "abcd" x "a"; #$s is now "" ("abcd" x 0)
+    my $t = "abcd" x "2"; #$t is now "abddabcd"
+
+=head2 X + Y
+
+=head3 Class
+
+This belongs to L<perlop/Additive Operators>.
+
+=head3 Description
+
+This is the addition operator.  It returns the result of X plus Y.
+
+Both X and Y will be converted to numbers before the operation; if they
+cannot be converted they will turned into C<0> (and a warning is thrown if
+L<warnings> are turned on).
+
+=head3 Example
+
+    my $x = 40 + 2;   #$x is now 42
+    my $y = 40 + "a"; #$y is now 40 (40 + 0)
+    my $y = 40 + "2"; #$y is now 42
+
+=head3 See also
+
+L</X += Y>
+
+=head2 X - Y
+
+=head3 Class
+
+This belongs to L<perlop/Additive Operators>.
+
+=head3 Description
+
+This is the subtraction operator.  It returns the result of X minus Y.
+
+Both X and Y will be converted to numbers before the operation; if they
+cannot be converted they will turned into C<0> (and a warning is thrown if
+L<warnings> are turned on).
+
+=head3 Example
+
+    my $x = 100 - 58;     #$x is now 42
+    my $y = 100 - "five"; #$y is now 100 (100 - 0)
+    my $z = 100 - "58";   #$z is now 42
+
+=head3 See also
+
+L</X -= Y>
+
+=head2 X . Y
+
+=head3 Class
+
+This belongs to L<perlop/Additive Operators>.
+
+=head3 Description
+
+This is the concatenation operator.  It coerces its arguments to strings,
+then returns a new string that begins with X and ends with Y.  It forces
+scalar context on X and Y.
+
+=head3 Example
+
+    my @a = (1 .. 10);
+    my $x = "foo" . "bar"; #$x is now "foobar"
+    my $y = "the number of elements in \@a is" . @a;
+
+=head3 See also
+
+L</X .= Y>
+
+=head2 X << Y
+
+=head3 Class
+
+This belongs to L<perlop/Shift Operators>.
+
+=head3 Description
+
+This is the left bit-shift operator.  It shift bits that make up the integer
+X Y places to the left.  If X is not an integer it will be converted into 
+one before the operation begins.  
+
+New bits added to the right side are all C<0>.  Overflowing the integer type
+on you platform (i.e. creating a number too large to store in your
+platform's integer type) results in behavior that is not well defined (i.e.
+it is platform specific).  When Y is negative the results are also not well
+defined.  This is because the left bit-shift operator is implemented by the
+native C compiler's left bit-shift operator (and those operations are not
+defined by ISO C).
+
+Shifting 1 bit to the left is the same as multiplying the number by 2.
+
+Both X and Y will be converted to numbers before the operation; if they
+cannot be converted they will turned into C<0> (and a warning is thrown if
+L<warnings> are turned on).
+
+=head3 Example
+
+    #on 32-bit machines
+    my $x = 0xFF_00_FF_00 << 8; #$x is now not well defined
+
+    #on 64-bit machines
+    my $y = 0xFF_00_FF_00 << 8; #$y is now 0xFF_00_FF_00_00
+
+    my $z = 6 << 1; #$z is now 12
+
+=head3 See also
+
+L<<</X <<= Y>>>
+
+=head2 X >> Y
+
+=head3 Class
+
+This belongs to L<perlop/Shift Operators>.
+
+=head3 Description
+
+This is the right-bit shift operator.  It shift bits that make up the
+integer X Y places to the right.  If X is not an integer it will be
+converted into one before the operation begins.  Bits shifted past the
+rightmost edge are lost.  New bits added to the left side are all 0.
+Shifting to the right one bit is the same as an integer division by 2.
+
+When Y is negative the results are not well defined (i.e. platform
+specific).  This is because the right bit-shift operator is implemented by
+the native C compiler's right bit-shift operator  (and that is not defined
+by ISO C).
+
+Both X and Y will be converted to numbers before the operation; if they
+cannot be converted they will turned into C<0> (and a warning is thrown if
+L<warnings> are turned on).
+
+=head3 Example
+
+    my $x = 0x00_FF_00_FF >> 8; #$x is now 0x00_00_FF_00
+    my $y = 12 >> 1;            #$y is now 6
+
+=head3 See also
+
+L<<</X >>= Y>>>
+
+=head2 -r
+
+=head3 Class
+
+This belongs to L<perlop/Named Unary Operators>.
+
+=head2 -w
+
+=head3 Class
+
+This belongs to L<perlop/Named Unary Operators>.
+
+=head2 -x
+
+=head3 Class
+
+This belongs to L<perlop/Named Unary Operators>.
+
+=head2 -o
+
+=head3 Class
+
+This belongs to L<perlop/Named Unary Operators>.
+
+=head2 -R
+
+=head3 Class
+
+This belongs to L<perlop/Named Unary Operators>.
+
+=head2 -W
+
+=head3 Class
+
+This belongs to L<perlop/Named Unary Operators>.
+
+=head2 -X
+
+=head3 Class
+
+This belongs to L<perlop/Named Unary Operators>.
+
+=head2 -O
+
+=head3 Class
+
+This belongs to L<perlop/Named Unary Operators>.
+
+=head2 -e
+
+=head3 Class
+
+This belongs to L<perlop/Named Unary Operators>.
+
+=head2 -z
+
+=head3 Class
+
+This belongs to L<perlop/Named Unary Operators>.
+
+=head2 -s
+
+=head3 Class
+
+This belongs to L<perlop/Named Unary Operators>.
+
+=head2 -f
+
+=head3 Class
+
+This belongs to L<perlop/Named Unary Operators>.
+
+=head2 -d
+
+=head3 Class
+
+This belongs to L<perlop/Named Unary Operators>.
+
+=head2 -l
+
+=head3 Class
+
+This belongs to L<perlop/Named Unary Operators>.
+
+=head2 -p
+
+=head3 Class
+
+This belongs to L<perlop/Named Unary Operators>.
+
+=head2 -S
+
+=head3 Class
+
+This belongs to L<perlop/Named Unary Operators>.
+
+=head2 -b
+
+=head3 Class
+
+This belongs to L<perlop/Named Unary Operators>.
+
+=head2 -c
+
+=head3 Class
+
+This belongs to L<perlop/Named Unary Operators>.
+
+=head2 -t
+
+=head3 Class
+
+This belongs to L<perlop/Named Unary Operators>.
+
+=head2 -u
+
+=head3 Class
+
+This belongs to L<perlop/Named Unary Operators>.
+
+=head2 -g
+
+=head3 Class
+
+This belongs to L<perlop/Named Unary Operators>.
+
+=head2 -k
+
+=head3 Class
+
+This belongs to L<perlop/Named Unary Operators>.
+
+=head2 -T
+
+=head3 Class
+
+This belongs to L<perlop/Named Unary Operators>.
+
+=head2 -B
+
+=head3 Class
+
+This belongs to L<perlop/Named Unary Operators>.
+
+=head2 -M
+
+=head3 Class
+
+This belongs to L<perlop/Named Unary Operators>.
+
+=head2 -A
+
+=head3 Class
+
+This belongs to L<perlop/Named Unary Operators>.
+
+=head2 -C
+
+=head3 Class
+
+This belongs to L<perlop/Named Unary Operators>.
+
+=head2 X < Y
+
+=head3 Class
+
+This belongs to L<perlop/Relational Operators>
+
+=head3 Description
+
+This is the numeric less than operator.  It returns a true value if X is
+numerically less than Y or a false value if X is greater than or equal to
+Y.
+
+Both X and Y will be converted to numbers before the operation; if they
+cannot be converted they will turned into C<0> (and a warning is thrown if
+L<warnings> are turned on).
+
+=head3 Example
+
+    if (4 < 5) {
+        print "this is true unless Perl is broken\n";
+    }
+
+    if (5 < 4) {
+        print "this should never be true\n";
+    } else {
+        print "it should always be false\n";
+    }
+
+=head3 See also
+
+L<</X <= Y>>, L</X lt Y>, and L</X le Y>
+
+=head2 X > Y
+
+=head3 Class
+
+This belongs to L<perlop/Relational Operators>
+
+=head3 Description
+
+This is the numeric greater than operator.  It returns a true value if X is
+numerically greater than Y or a false value if X is less than or equal to
+Y.
+
+Both X and Y will be converted to numbers before the operation; if they
+cannot be converted they will turned into C<0> (and a warning is thrown if
+L<warnings> are turned on).
+
+=head3 Example
+
+    if (5 > 4) {
+        print "this is true unless Perl is broken\n";
+    }
+
+    if (4 > 5) {
+        print "this should never be true\n";
+    } else {
+        print "it should always be false\n";
+    }
+
+=head3 See also
+
+L<</X >= Y>> L</X gt Y>, and L</X ge Y>
+
+=head2 X <= Y
+
+=head3 Class
+
+This belongs to L<perlop/Relational Operators>
+
+=head3 Description
+
+This is the numeric less than or equal to operator.  It returns a true 
+value if X is numerically less than or equal to Y or a false value if 
+X is greater than to Y.
+
+Both X and Y will be converted to numbers before the operation; if they
+cannot be converted they will turned into C<0> (and a warning is thrown if
+L<warnings> are turned on).
+
+=head3 Example
+
+    if (4 <= 4) {
+        print "this is true unless Perl is broken\n";
+    }
+
+    if (5 <= 4) {
+        print "this should never be true\n";
+    } else {
+        print "it should always be false\n";
+    }
+
+=head3 See also
+
+L<</X < Y>>, L</X lt Y>, and L</X le Y>
+
+=head2 X >= Y
+
+=head3 Class
+
+This belongs to L<perlop/Relational Operators>
+
+=head3 Description
+
+This is the numeric less than or equal to operator.  It returns a true 
+value if X is numerically less than or equal to Y or a false value if 
+X is greater than to Y.
+
+Both X and Y will be converted to numbers before the operation; if they
+cannot be converted they will turned into C<0> (and a warning is thrown if
+L<warnings> are turned on).
+
+=head3 Example
+
+    if (4 >= 4) {
+        print "this is true unless Perl is broken\n";
+    }
+
+    if (4 >= 5) {
+        print "this should never be true\n";
+    } else {
+        print "it should always be false\n";
+    }
+
+=head3 See also
+
+L<</X > Y>>, L</X gt Y>, and L</X ge Y>
+
+=head2 X lt Y
+
+=head3 Class
+
+This belongs to L<perlop/Relational Operators>
+
+=head3 Description
+
+This is the lexical less than operator (also known as the string less than
+operator or the stringwise less than operator).  It returns true if X is
+less than Y and false if X is greater than or equal to Y.  The order of
+various characters is locale dependent.  The default order is determined by
+the Unicode ordinal value (since Unicode contains the ASCII set as its first
+C<127> characters, this order is the same as the ASCII order).
+
+=head3 Example
+
+    if ("a" lt "b") {
+        print "this is true unless the locale is really weird\n";
+    }
+
+    if ("z" lt "a") {
+        print "this should never be true (unless the local is weird)\n";
+    } else {
+        print "it should always be false (unless the local is weird)\n";
+    }
+
+=head3 See also
+
+L<</X < Y>>, L<</X <= Y>>, and L</X le Y>
+L</X cmp Y>
+
+=head2 X gt Y
+
+=head3 Class
+
+This belongs to L<perlop/Relational Operators>
+
+=head3 Description
+
+This is the lexical greater than operator (also known as the string greater
+than operator or the stringwise greater than operator).  It returns true if
+X is greater than Y and false if X is less than or equal to Y.  The order of
+various characters is locale dependent.  The default order is determined by
+the Unicode ordinal value (since Unicode contains the ASCII set as its first
+C<127> characters, this order is the same as the ASCII order).
+
+=head3 Example
+
+    if ("b" gt "a") {
+        print "this is true unless the locale is really weird\n";
+    }
+
+    if ("a" gt "z") {
+        print "this should never be true (unless the local is weird)\n";
+    } else {
+        print "it should always be false (unless the local is weird)\n";
+    }
+
+=head3 See also
+
+L<</X > Y>>, L</X >= Y>, and L</X ge Y>
+
+=head2 X le Y
+
+=head3 Class
+
+This belongs to L<perlop/Relational Operators>
+
+=head3 Description
+
+This is the lexical less than or equal to operator (also known as the string
+less than or equal to operator or the stringwise less than or equal to
+operator).  It returns true if X is less than or equal to Y and false if X
+is greater than Y.  The order of various characters is locale dependent.
+The default order is determined by the Unicode ordinal value (since Unicode
+contains the ASCII set as its first C<127> characters, this order is the
+same as the ASCII order).
+
+=head3 Example
+
+    if ("a" le "a") {
+        print "this is true unless Perl is broken\n";
+    }
+
+    if ("z" le "a") {
+        print "this should never be true (unless the local is weird)\n";
+    } else {
+        print "it should always be false (unless the local is weird)\n";
+    }
+
+=head3 See also
+
+L<</X < Y>>, L<</X <= Y>>, and L</X lt Y>
+
+=head2 X ge Y
+
+=head3 Class
+
+This belongs to L<perlop/Relational Operators>
+
+=head3 Description
+
+This is the lexical greater than or equal to operator (also known as the
+string greater than or equal to operator or the stringwise greater than or
+equal to operator).  It returns true if X is greater than Y and false if X
+is less than or equal to Y.  The order of various characters is locale
+dependent.  The default order is determined by the Unicode ordinal value
+(since Unicode contains the ASCII set as its first C<127> characters, this
+order is the same as the ASCII order).
+
+=head3 Example
+
+    if ("a" ge "a") {
+        print "this is true unless Perl is broken\n";
+    }
+
+    if ("a" ge "z") {
+        print "this should never be true (unless the local is weird)\n";
+    } else {
+        print "it should always be false (unless the local is weird)\n";
+    }
+
+=head3 See also
+
+L<</X > Y>>, L<</X >= Y>>, and </X gt Y>
+L</X cmp Y>
+
+=head2 X == Y
+
+=head3 Class
+
+This belongs to L<perlop/Equality Operators>.
+
+=head3 Description
+
+This is the numeric equality operator.  It returns true if X and Y evaluate
+as the same number.
+
+Both X and Y will be converted to numbers before the operation; if they
+cannot be converted they will turned into C<0> (and a warning is thrown if
+L<warnings> are turned on).
+
+Important note: the numeric equality operator should not be used with
+floating point numbers as the error introduced by rounding may cause the
+number to not be exactly what you are comparing against.  Always use the
+less than and greater than operators with a small delta:
+
+    my $x = 0;
+    
+    for (1 .. 10) {
+        $x += .1;
+    }
+    
+    if ($x == 1) {
+        print "$x is one\n";
+    } else {
+        print "oops, darn floating point numbers\n";
+    }
+    
+    my $delta = 1e-15; #0.000000000000001
+    if (
+        $x < 1 + $delta and
+        $x > 1 - $delta
+    ) {
+        print "this time it worked\n";
+    }
+
+=head3 Example
+
+    if (5 == 5) {
+        print "this will be true unless Perl is broken\n"
+    }
+
+=head3 See also
+
+L</X != Y>, L</X eq Y>, and L</X ne Y>
+
+=head2 X != Y
+
+=head3 Class
+
+This belongs to L<perlop/Equality Operators>.
+
+=head3 Description
+
+This is the numeric not equals operator.  It returns true if X does not
+evaluate to the same numeric value as Y.  
+
+Both X and Y will be converted to numbers before the operation; if they
+cannot be converted they will turned into C<0> (and a warning is thrown if
+L<warnings> are turned on).
+
+Important note: the numeric equality operator should not be used with
+floating point numbers as the error introduced by rounding may cause the
+number to not be exactly what you are comparing against.  Always use the
+less than and greater than operators with a small delta:
+
+    my $x = 0;
+    
+    for (1 .. 10) {
+        $x += .1;
+    }
+    
+    if ($x != 1) {
+        print "oops, darn floating point numbers\n";
+    }
+    
+    my $delta = 1e-15; #0.000000000000001
+    if (
+        $x > 1 + $delta and
+        $x < 1 - $delta
+    ) {
+        print "wow, your floating point representation is really good\n";
+    } else {
+        print "this time it worked\n";
+    }
+
+=head3 Example
+
+    if (5 != 4) {
+        print "this will be true unless Perl is broken\n"
+    }
+
+=head3 See also
+
+L</X == Y>, L</X eq Y>, and L</X ne Y>
+
+=head2 X <=> Y
+
+=head3 Class
+
+This belongs to L<perlop/Equality Operators>.
+
+=head3 Description
+
+This is the numeric comparison operator.  It returns less than C<0>  if X is
+numerically less than Y, C<0> is if X and Y are the same numerically, or
+more than C<0> if X is numerically greater than Y.  It is most often seen
+combined with the C<sort> function:
+
+    my @sorted = sort { $a <=> $b } @unsorted;
+
+Both X and Y will be converted to numbers before the operation; if they
+cannot be converted they will turned into C<0> (and a warning is thrown if
+L<warnings> are turned on).
+
+=head3 Example
+
+    my $x = 4 <=> 5; #x is now negative
+    my $y = 5 <=> 5; #y is now 0
+    my $z = 6 <=> 5; #z is now positive
+
+=head3 See also
+
+L</X cmp Y>
+
+=head2 X eq Y
+
+=head3 Class
+
+This belongs to L<perlop/Equality Operators>.
+
+=head3 Description
+
+This is the lexical equality operator (aka the string equality operator or
+the stringwise equality operator).  It returns true if X and Y evaluate as
+the same string.
+
+=head3 Example
+
+    if ("foo" eq "foo") {
+        print "this is true, unless Perl is broken\n";
+    }
+
+    if ("foo" eq "bar") {
+        print "this is should always be false, unless Perl is broken\n";
+    } else {
+        print "this is false, unless Perl is broken\n";
+    }
+
+=head3 See also
+
+L</X == Y>, L</X != Y>, and L</X ne Y>
+
+=head2 X ne Y
+
+=head3 Class
+
+This belongs to L<perlop/Equality Operators>.
+
+=head3 Description
+
+This is the lexical not equals operator. (aka the string not equals operator
+or the stringwise not equals operator).  It returns false if X and Y
+evaluate as the same string.
+
+=head3 Example
+
+    if ("foo" ne "bar") {
+        print "this is true, unless Perl is broken\n";
+    }
+
+    if ("foo" ne "foo") {
+        print "this is should always be false, unless Perl is broken\n";
+    } else {
+        print "this is false, unless Perl is broken\n";
+    }
+
+=head3 See also
+
+L</X == Y>, L</X != Y>, and L</X eq Y>
+
+=head2 X cmp Y
+
+=head3 Class
+
+This belongs to L<perlop/Equality Operators>.
+
+=head3 Description
+
+This is the lexical comparison operator (also known as the string comparison
+operator or the stringwise comparison operator).  It returns a negative
+value if X is lexically less than Y, C<0> is X and Y are lexically the same,
+or a positive value if X is lexically larger than Y.  This comparison is
+affected by the current locale and the default order is determined by the
+Unicode ordinal value (since Unicode contains the ASCII set as its first
+C<127> characters, this order is the same as the ASCII order).  It is most
+commonly seen used with the C<sort> function:
+
+    my @sorted = sort { $a cmp $b } @unsorted;
+
+=head3 Example
+
+    my $x = "a" <=> "b"; #$x is now negative
+    my $y = "b" <=> "b"; #$x is now 0
+    my $z = "c" <=> "b"; #$x is now positive
+
+=head3 See also
+
+L<</X <=> Y>>
+
+=head2 X ~~ Y
+
+=head3 Class
+
+This belongs to L<perlop/Equality Operators>.
+
+=head3 Description
+
+This is the smartmatch operator.  In 5.10 and 5.10.1 it has different
+behavior.  See L<perlsyn/"Smart matching in detail"> for more detail.
+
+Prior to 5.10, it was sometimes used to mean C<~(~X)> which has the affect
+of forcing scalar context on X.  You should use the C<scalar> function for
+that purpose instead.
+
+=head3 Example
+
+See L<perlsyn/"Smart matching in detail"> for examples.
+
+=head3 See also
+
+L</~~X>, L<perlsyn/"Smart matching in detail">, and L<perlfunc/scalar>
+
+=head2 X & Y
+
+=head3 Class
+
+This belongs to L<perlop/Bitwise And>.
+
+=head3 Description
+
+This is the bitwise and operator.  It ands together the individual bits of X
+and Y.  The truth table for and is:
+
+     X Y   R
+    -----+---
+     0 0 | 0
+     0 1 | 0
+     1 0 | 0
+     1 1 | 1
+
+That is, it sets the result bit to 1 if both the X and Y bits are 1,
+otherwise it sets the result bit to 0.  This operation is done for every bit
+in X and Y.  
+
+If both operands are strings, they are considered character by character.
+The result is determined by anding the ordinal value of the characters, so
+C<"a" & "b"> is equivalent to C<chr(ord("a") & ord("b"))>.  If X and Y are
+different sizes, then the longer string is truncated to the length of the
+shorter string.
+
+=head3 Example
+
+    #0x4545          is 0b0000_0100_0000_0101_0000_0100_0000_0101
+    #0x00FF          is 0b0000_0000_0000_0000_1111_1111_1111_1111
+    #0x4545 & 0x00FF is 0b0000_0000_0000_0000_0000_0100_0000_0101 or 0x0045
+    my $z = 0x4545 & 0x00FF; #$z is now 0x0045
+
+    #In ASCII (and UTF-8)
+    #"a"       is 0b0110_0001
+    #"b"       is 0b0110_0010
+    #"a" & "b" is 0b0110_0000 or "`" 
+    my $x = "a" & "b"; #$x is now "`"
+
+=head3 See also
+
+L</X and Y>, L</X && Y>, L<perlop/Integer Arithmetic> and 
+L<perlop/Bitwise String Operators>.
+
+=head2 X | Y
+
+=head3 Class
+
+This belongs to L<perlop/Bitwise Or and Exclusive Or>.
+
+=head3 Description
+
+This is the bitwise or operator.  It ors together the individual bits of X
+and Y.  The truth table for or is:
+
+     X Y   R
+    -----+---
+     0 0 | 0
+     0 1 | 1
+     1 0 | 1
+     1 1 | 1
+
+That is, it sets the result bit to 0 if both the X and Y bits are 0,
+otherwise it sets the result bit to 1.  This operation is done for every bit
+in X and Y.  
+
+If both operands are strings, they are considered character by character.
+The result is determined by oring the ordinal value of the characters, so
+C<"a" | "b"> is equivalent to C<chr(ord("a") | ord("b"))>.  If X and Y are
+different sizes, then the shorter item is treated as if it had additional
+bits that are set to 0.
+
+=head3 Example
+
+    #0x4545          is 0b0000_0100_0000_0101_0000_0100_0000_0101
+    #0x00FF          is 0b0000_0000_0000_0000_1111_1111_1111_1111
+    #0x4545 | 0x00FF is 0b0000_0100_0000_0101_1111_1111_1111_1111 or 0x45FF
+    my $y = 0x4545 | 0x00FF; #$y is now 0x45FF
+
+    #In ASCII (and UTF-8)
+    #"a"       is 0b0110_0001
+    #"b"       is 0b0110_0010
+    #"a" | "b" is 0b0110_0011 or "c" 
+    my $x = "a" | "b"; #$x is now "c"
+
+=head3 See also
+
+L</X or Y>, L</X xor Y>, L<</X E<verbar>E<verbar> Y>>, L</X E<sol>E<sol> Y>,
+L</X ^ Y>, L<perlop/Integer Arithmetic>, and 
+L<perlop/Bitwise String Operators>.
+
+=head2 X ^ Y
+
+=head3 Class
+
+This belongs to L<perlop/Bitwise Or and Exclusive Or>.
+
+=head3 Description
+
+This is the bitwise exclusive-or operator.  It exclusive-ors together the
+individual bits of X and Y.  The truth table for exclusive-or is:
+
+     X Y   R
+    -----+---
+     0 0 | 0
+     0 1 | 1
+     1 0 | 1
+     1 1 | 0
+
+That is, it sets the result bit to 1 if X or Y is set, or 0 if both or
+neither is set.  This operation is done for every bit in X and Y.  
+
+If both operands are strings, they are considered character by character.
+The result is determined by exclusive-oring the ordinal value of the
+characters, so C<"a" ^ "b"> is equivalent to C<chr(ord("a") ^ ord("b"))>.
+If X and Y are different sizes, then the shorter item is treated as if it
+had additional bits that are set to 0.
+
+=head3 Example
+
+    #0x4545          is 0b0000_0100_0000_0101_0000_0100_0000_0101
+    #0x00FF          is 0b0000_0000_0000_0000_1111_1111_1111_1111
+    #0x4545 ^ 0x00FF is 0b0000_0100_0000_0101_1111_1111_1111_1010 or 0x45BA
+    my $y = 0x4545 ^ 0x00FF; #$y is now 0x45BA
+
+    #In ASCII (and UTF-8)
+    #"a"       is 0b0110_0001
+    #"b"       is 0b0110_0010
+    #"a" ^ "b" is 0b0000_0011 or "\x{03}" 
+    my $x = "a" ^ "b"; #$x is now "\x{03}"
+
+=head3 See also
+
+L</X or Y>, L</X xor Y>, L</X E<verbar>E<verbar> Y>, L</X E<sol>E<sol> Y>,
+L</X E<verbar> Y>, L<perlop/Integer Arithmetic> and 
+L<perlop/Bitwise String Operators>.
+
+=head2 X && Y
+
+=head3 Class
+
+This belongs to L<perlop/C-style Logical And>.
+
+=head3 Description
+
+This is the high-precedence logical and operator.  It returns X if X
+evaluates to false, otherwise it returns Y.
+
+It binds more tightly than the low-precedence logical and operator:
+
+    my $x = 5 && 4; # is equivalent to my $x = (5 && 4);
+
+whereas:
+
+    my $y = 5 and 4; # is equivalent to (my $x = 5) and 4;
+
+It is most commonly used in conditional statements such as C<if>, C<unless>,
+C<while>.
+
+=head3 Example
+
+    my $w = "";
+    my $x = 0;
+    my $y = 1;
+    my $z = "foo";
+
+    print $w && $y, "\n"; #prints "\n"
+    print $x && $y, "\n"; #prints "0\n"
+    print $y && $z, "\n"; #prints "foo\n"
+    print $z && $y, "\n"; #prints "1\n"
+
+=head3 See also
+
+L</X and Y>, L</X & Y>
+
+=head2 X || Y
+
+=head3 Class
+
+This belongs to L<perlop/C-style Logical Or>.
+
+=head3 Description
+
+This is the high-precedence logical or operator.  It returns the X if X
+evaluates to true, otherwise it returns Y.
+
+It binds more tightly than the low-precedence logical or operator:
+
+    my $x = 5 || 4; # is equivalent to my $x = (5 || 4);
+
+whereas:
+
+    my $y = 5 or 4; # is equivalent to (my $x = 5) or 4;
+
+It is most commonly used in conditional statements such as C<if>, C<unless>,
+C<while>.  It was used in the recent past to create default values:
+
+    my %config = get_config();
+    #set $x to $config{x} unless it is false, in which case set it to 5
+    my $x = $config{x} || 5;
+
+but this use has the drawback of not respecting a value of 0 or 0.0, since
+they both evaluate to false.  The // operator is now recommend for this
+purpose since it tests if X is defined, not if it is true.
+
+=head3 Example
+
+    my $w = "";
+    my $x = 0;
+    my $y = 1;
+    my $z = "foo";
+
+    print $w || $x, "\n"; #prints "0\n";
+    print $x || $w, "\n"; #prints "\n";
+    print $w || $y, "\n"; #prints "1\n"
+    print $x || $y, "\n"; #prints "1\n"
+    print $y || $z, "\n"; #prints "1\n"
+    print $z || $y, "\n"; #prints "foo\n"
+
+=head3 See also
+
+L</X or Y>, L</X xor Y>, L</X E<verbar> Y>, L</X E<sol>E<sol> Y>, and 
+L</X ^ Y>
+
+=head2 X // Y
+
+=head3 Class
+
+This belongs to L<perlop/C-style Logical Defined-Or>.
+
+=head3 Description
+
+This is the high-precedence logical defined-or.  It returns X if X is
+defined, otherwise it returns Y.  This operator is only available if you
+have enabled 5.10 features (using the L<feature> pragma or C<use 5.10>).
+
+It is most commonly used to create default values:
+
+    my %config = get_config();
+    #set $x to $config{x} if it is defined, otherwise set it to 5
+    my $x = $config{x} // 5;
+
+=head3 Example
+
+    my $x;
+    my $y = 0;
+    my $z = 5;
+
+    print $x // $y, "\n"; #prints 0
+    print $y // $z, "\n"; #prints 0
+    print $z // $y, "\n"; #prints 5
+
+=head3 See also
+
+L</X or Y>, L</X xor Y>, L</X E<verbar>E<verbar> Y>, L</X E<verbar> Y>, 
+and L</X ^ Y>
+
+=head2 X .. Y
+
+=head3 Class
+
+This belongs to L<perlop/Range Operators>.
+
+=head3 Description
+
+Depending on context, this is either the range operator (if it is list
+context) or the flip-flop operator (if it is in scalar context).
+
+The range operator creates a list starting with X and ending with Y (i.e. it
+is inclusive).  If Y is less than X then an empty list is returned.  If both
+X and Y are strings, then the auto-magical behavior of L</X++> is used to
+generate the list.
+
+The flip-flop operator returns false as long as X is false, once X becomes
+true it returns true until I<after> Y is true, at which time it returns
+false.  Each flip-flop operator keeps track of its own state separately from
+the other flip-flop operators.
+
+Note: it is possible for both the X and Y tests to be true at the same time,
+in which case it will return true and then false on the next test.
+
+=head3 Example
+
+    my @list = 0 .. 5;     #@list is now (0, 1, 2, 3, 4, 5)
+    my @az   = "a" .. "z"; #@az is now the lowercase ASCII alphabet
+
+    prints "4\n", "5\n", "6\n", "7\n", and "8\n"
+    for my $i (0 .. 10) {
+        #start printing when $i is 4 and stop after $i is 8
+        if ($i == 4 .. $i == 8) {
+            print "$i\n";
+        }
+    }
+
+    #prints "4\n"
+    for my $i (0 .. 10) {
+        #start printing when $i is 4 and stop after $i is 4
+        if ($i == 4 .. $i == 8) {
+            print "$i\n";
+        }
+    }
+
+=head3 See also
+
+L</X ... Y>
+
+=head2 X ... Y
+
+=head3 Class
+
+This belongs to L<perlop/Range Operators>.
+
+=head3 Description
+
+This is another form of the range/flip flop operator (L</X .. Y>).  Its
+meaning is context dependent.
+
+In list context it creates a list starting with X and ending with Y (i.e. it
+is inclusive).  If Y is less than X then an empty list is returned.  If both
+X and Y are strings, then the auto-magical behavior of L</X++> is used to
+generate the list.
+
+In scalar context it returns false as long as X is false, once X becomes
+true it returns true until I<after> Y is true, at which time it returns
+false.  Each flip-flop operator keeps track of its own state separately from
+the other flip-flop operators.  It only evaluates X or Y each time it
+called, unlike L</X .. Y> which evaluates both X and Y each time it is
+called.
+
+=head3 Example
+
+    my @list = 0 ... 5;     #@list is now (0, 1, 2, 3, 4, 5)
+    my @az   = "a" ... "z"; #@az is now the lowercase ASCII alphabet
+
+    prints "4\n", "5\n", "6\n", "7\n", and "8\n"
+    for my $i (0 ... 10) {
+        #start printing when $i is 4 and stop after $i is 8
+        if ($i == 4 ... $i == 8) {
+            print "$i\n";
+        }
+    }
+
+    #prints "4\n", "5\n", "6\n", "7\n", "8\n", "9\n", and "10\n"
+    for my $i (0 ... 10) {
+        #start printing when $i is 4 and stop after $i is 4 a second time
+        if ($i == 4 ... $i == 8) {
+            print "$i\n";
+        }
+    }
+
+=head3 See also
+
+L</X .. Y>
+
+=head2 X ? Y : Z
+
+=head3 Class
+
+This belongs to L<perlop/Conditional Operators>.
+
+=head3 Description
+
+This is the conditional operator.  It works much like an if-then-else.  If
+the X is true then Y is evaluated and returned otherwise Z is evaluated and
+returned.
+
+The context it is called in propagates to Y and Z, so if the operator is
+called in scalar context and X is true then Y will be evaluated in scalar
+context.
+
+The result of the operator is a valid lvalue (i.e. it can be assigned to).
+Note, normal rules about lvalues (e.g. you can't assign to constants) still
+apply.
+
+=head3 Example
+
+    #simple implementation of max
+    sub max {
+        my ($m, $n) = @_;
+        return $m >= $n ? $m : $n;
+    }
+
+    my $x = max 5, 4; #$x is now 5
+    my $y = max 4, 5; #$y is now 5
+
+    my @a = $x == $y ? (1, 2, 3) : (4, 5, 6); #@a is now (1, 2, 3)
+    my @b = $x != $y ? (1, 2, 3) : (4, 5, 6); #@b is now (4, 5, 6)
+
+    ($x == $y ? $x : $y) = 15; #$x is now 15
+    ($x == $y ? $x : $y) = 15; #$y is now 15
+
+=head3 See also
+
+L<perlsyn/Compound-Statements>
+
+=head2 X = Y
+
+=head3 Class
+
+This belongs to L<perlop/Assignment Operators>.
+
+=head3 Description
+
+If X is a scalar, then this is the assignment operator.  It assigns Y to X.
+The act of assigning creates an lvalue, that is the result of an assignment
+can be used in places where you would normally use a plain variable:
+
+    my $str = "foobar";
+    (my $modified = $str) =~ s/foo/bar/; #the substitution affects $modified
+
+If X is a list, then this is the list assignment operator and it provides
+list context to Y.  The first item in the list Y is assigned to the first
+item in list X, the second to the second, and so on.  If placed in scalar
+context, the return value of list assignment is the number of items in the
+second list.  If placed in list context it returns the list X (after the
+assignment has taken place).
+
+=head3 Example
+
+    my $x = 5; #$x is now 5
+    my $y = 6; #$y is now 6
+
+    ($x, $y) = ($y, $x); #$x is now 6 and $y is now 5
+
+    my $i = my $j = my $k = 10; #$i, $j, and $k are now all 10
+
+    my $m = my ($n, $o) = ("a", "b", "c") #$m is now 3
+
+=head2 X **= Y
+
+=head3 Class
+
+This belongs to L<perlop/Assignment Operators>.
+
+=head3 Description
+
+This is the exponentiation assignment operator.  It is equivalent to 
+
+    X = X ** Y
+
+That is it raises the value X to the Yth power and then assigns the result
+to X.  This means that X must be a valid lvalue (i.e. it must be something
+that can be assigned to).
+
+=head3 Example
+
+    my $x = 2;
+    my $y = 8;
+
+    $x **= $y; #$x is now 2 ** 8 or 256
+
+=head3 See also
+
+L</X = Y> and L</X ** Y>
+
+=head2 X += Y
+
+=head3 Class
+
+This belongs to L<perlop/Assignment Operators>.
+
+=head3 Description
+
+This is the addition assignment operator.  It is equivalent to 
+
+    X = X + Y
+
+That is it adds X and Y together and then assigns the result to X.  This
+means that X must be a valid lvalue (i.e. it must be something that can be
+assigned to).
+
+=head3 Example
+
+    my $x = 2;
+    my $y = 8;
+
+    $x += $y; #$x is now 2 + 8 or 10
+
+=head3 See also
+
+L</X = Y> and L</X + Y>
+
+=head2 X -= Y
+
+=head3 Class
+
+This belongs to L<perlop/Assignment Operators>.
+
+=head3 Description
+
+This is the subtraction assignment operator.  It is equivalent to 
+
+    X = X - Y
+
+That is it subtracts Y from X and then assigns the result to X.  This means
+that X must be a valid lvalue (i.e. it must be something that can be
+assigned to).
+
+=head3 Example
+
+    my $x = 2;
+    my $y = 8;
+
+    $x -= $y; #$x is now 2 - 8 or -6
+
+=head3 See also
+
+L</X = Y> and L</X - Y>
+
+=head2 X .= Y
+
+=head3 Class
+
+This belongs to L<perlop/Assignment Operators>.
+
+=head3 Description
+
+This is the concatenation assignment operator.  It is equivalent to 
+
+    X = X . Y
+
+That is it joins the strings X and Y and then assigns the result
+to X.  This means that X must be a valid lvalue (i.e. it must be something
+that can be assigned to).
+
+=head3 Example
+
+    my $x = 2;
+    my $y = 8;
+
+    $x .= $y; #$x is now 2 . 8 or "28"
+
+=head3 See also
+
+L</X = Y> and L</X . Y>
+
+=head2 X *= Y
+
+=head3 Class
+
+This belongs to L<perlop/Assignment Operators>.
+
+=head3 Description
+
+This is the multiplication assignment operator.  It is equivalent to 
+
+    X = X * Y
+
+That is it multiplies X by Y and then assigns the result to X.  This means
+that X must be a valid lvalue (i.e. it must be something that can be
+assigned to).
+
+=head3 Example
+
+    my $x = 2;
+    my $y = 8;
+
+    $x *= $y; #$x is now 2 * 8 or 16
+
+=head3 See also
+
+L</X = Y> and L</X * Y>
+
+=head2 X /= Y
+
+=head3 Class
+
+This belongs to L<perlop/Assignment Operators>.
+
+=head3 Description
+
+This is the division assignment operator.  It is equivalent to 
+
+    X = X / Y
+
+That is it divides X by Y and then assigns the result to X.  This means that
+X must be a valid lvalue (i.e. it must be something that can be assigned
+to).
+
+Warning: If Y is 0 or evaluates to 0 the program will die with a message
+like C<Illegal division by zero>.
+
+=head3 Example
+
+    my $x = 2;
+    my $y = 8;
+
+    $x /= $y; #$x is now 2 / 8 or 0.25
+
+=head3 See also
+
+L</X = Y> and L</X / Y>
+
+=head2 X %= Y
+
+=head3 Class
+
+This belongs to L<perlop/Assignment Operators>.
+
+=head3 Description
+
+This is the modulo assignment operator.  It is equivalent to 
+
+    X = X % Y
+
+That is it computes the remainder of X divided by Y and then assigns the
+result to X.  This means that X must be a valid lvalue (i.e. it must be
+something that can be assigned to).
+
+Warning: If Y is 0 or evaluates to 0 the program will die with a message
+like C<Illegal modulus zero>.
+
+=head3 Example
+
+    my $x = 2;
+    my $y = 8;
+
+    $x %= $y; #$x is now 2 % 8 or 2
+
+=head3 See also
+
+L</X = Y> and L</X % Y>
+
+=head2 X x= Y
+
+=head3 Class
+
+This belongs to L<perlop/Assignment Operators>.
+
+=head3 Description
+
+This is the scalar repetition assignment operator.  It is equivalent to 
+
+    X = X x Y
+
+That is it creates a string made up of X repeated Y times and assigns the
+result to X.  This means that X must be a valid lvalue (i.e. it must be
+something that can be assigned to).
+
+Note: this only works for the scalar repetition operator; the list
+repetition operator (L</(X) x Y>) will not work in this context.
+
+=head3 Example
+
+    my $x = 2;
+    my $y = 8;
+
+    $x x= $y; #$x is now 2 x 8 or "22222222"
+
+=head3 See also
+
+L</X = Y> and L</X x Y>
+
+=head2 X &= Y
+
+=head3 Class
+
+This belongs to L<perlop/Assignment Operators>.
+
+=head3 Description
+
+This is the bitwise and assignment operator.  It is equivalent to 
+
+    X = X & Y
+
+That is it ands together X and Y and then assigns the result to X.  This
+means that X must be a valid lvalue (i.e. it must be something that can be
+assigned to).
+
+=head3 Example
+
+    my $x = 2;
+    my $y = 8;
+
+    $x &= $y; #$x is now 2 & 8 or 0
+
+=head3 See also
+
+L</X = Y> and L</X & Y>
+
+=head2 X |= Y
+
+=head3 Class
+
+This belongs to L<perlop/Assignment Operators>.
+
+=head3 Description
+
+This is the bitwise or assignment operator.  It is equivalent to 
+
+    X = X | Y
+
+That is it ors together X and Y and then assigns the result to X.  This
+means that X must be a valid lvalue (i.e. it must be something that can be
+assigned to).
+
+=head3 Example
+
+    my $x = 2;
+    my $y = 8;
+
+    $x |= $y; #$x is now 2 & 8 or 10
+
+=head3 See also
+
+L</X = Y> and L</X | Y>
+
+=head2 X ^= Y
+
+=head3 Class
+
+This belongs to L<perlop/Assignment Operators>.
+
+=head3 Description
+
+This is the bitwise xor assignment operator.  It is equivalent to 
+
+    X = X ^ Y
+
+That is it xors together X and Y and then assigns the result to X.  This
+means that X must be a valid lvalue (i.e. it must be something that can be
+assigned to).
+
+=head3 Example
+
+    my $x = 2;
+    my $y = 8;
+
+    $x ^= $y; #$x is now 2 & 8 or 10
+
+=head3 See also
+
+L</X = Y> and L</X ^ Y>
+
+=head2 X <<= Y
+
+=head3 Class
+
+This belongs to L<perlop/Assignment Operators>.
+
+=head3 Description
+
+This is the left bit-shift assignment operator.  It is equivalent to 
+
+    X = X << Y
+
+That is it bit-shifts X Y places to the left and then assigns the result to
+X.  This means that X must be a valid lvalue (i.e. it must be something that
+can be assigned to).
+
+=head3 Example
+
+    my $x = 2;
+    my $y = 8;
+
+    $x <<= $y; #$x is now 2 << 8 or 512
+
+=head3 See also
+
+L</X = Y> and L<<< /X << Y >>>
+
+=head2 X >>= Y 
+
+=head3 Class
+
+This belongs to L<perlop/Assignment Operators>.
+
+=head3 Description
+
+This is the right bit-shift assignment operator.  It is equivalent to 
+
+    X = X >> Y
+
+That is it bit-shifts X Y places to the right and then assigns the result to
+X.  This means that X must be a valid lvalue (i.e. it must be something that
+can be assigned to).
+
+=head3 Example
+
+    my $x = 8;
+    my $y = 2;
+
+    $x &= $y; #$x is now 8 & 2 or 2
+
+=head3 See also
+
+L</X = Y> and L<<< /X >> Y >>>
+
+=head2 X &&= Y
+
+=head3 Class
+
+This belongs to L<perlop/Assignment Operators>.
+
+=head3 Description
+
+This is the logical and assignment operator.  It is equivalent to 
+
+    X = X && Y
+
+That is it assigns X to itself if X evaluates to true, otherwise it assigns
+Y to X.  This means that X must be a valid lvalue (i.e. it must be something
+that can be assigned to).
+
+=head3 Example
+
+    my $x = 2;
+    my $y = 8;
+
+    $x &&= $y; #$x is now 2 && 8 or 8
+    $x &&= 0;  #$x is now 8 && 0 or 0
+    $x &&= 8;  #$x is now 0 && 8 or 0
+
+=head3 See also
+
+L</X = Y> and L</X && Y>
+
+=head2 X ||= Y
+
+=head3 Class
+
+This belongs to L<perlop/Assignment Operators>.
+
+=head3 Description
+
+This is the logical or assignment operator.  It is equivalent to 
+
+    X = X || Y
+
+That is it logically ors together X and Y and then assigns the result to X.
+This means that X must be a valid lvalue (i.e. it must be something that can
+be assigned to).  It was often used in the past to assign a value if the
+variable did not already have a value:
+
+    my $x;
+
+    #intervening code that might set $x or might leave it undefined
+
+    $x ||= 10; #make sure $x gets set to a default value
+
+This has a problem though: if C<$x> is C<0> or C<""> then it will get
+overwritten with C<10>.  The defined-or assignment operator (L</X //= Y>)
+does not have this problem and should, generally, be used for this purpose
+instead.  Of course, if you desire any false value be overwritten, then this
+is the right operator to use.
+
+=head3 Example
+
+    my $x = 2;
+    my $y = 8;
+    my $z;
+
+    $x ||= $y; #$x is now 2 || 8 or 2
+    $y ||= $x; #$y is now 8 || 2 or 8
+
+    my $z ||= $x + $y; #$z is now undef || (2 + 8) or 10
+
+=head3 See also
+
+L</X = Y>, L</X E<verbar>E<verbar> Y>, and L</X E<sol>E<sol>= Y>
+
+=head2 X //= Y
+
+=head3 Class
+
+This belongs to L<perlop/Assignment Operators>.
+
+=head3 Description
+
+This is the defined-or assignment operator.  It is equivalent to 
+
+    X = X // Y
+
+It assigns Y to X if X is not already defined.  This means that X must be a
+valid lvalue (i.e. it must be something that can be assigned to).
+
+It is commonly used to ensure that a variable has a value:
+
+    my $x;
+
+    #intervening code that might set $x or might leave it undefined
+
+    $x //= 10; #make sure $x gets set to a default value
+
+
+=head3 Example
+
+    my $x = 2;
+    my $y = 8;
+    my $z;
+
+    $x //= $y; #$x is now 2 // 8 or 2
+    $z //= $x; #$z is now undef // 2 or 2
+
+=head3 See also
+
+L</X = Y>, L</X E<sol>E<sol> Y>, L</X E<verbar>E<verbar> Y>
+
+=head2 X, Y
+
+=head3 Class
+
+This belongs to L<perlop/Comma Operators>.
+
+=head3 Description
+
+This is the comma operator.  In list context it builds a list.  In scalar
+context it evaluates each item but the last in void context, and then
+evaluates the last in scalar context and returns it.
+
+Due to the fact that the assignment operator has higher precedence, you must
+surround the list with parentheses.  For example,
+
+    my @list = 1, 2, 3;
+
+says the same thing as
+
+    (my @list = 1), 2, 3
+
+To get the desired behaviour you must say
+
+    my @list = (1, 2, 3);
+
+Function calls, on the other hand, have a lower precedence, so you can say
+
+    print 1, 2, 3, "\n";
+
+A trailing comma does not add a new element to a list, to the lists
+C<(1,2,3)> and C<(1,2,3,)>) are identical.
+
+=head3 Example
+
+    my @a = (1, 2, 3);          #@a is now (1, 2, 3)
+    my $x = ("a", "b", "c");    #$x is now "c"
+    my $y = (++$x, ++$x, ++$x); #$y is now "f"
+
+=head3 See also
+
+L<</X => Y>>
+
+=head2 X => Y
+
+=head3 Class
+
+This belongs to L<perlop/Comma Operators>.
+
+=head3 Description
+
+This is the fat comma operator.  It behaves much in the same way as the
+comma operator (creates lists in list context, returns the last value in
+scalar context), but it has a special property: it stringifies X if X is a
+bareword (i.e. it matches C</^[a-zA-Z_]\w+$/>).  It is most often used when
+creating hashes because the arrow like appearance makes it easy to identify
+the key versus the value and the auto-stringifing property makes the keys
+look cleaner:
+
+    my %hash = (
+        key1 => "value1",
+        key2 => "value2",
+        key3 => "value3",
+    );
+
+That statement is functionally identical to
+
+    my %hash = (
+        "key1", "value1", 
+        "key2", "value2", 
+        "key3", "value3", 
+    );
+
+=head3 Example
+
+    #%x will contain the list ("a", 1, "b", 2, "c", 3)
+    my %x = (
+        a => 1,
+        b => 2,
+        c => 3,
+    );
+
+    #%y will contain the list ("key with spaces", 1, "b", 1, "c", 1)
+    my %y = (
+        "key with spaces" => 1,
+        b                 => 1,
+        c                 => 1,
+    );
+
+=head3 See also
+
+L<</X, Y>>
+
+=head2 not X
+
+=head3 Class
+
+This belongs to L<perlop/Logical Not>.
+
+=head3 Description
+
+This is the low-precedence logical negation operator.  It performs logical
+negation, i.e., "not".  It returns an empty string if X is true, otherwise
+it returns C<1>.  There is a high-precedence version: C<!>.
+
+=head3 Example
+
+    my $m = not 5;      #$m is now the empty string ("")
+    my $n = not 0;      #$n is now 1
+    my $o = not "";     #$o is now 1
+    my $p = not undef;  #$p is now 1
+
+=head3 See also
+
+L</!X>
+
+=head2 X and Y
+
+=head3 Class
+
+This belongs to L<perlop/Logical And>.
+
+=head3 Description
+
+This is the low-precedence logical and operator.  It evaluates X, and if it
+is false it returns the value of X.  If X evaluates to true it evaluates Y
+and returns its value.
+
+It binds less tightly than the high-precedence logical and operator:
+
+    my $y = 5 and 4; # is equivalent to (my $x = 5) and 4;
+
+whereas:
+
+    my $x = 5 && 4; # is equivalent to my $x = (5 && 4);
+
+It is most commonly used in conditional statements such as C<if>, C<unless>,
+C<while>.  But it is also occasionally used for its short-circuiting affect:
+
+    do_this() and do_that() and do_last();
+
+is functionally the same as
+
+    if (do_this()) {
+        if (do_that()) {
+            do_last();
+        }
+    }
+
+=head3 Example
+
+    my $w = "";
+    my $x = 0;
+    my $y = 1;
+    my $z = "foo";
+
+    #not the use of parentheses vs this example in &&
+    print(($w and $y), "\n"); #prints "\n"
+    print(($x and $y), "\n"); #prints "0\n"
+    print(($y and $z), "\n"); #prints "foo\n"
+    print(($z and $y), "\n"); #prints "1\n"
+
+=head3 See also
+
+L</X && Y> and L</X & Y>
+
+=head2 X or Y
+
+=head3 Class
+
+This belongs to L<perlop/Logical or, Defined or, and Exclusive Or>.
+
+=head3 Description
+
+This is the low-precedence logical or operator.  It evaluates X, and if it
+is true it returns the value of X.  If X evaluates to false it evaluates Y
+and returns its value.
+
+It binds less tightly than the high-precedence logical or operator:
+
+    my $y = 5 or 4; # is equivalent to (my $x = 5) or 4;
+
+whereas:
+
+    my $x = 5 && 4; # is equivalent to my $x = (5 || 4);
+
+It is most commonly used in conditional statements such as C<if>, C<unless>,
+C<while>.  It is also often used for its short-circuiting behavior:
+
+    open my $fh, "<", $filename
+        or die "could not open $filename: $!";
+
+That code will not run the C<die> unless the C<open> fails (returns a false
+value).
+
+=head3 Example
+
+    my $w = "";
+    my $x = 0;
+    my $y = 1;
+    my $z = "foo";
+
+    #not the use of parentheses vs this example in ||
+    print(($w or $x), "\n"); #prints "0\n";
+    print(($x or $w), "\n"); #prints "\n";
+    print(($w or $y), "\n"); #prints "1\n"
+    print(($x or $y), "\n"); #prints "1\n"
+    print(($y or $z), "\n"); #prints "1\n"
+    print(($z or $y), "\n"); #prints "foo\n"
+
+=head3 See also
+
+L</X xor Y>, L</X E<verbar>E<verbar> Y>, L</X E<sol>E<sol> Y>, 
+L</X E<sol> Y>
+
+=head2 X xor Y
+
+=head3 Class
+
+This belongs to L<perlop/Logical or, Defined or, and Exclusive Or>.
+
+=head3 Description
+
+This is the low-precedence logical exclusive-or operator (there is no
+high-precedence exclusive-or operator).  It returns X if only X is true, It
+returns Y is only Y is true, otherwise (both true or both false) it returns
+an empty string.
+
+=head3 Example
+
+    my $m = (0 xor 0); #$m is now ""
+    my $n = (1 xor 0); #$n is now 1
+    my $o = (0 xor 1); #$o is now 1
+    my $p = (1 xor 1); #$p is now ""
+
+=head3 See also
+
+L</X or Y>, L</X E<verbar>E<verbar> Y>, L</X E<sol>E<sol> Y>, 
+L</X E<sol> Y>
+
+=head1 Pseudo-operators
+
+There are idioms in Perl 5 that appear to be operators, but are really a
+combination of several operators or pieces of syntax. These pseudo-operators
+have the precedence of the constituent parts.
+
+N.B. There are often better ways of doing all of these things and those ways
+will be easier to understand for the people who will maintain your code
+after you. 
+
+=head2 !!X
+
+=head3 Description
+
+This pseudo-operator is the boolean conversion operator.  It is made up of
+two logical negation operators.  It returns C<1> if X evaluates to a true
+value or C<""> if X evaluates to a false value.  It is useful when you want
+to convert a value to specific true or false values rather than one of the
+numerous true and false values in Perl.
+
+=head3 Example
+
+    my $x = !!"this is a true value"; #$x is now true
+    my $y = !!0;                      #$y is now "" 
+
+=head3 See also
+
+L</!X>
+
+=head2 ()= X
+
+=head3 Description
+
+This pseudo-operator is the list assignment operator (aka the countof
+operator).  It is made up of two items C<()>, and C<=>.  In scalar context
+it returns the number of items in the list X.  In list context it returns an
+empty list.  It is useful when you have something that returns a list and
+you want to know the number of items in that list and don't care about the
+list's contents.  It is needed because the comma operator returns the last
+item in the sequence rather than the number of items in the sequence when it
+is placed in scalar context.
+
+It works because the assignment operator returns the number of items
+available to be assigned when its left hand side has list context.  In the
+following example there are five values in the list being assigned to the
+list C<($x, $y, $z)>, so C<$count> is assigned C<5>.
+
+    my $count = my ($x, $y, $z) = qw/a b c d e/;
+
+The empty list (the C<()> part of the pseudo-operator) triggers this
+behavior.
+
+=head3 Example
+    
+    sub f { return qw/a b c d e/ }
+
+    my $count = ()= f();              #$count is now 5
+
+    my $string = "cat cat dog cat";
+
+    my $cats = ()= $string =~ /cat/g; #$cats is now 3
+
+    print scalar( ()= f() ), "\n";    #prints "5\n"
+
+=head3 See also
+
+L</X = Y>
+
+=head2 ~~X
+
+=head3 Description
+
+This pseudo-operator is named the scalar context operator.  It is made up of
+two bitwise negation operators.  It provides scalar context to the
+expression X.  It works because the first bitwise negation operator provides
+scalar context to X and performs a bitwise negation of the result; since the
+result of two bitwise negations is the original item, the value of the
+original expression is preserved.
+
+With the addition of the Smart match operator, this pseudo-operator is even
+more confusing.  The C<scalar> function is much easier to understand and you
+are encouraged to use it instead.
+
+=head3 Example
+
+    my @a = qw/a b c d/;
+
+    print ~~@a, "\n"; #prints 4
+
+=head3 See also
+
+L</~X>, L</X ~~ Y>, and L<perlfunc/scalar>
+
+=head2 X }{ Y
+
+=head3 Description
+
+This pseudo-operator is called the Eskimo-kiss operator because it looks
+like two faces touching noses.  It is made up of an closing brace and an
+opening brace.  It is used when using C<perl> as a command-line program with
+the C<-n> or C<-p> options.  It has the effect of running X inside of the
+loop created by C<-n> or C<-p> and running Y at the end of the program.  It
+works because the closing brace closes the loop created by C<-n> or C<-p>
+and the opening brace creates a new bare block that is closed by the loop's
+original ending.  You can see this behavior by using the L<B::Deparse>
+module.  Here is the command C<perl -ne 'print $_;'> deparsed:
+
+    LINE: while (defined($_ = <ARGV>)) {
+        print $_;
+    }
+
+Notice how the original code was wrapped with the C<while> loop.  Here is
+the deparsing of C<perl -ne '$count++ if /foo/; }{ print "$count\n"'>:
+
+    LINE: while (defined($_ = <ARGV>)) {
+        ++$count if /foo/;
+    }
+    {
+        print "$count\n";
+    }
+
+Notice how the C<while> loop is closed by the closing brace we added and the
+opening brace starts a new bare block that is closed by the closing brace
+that was originally intended to close the C<while> loop.
+
+=head3 Example
+
+    # count unique lines in the file FOO
+    perl -nle '$seen{$_}++ }{ print "$_ => $seen{$_}" for keys %seen' FOO
+
+    # sum all of the lines until the user types control-d
+    perl -nle '$sum += $_ }{ print $sum'
+
+=head3 See also
+
+L<perlrun> and L<perlsyn>
+
+=cut
