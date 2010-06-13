@@ -247,7 +247,7 @@ escape.
 
 =head3 Example
 
-    my @a = qw/ a b c /;     #@a is now ("a", "b", "c", "d")
+    my @a = qw/ a b c /;     #@a is now ("a", "b", "c")
     my @b = qw/ $foo $bar /; #@b is now ('$foo', '$bar')
 
 =head3 See Also
