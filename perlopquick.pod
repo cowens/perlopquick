@@ -143,7 +143,13 @@ To place a C<'> inside the string, you must escape it with C<\>:
 
     my $quote = 'He said \'I like quotes.\'';
 
-Unlike double quoted strings, that is the only escape sequence.
+To place a C<\> inside the string, you may escape it with another C<\>:
+
+    my $quote = 'This is a backslash: \\';
+
+but this is only necessary when the C<\> is followed by the closing single
+quote.  Unlike double quoted strings, single quoted strings only recognize
+those two escape sequences 
 
 For a full discussion of how strings work, see 
 L<perlop/Quote and Quote-like Operators>. 
