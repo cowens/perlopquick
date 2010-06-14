@@ -1308,7 +1308,7 @@ This belongs to L<perlop/Named Unary Operators>.
 =head3 Description
 
 This is the effective uid/gid readable filetest operator.  FILE must be a
-filename, filehandle, dirhandle, or an expression that returns one the
+filename, filehandle, dirhandle, or an expression that returns one of the
 preceding values.  It returns C<1> if the file or directory exists and is
 readable by the effective uid/gid, C<""> if it exists but if it not
 readable, or C<undef> if the file does not exist.
@@ -1339,7 +1339,7 @@ This belongs to L<perlop/Named Unary Operators>.
 =head3 Description
 
 This is the effective uid/gid writable filetest operator.  FILE must be a
-filename, filehandle, dirhandle, or an expression that returns one the
+filename, filehandle, dirhandle, or an expression that returns one of the
 preceding values.  It returns C<1> if the file or directory exists and is
 writable by the effective uid/gid, C<""> if it exists but if it not
 writable, or C<undef> if the file does not exist.
@@ -1370,7 +1370,7 @@ This belongs to L<perlop/Named Unary Operators>.
 =head3 Description
 
 This is the effective uid/gid executable filetest operator.  FILE must be a
-filename, filehandle, dirhandle, or an expression that returns one the
+filename, filehandle, dirhandle, or an expression that returns one of the
 preceding values.  It returns C<1> if the file or directory exists and is
 executable by the effective uid/gid, C<""> if it exists but if it not
 executable, or C<undef> if the file does not exist.
@@ -1401,7 +1401,7 @@ This belongs to L<perlop/Named Unary Operators>.
 =head3 Description
 
 This is the effective owner filetest operator.  FILE must be a filename,
-filehandle, dirhandle, or an expression that returns one the preceding
+filehandle, dirhandle, or an expression that returns one of the preceding
 values.  It returns C<1> if the file or directory exists and is owned by the
 effective uid, C<""> if it exists but if it not owned by the effective uid,
 or C<undef> if the file does not exist.
@@ -1432,7 +1432,7 @@ This belongs to L<perlop/Named Unary Operators>.
 =head3 Description
 
 This is the real uid/gid readable filetest operator.  FILE must be a
-filename, filehandle, dirhandle, or an expression that returns one the
+filename, filehandle, dirhandle, or an expression that returns one of the
 preceding values.  It returns C<1> if the file or directory exists and is
 readable by the real uid/gid, C<""> if it exists but if it not readable, or
 C<undef> if the file does not exist.
@@ -1463,7 +1463,7 @@ This belongs to L<perlop/Named Unary Operators>.
 =head3 Description
 
 This is the real uid/gid writable filetest operator.  FILE must be a
-filename, filehandle, dirhandle, or an expression that returns one the
+filename, filehandle, dirhandle, or an expression that returns one of the
 preceding values.  It returns C<1> if the file or directory exists and is
 writable by the real uid/gid, C<""> if it exists but if it not writable, or
 C<undef> if the file does not exist.
@@ -1494,7 +1494,7 @@ This belongs to L<perlop/Named Unary Operators>.
 =head3 Description
 
 This is the real uid/gid executable filetest operator.  FILE must be a
-filename, filehandle, dirhandle, or an expression that returns one the
+filename, filehandle, dirhandle, or an expression that returns one of the
 preceding values.  It returns C<1> if the file or directory exists and is
 executable by the real uid/gid, C<""> if it exists but if it not executable,
 or C<undef> if the file does not exist.
@@ -1525,7 +1525,7 @@ This belongs to L<perlop/Named Unary Operators>.
 =head3 Description
 
 This is the real owner filetest operator.  FILE must be a filename,
-filehandle, dirhandle, or an expression that returns one the preceding
+filehandle, dirhandle, or an expression that returns one of the preceding
 values.  It returns C<1> if the file or directory exists and is owned by the
 real uid, C<""> if it exists but if it not owned by the effective uid, or
 C<undef> if the file does not exist.
@@ -1552,6 +1552,30 @@ L<perlvar/$E<lt>>, L<perlvar/$(>, L<perlfunc/-X> and L<perlfunc/stat>
 =head3 Class
 
 This belongs to L<perlop/Named Unary Operators>.
+
+=head3 Description
+
+This is the existance filetest operator.  FILE must be a filename,
+filehandle, dirhandle, or an expression that returns one of the preceding
+values.  It returns C<1> if the file or directory exists or
+C<undef> if the file or directory does not exist.
+
+If given no arguments, it will operate on C<$_>.
+
+If given the C<_> special filehandle as an argument, it will use cached
+information from the previous call to C<stat> or a filetest operator.
+
+=head3 Example
+
+    if (-e $0) {
+        print "this script exists\n";
+    } else {
+        print "this script doesn't exist on the filesystem\n";
+    }
+
+=head3 See also
+
+L<perlfunc/-X> and L<perlfunc/stat>
 
 =head2 -z
 
