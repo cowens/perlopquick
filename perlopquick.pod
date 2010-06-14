@@ -1555,7 +1555,7 @@ This belongs to L<perlop/Named Unary Operators>.
 
 =head3 Description
 
-This is the existance filetest operator.  FILE must be a filename,
+This is the existence filetest operator.  FILE must be a filename,
 filehandle, dirhandle, or an expression that returns one of the preceding
 values.  It returns C<1> if the file or directory exists or
 C<undef> if the file or directory does not exist.
@@ -1582,6 +1582,35 @@ L<perlfunc/-X> and L<perlfunc/stat>
 =head3 Class
 
 This belongs to L<perlop/Named Unary Operators>.
+
+=head3 Description
+
+This is the empty filetest operator.  FILE must be a filename, filehandle,
+dirhandle, or an expression that returns one of the preceding values.  It
+returns C<1> if the file or directory exists and has zero size, C<""> if the
+file or directory exists, but has zero size, or C<undef> if the file or
+directory doesn't exist.
+
+If given no arguments, it will operate on C<$_>.
+
+If given the C<_> special filehandle as an argument, it will use cached
+information from the previous call to C<stat> or a filetest operator.
+
+=head3 Example
+
+    if (defined -z "/tmp/somefile") {
+        if (-z _) {
+            print "somefile is empty\n";
+        } else {
+            print "somefile has data in it\n";
+        }
+    } else {
+        print "somefile doesn't exist\n";
+    }
+
+=head3 See also
+
+L<perlfunc/-X> and L<perlfunc/stat>
 
 =head2 -s
 
