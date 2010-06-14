@@ -2894,7 +2894,7 @@ C<(1,2,3)> and C<(1,2,3,)>) are identical.
 
 =head3 See also
 
-L<</X =E<gt> Y>>
+L</X =E<gt> Y>
 
 =head2 X => Y
 
@@ -2944,7 +2944,7 @@ That statement is functionally identical to
 
 =head3 See also
 
-L<</X, Y>>
+L</X, Y>
 
 =head2 not X
 
