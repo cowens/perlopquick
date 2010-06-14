@@ -1616,7 +1616,7 @@ L<perlfunc/-X> and L<perlfunc/stat>
 
 =head3 Class
 
-This belongs to L<perlop/Named Unary Operators>.
+This belongs to L<perlop/Named Unary Operators>.  
 
 =head3 Description
 
@@ -1653,17 +1653,99 @@ L<perlfunc/-X> and L<perlfunc/stat>
 
 This belongs to L<perlop/Named Unary Operators>.
 
+=head3 Description
+
+This is the size filetest operator.  FILE must be a filename, filehandle,
+dirhandle, or an expression that returns one of the preceding values.  It
+returns the size of the file in bytes if the file or directory exists or
+C<undef> if the file or directory doesn't exist.
+
+If given no arguments, it will operate on C<$_>.
+
+If given the C<_> special filehandle as an argument, it will use cached
+information from the previous call to C<stat> or a filetest operator.
+
+=head3 Example
+
+    if (defined -s "/tmp/somefile") {
+        print "somefile is ", -s _, " byte(s) long\n";
+    } else {
+        print "somefile doesn't exist\n";
+    }
+
+=head3 See also
+
+L<perlfunc/-X> and L<perlfunc/stat>
+
 =head2 -f
 
 =head3 Class
 
 This belongs to L<perlop/Named Unary Operators>.
 
+=head3 Description
+
+This is the regular file filetest operator.  FILE must be a filename,
+filehandle, dirhandle, or an expression that returns one of the preceding
+values.  It returns C<1> if the file exists and is a regular file, C<""> if
+the file or directory exists, but isn't a regular file, or C<undef> if the
+file or directory doesn't exist.
+
+If given no arguments, it will operate on C<$_>.
+
+If given the C<_> special filehandle as an argument, it will use cached
+information from the previous call to C<stat> or a filetest operator.
+
+=head3 Example
+
+    if (defined -f "/tmp/somefile") {
+        if (-f _) {
+            print "somefile is a regular file\n";
+        } else {
+            print "somefile is not a regular file\n";
+        }
+    } else {
+        print "somefile doesn't exist\n";
+    }
+
+=head3 See also
+
+L<perlfunc/-X> and L<perlfunc/stat>
+
 =head2 -d
 
 =head3 Class
 
 This belongs to L<perlop/Named Unary Operators>.
+
+=head3 Description
+
+This is the directory filetest operator.  FILE must be a filename,
+filehandle, dirhandle, or an expression that returns one of the preceding
+values.  It returns C<1> if the directory exists , C<""> if the file exists,
+but isn't a directory file, or C<undef> if the file or directory doesn't
+exist.
+
+If given no arguments, it will operate on C<$_>.
+
+If given the C<_> special filehandle as an argument, it will use cached
+information from the previous call to C<stat> or a filetest operator.
+
+=head3 Example
+
+    if (defined -d "/tmp/somefile") {
+        if (-d _) {
+            print "somefile is a directory\n";
+        } else {
+            print "somefile is not a directory\n";
+        }
+    } else {
+        print "somefile doesn't exist\n";
+    }
+
+=head3 See also
+
+L<perlfunc/-X> and L<perlfunc/stat>
 
 =head2 -l
 
