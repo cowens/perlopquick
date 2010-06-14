@@ -1299,7 +1299,7 @@ L<warnings> are turned on).
 
 L</X E<gt>E<gt>= Y>
 
-=head2 -r X
+=head2 -r FILE
 
 =head3 Class
 
@@ -1307,10 +1307,11 @@ This belongs to L<perlop/Named Unary Operators>.
 
 =head3 Description
 
-This is the readable filetest operator.  X must be a filename, filehandle,
-dirhandle, or an expression that returns one the preceding values.  It
-returns C<1> if the file or directory exists and is readable, C<""> if it
-exists but if it not readable, or C<undef> if the file does not exist.
+This is the effective uid/gid readable filetest operator.  FILE must be a
+filename, filehandle, dirhandle, or an expression that returns one the
+preceding values.  It returns C<1> if the file or directory exists and is
+readable by the effective uid/gid, C<""> if it exists but if it not
+readable, or C<undef> if the file does not exist.
 
 If given no arguments, it will operate on C<$_>.
 
@@ -1327,9 +1328,9 @@ information from the previous call to C<stat> or a filetest operator.
 
 =head3 See also
 
-L<perlfunc/-X> and L<perlfunc/stat>
+L<perlvar/$E<gt>>, L<perlvar/$)>, $L<perlfunc/-X> and L<perlfunc/stat>
 
-=head2 -w X
+=head2 -w FILE
 
 =head3 Class
 
@@ -1337,10 +1338,11 @@ This belongs to L<perlop/Named Unary Operators>.
 
 =head3 Description
 
-This is the writable filetest operator.  X must be a filename, filehandle,
-dirhandle, or an expression that returns one the preceding values.  It
-returns C<1> if the file or directory exists and is writable, C<""> if it
-exists but if it not writable, or C<undef> if the file does not exist.
+This is the effective uid/gid writable filetest operator.  FILE must be a
+filename, filehandle, dirhandle, or an expression that returns one the
+preceding values.  It returns C<1> if the file or directory exists and is
+writable by the effective uid/gid, C<""> if it exists but if it not
+writable, or C<undef> if the file does not exist.
 
 If given no arguments, it will operate on C<$_>.
 
@@ -1357,9 +1359,9 @@ information from the previous call to C<stat> or a filetest operator.
 
 =head3 See also
 
-L<perlfunc/-X> and L<perlfunc/stat>
+L<perlvar/$E<gt>>, L<perlvar/$)>, $L<perlfunc/-X> and L<perlfunc/stat>
 
-=head2 -x X
+=head2 -x FILE
 
 =head3 Class
 
@@ -1367,10 +1369,11 @@ This belongs to L<perlop/Named Unary Operators>.
 
 =head3 Description
 
-This is the executable filetest operator.  X must be a filename, filehandle,
-dirhandle, or an expression that returns one the preceding values.  It
-returns C<1> if the file or directory exists and is executable, C<""> if it
-exists but if it not executable, or C<undef> if the file does not exist.
+This is the effective uid/gid executable filetest operator.  FILE must be a
+filename, filehandle, dirhandle, or an expression that returns one the
+preceding values.  It returns C<1> if the file or directory exists and is
+executable by the effective uid/gid, C<""> if it exists but if it not
+executable, or C<undef> if the file does not exist.
 
 If given no arguments, it will operate on C<$_>.
 
@@ -1387,7 +1390,7 @@ information from the previous call to C<stat> or a filetest operator.
 
 =head3 See also
 
-L<perlfunc/-X> and L<perlfunc/stat>
+L<perlvar/$E<gt>>, L<perlvar/$)>, $L<perlfunc/-X> and L<perlfunc/stat>
 
 =head2 -o
 
