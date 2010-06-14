@@ -1753,17 +1753,100 @@ L<perlfunc/-X> and L<perlfunc/stat>
 
 This belongs to L<perlop/Named Unary Operators>.
 
+=head3 Description
+
+This is the symbolic link filetest operator.  FILE must be a filename,
+filehandle, dirhandle, or an expression that returns one of the preceding
+values.  It returns C<1> if the file or directory exists and is a symbolic
+link, C<""> if the file or directory exists, but isn't a symbolic link, or
+C<undef> if the file or directory doesn't exist.
+
+If given no arguments, it will operate on C<$_>.
+
+If given the C<_> special filehandle as an argument, it will use cached
+information from the previous call to C<stat> or a filetest operator.
+
+=head3 Example
+
+    if (defined -l "/tmp/somefile") {
+        if (-l _) {
+            print "somefile is a symbolic link\n";
+        } else {
+            print "somefile is not a symbolic link\n";
+        }
+    } else {
+        print "somefile doesn't exist\n";
+    }
+
+=head3 See also
+
+L<perlfunc/-X> and L<perlfunc/stat>
+
 =head2 -p
 
 =head3 Class
 
 This belongs to L<perlop/Named Unary Operators>.
 
+=head3 Description
+
+This is the pipe filetest operator.  FILE must be a filename, filehandle,
+dirhandle, or an expression that returns one of the preceding values.  It
+returns C<1> if the file exists and is a pipe, C<""> if the file or
+directory exists, but isn't a pipe, or C<undef> if the file or directory
+doesn't exist.
+
+If given no arguments, it will operate on C<$_>.
+
+If given the C<_> special filehandle as an argument, it will use cached
+information from the previous call to C<stat> or a filetest operator.
+
+=head3 Example
+
+    if (defined -p "/tmp/somefile") {
+        if (-p _) {
+            print "somefile is a pipe\n";
+        } else {
+            print "somefile is not a pipe\n";
+        }
+    } else {
+        print "somefile doesn't exist\n";
+    }
+
+=head3 See also
+
+L<perlfunc/-X> and L<perlfunc/stat>
+
 =head2 -S
 
 =head3 Class
 
 This belongs to L<perlop/Named Unary Operators>.
+
+=head3 Description
+
+This is the socket filetest operator.  FILE must be a filename, filehandle,
+dirhandle, or an expression that returns one of the preceding values.  It
+returns C<1> if the file exists and is a socket, C<""> if the file or
+directory exists, but isn't a socket, or C<undef> if the file or directory
+doesn't exist.
+
+If given no arguments, it will operate on C<$_>.
+
+If given the C<_> special filehandle as an argument, it will use cached
+information from the previous call to C<stat> or a filetest operator.
+
+=head3 Example
+
+    if (defined -S "/tmp/somefile") {
+        if (-S _) {
+            print "somefile is a socket\n";
+        } else {
+            print "somefile is not a socket\n";
+        }
+    } else {
+        print "somefile doesn't exist\n";
+    }
 
 =head2 -b
 
