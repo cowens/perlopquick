@@ -1320,10 +1320,14 @@ information from the previous call to C<stat> or a filetest operator.
 
 =head3 Example
 
-    if (-r "/etc/passwd") {
-        print "/etc/passwd is readable\n";
+    if (defined -r "/etc/passwd") {
+        if (-r _) {
+            print "/etc/passwd is readable\n";
+        } else {
+            print "/etc/passwd is not readable\n";
+        }
     } else {
-        print "/etc/passwd is not readable\n";
+        print "/etc/passwd doesn't exist\n";
     }
 
 =head3 See also
@@ -1351,10 +1355,14 @@ information from the previous call to C<stat> or a filetest operator.
 
 =head3 Example
 
-    if (-w "/etc/passwd") {
-        print "/etc/passwd is writable\n";
+    if (defined -w "/etc/passwd") {
+        if (-w _) {
+            print "/etc/passwd is writable\n";
+        } else {
+            print "/etc/passwd is not writable\n";
+        }
     } else {
-        print "/etc/passwd is not writable\n";
+        print "/etc/passwd doesn't exist\n";
     }
 
 =head3 See also
@@ -1382,10 +1390,14 @@ information from the previous call to C<stat> or a filetest operator.
 
 =head3 Example
 
-    if (-x $0) {
-        print "this script is executable\n";
+    if (defined -x $0) {
+        if (-x _) {
+            print "this script is executable\n";
+        } else {
+            print "this script is not executable\n";
+        }
     } else {
-        print "this script is not executable\n";
+        print "this script doesn't exist on the filesystem\n";
     }
 
 =head3 See also
@@ -1413,10 +1425,14 @@ information from the previous call to C<stat> or a filetest operator.
 
 =head3 Example
 
-    if (-o $0) {
-        print "this script is owned by $>\n";
+    if (defined -o $0) {
+        if (-o _) {
+            print "this script is owned by $>\n";
+        } else {
+            print "this script is not owned by $>\n";
+        }
     } else {
-        print "this script is not owned by $>\n";
+        print "this script doesn't exist on the filesystem\n";
     }
 
 =head3 See also
@@ -1444,10 +1460,15 @@ information from the previous call to C<stat> or a filetest operator.
 
 =head3 Example
 
-    if (-R "/etc/passwd") {
-        print "/etc/passwd is readable\n";
+
+    if (defined -R "/etc/passwd") {
+        if (-R _) {
+            print "/etc/passwd is readable\n";
+        } else {
+            print "/etc/passwd is not readable\n";
+        }
     } else {
-        print "/etc/passwd is not readable\n";
+        print "/etc/passwd doesn't exist\n";
     }
 
 =head3 See also
@@ -1475,10 +1496,15 @@ information from the previous call to C<stat> or a filetest operator.
 
 =head3 Example
 
-    if (-W "/etc/passwd") {
-        print "/etc/passwd is writable\n";
+
+    if (defined -W "/etc/passwd") {
+        if (-W _) {
+            print "/etc/passwd is writable\n";
+        } else {
+            print "/etc/passwd is not writable\n";
+        }
     } else {
-        print "/etc/passwd is not writable\n";
+        print "/etc/passwd doesn't exist\n";
     }
 
 =head3 See also
@@ -1506,10 +1532,15 @@ information from the previous call to C<stat> or a filetest operator.
 
 =head3 Example
 
-    if (-X $0) {
-        print "this script is executable\n";
+
+    if (defined -X $0) {
+        if (-X _) {
+            print "this script is executable\n";
+        } else {
+            print "this script is not executable\n";
+        }
     } else {
-        print "this script is not executable\n";
+        print "this script doesn't exist on the filesystem\n";
     }
 
 =head3 See also
@@ -1537,10 +1568,14 @@ information from the previous call to C<stat> or a filetest operator.
 
 =head3 Example
 
-    if (-O $0) {
-        print "this script is owned by $>\n";
+    if (defined -O $0) {
+        if (-O _) {
+            print "this script is owned by $>\n";
+        } else {
+            print "this script is not owned by $>\n";
+        }
     } else {
-        print "this script is not owned by $>\n";
+        print "this script doesn't exist on the filesystem\n";
     }
 
 =head3 See also
