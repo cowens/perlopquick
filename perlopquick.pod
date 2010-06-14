@@ -1265,7 +1265,7 @@ L<warnings> are turned on).
 
 =head3 See also
 
-L<<</X <<= Y>>>
+L</X E<lt>E<lt>= Y>
 
 =head2 X >> Y
 
@@ -1297,7 +1297,7 @@ L<warnings> are turned on).
 
 =head3 See also
 
-L<<</X >>= Y>>>
+L</X E<gt>E<gt>= Y>
 
 =head2 -r
 
@@ -2714,7 +2714,7 @@ can be assigned to).
 
 =head3 See also
 
-L</X = Y> and L<<< /X << Y >>>
+L</X = Y> and L</X E<lt>E<lt> Y>
 
 =head2 X >>= Y 
 
@@ -2741,7 +2741,7 @@ can be assigned to).
 
 =head3 See also
 
-L</X = Y> and L<<< /X >> Y >>>
+L</X = Y> and L</X E<gt>E<gt> Y>
 
 =head2 X &&= Y
 
