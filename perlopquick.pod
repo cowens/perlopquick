@@ -1382,10 +1382,10 @@ information from the previous call to C<stat> or a filetest operator.
 
 =head3 Example
 
-    if (-x $^X) {
-        print "the Perl interpreter is executable\n";
+    if (-x $0) {
+        print "this script is executable\n";
     } else {
-        print "the Perl interpreter is not executable\n";
+        print "this script is not executable\n";
     }
 
 =head3 See also
@@ -1506,10 +1506,10 @@ information from the previous call to C<stat> or a filetest operator.
 
 =head3 Example
 
-    if (-X $^X) {
-        print "the Perl interpreter is executable\n";
+    if (-X $0) {
+        print "this script is executable\n";
     } else {
-        print "the Perl interpreter is not executable\n";
+        print "this script is not executable\n";
     }
 
 =head3 See also
