@@ -1328,7 +1328,7 @@ information from the previous call to C<stat> or a filetest operator.
 
 =head3 See also
 
-L<perlvar/$E<gt>>, L<perlvar/$)>, $L<perlfunc/-X> and L<perlfunc/stat>
+L<perlvar/$E<gt>>, L<perlvar/$)>, L<perlfunc/-X> and L<perlfunc/stat>
 
 =head2 -w FILE
 
@@ -1359,7 +1359,7 @@ information from the previous call to C<stat> or a filetest operator.
 
 =head3 See also
 
-L<perlvar/$E<gt>>, L<perlvar/$)>, $L<perlfunc/-X> and L<perlfunc/stat>
+L<perlvar/$E<gt>>, L<perlvar/$)>, L<perlfunc/-X> and L<perlfunc/stat>
 
 =head2 -x FILE
 
@@ -1390,7 +1390,7 @@ information from the previous call to C<stat> or a filetest operator.
 
 =head3 See also
 
-L<perlvar/$E<gt>>, L<perlvar/$)>, $L<perlfunc/-X> and L<perlfunc/stat>
+L<perlvar/$E<gt>>, L<perlvar/$)>, L<perlfunc/-X> and L<perlfunc/stat>
 
 =head2 -o
 
