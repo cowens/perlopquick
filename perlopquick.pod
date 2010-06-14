@@ -1299,23 +1299,95 @@ L<warnings> are turned on).
 
 L</X E<gt>E<gt>= Y>
 
-=head2 -r
+=head2 -r X
 
 =head3 Class
 
 This belongs to L<perlop/Named Unary Operators>.
 
-=head2 -w
+=head3 Description
+
+This is the readable filetest operator.  X must be a filename, filehandle,
+dirhandle, or an expression that returns one the preceding values.  It
+returns C<1> if the file or directory exists and is readable, C<""> if it
+exists but if it not readable, or C<undef> if the file does not exist.
+
+If given no arguments, it will operate on C<$_>.
+
+If given the C<_> special filehandle as an argument, it will use cached
+information from the previous call to C<stat> or a filetest operator.
+
+=head3 Example
+
+    if (-r "/etc/passwd") {
+        print "/etc/passwd is readable\n";
+    } else {
+        print "/etc/passwd is not readable\n";
+    }
+
+=head3 See also
+
+L<perlfunc/-X> and L<perlfunc/stat>
+
+=head2 -w X
 
 =head3 Class
 
 This belongs to L<perlop/Named Unary Operators>.
 
-=head2 -x
+=head3 Description
+
+This is the writable filetest operator.  X must be a filename, filehandle,
+dirhandle, or an expression that returns one the preceding values.  It
+returns C<1> if the file or directory exists and is writable, C<""> if it
+exists but if it not writable, or C<undef> if the file does not exist.
+
+If given no arguments, it will operate on C<$_>.
+
+If given the C<_> special filehandle as an argument, it will use cached
+information from the previous call to C<stat> or a filetest operator.
+
+=head3 Example
+
+    if (-w "/etc/passwd") {
+        print "/etc/passwd is writable\n";
+    } else {
+        print "/etc/passwd is not writable\n";
+    }
+
+=head3 See also
+
+L<perlfunc/-X> and L<perlfunc/stat>
+
+=head2 -x X
 
 =head3 Class
 
 This belongs to L<perlop/Named Unary Operators>.
+
+=head3 Description
+
+This is the executable filetest operator.  X must be a filename, filehandle,
+dirhandle, or an expression that returns one the preceding values.  It
+returns C<1> if the file or directory exists and is executable, C<""> if it
+exists but if it not executable, or C<undef> if the file does not exist.
+
+If given no arguments, it will operate on C<$_>.
+
+If given the C<_> special filehandle as an argument, it will use cached
+information from the previous call to C<stat> or a filetest operator.
+
+=head3 Example
+
+    if (-x $^X) {
+        print "the Perl interpreter is executable\n";
+    } else {
+        print "the Perl interpreter is not executable\n";
+    }
+
+=head3 See also
+
+L<perlfunc/-X> and L<perlfunc/stat>
 
 =head2 -o
 
