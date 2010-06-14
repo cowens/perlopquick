@@ -1813,6 +1813,12 @@ information from the previous call to C<stat> or a filetest operator.
         print "somefile doesn't exist\n";
     }
 
+    if (-p STDOUT) {
+        print "we are piping to another program\n";
+    } else {
+        print "we are not piping to another program\n";
+    }
+
 =head3 See also
 
 L<perlfunc/-X> and L<perlfunc/stat>
