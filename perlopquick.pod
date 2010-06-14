@@ -32,8 +32,6 @@
 
 =head2 "X"
 
-X<"X">
-
 =head3 Class
 
 This belongs to L<perlop/Terms and List Operators (Leftward)> and 
@@ -74,8 +72,6 @@ L</qq(X)>, L</'X'>, L</q(X)>, L<perlvar/$">,
 and L<perlop/Quote and Quote-like Operators>
 
 =head2 qq(X)
-
-X<qq(X)>
 
 =head3 Class
 
@@ -133,8 +129,6 @@ and L<perlop/Quote and Quote-like Operators>
 
 =head2 'X'
 
-X<'X'>
-
 =head3 Class
 
 This belongs to L<perlop/Terms and List Operators (Leftward)> and 
@@ -171,8 +165,6 @@ L</"X">, L</qq(X)>, L</q(X)>, L<perlvar/$">,
 and L<perlop/Quote and Quote-like Operators>
 
 =head2 q(X)
-
-X<q(X)>
 
 =head3 Class
 
@@ -220,8 +212,6 @@ and L<perlop/Quote and Quote-like Operators>
 
 =head2 qw(X)
 
-X<qw(X)>
-
 =head3 Class
 
 This belongs to L<perlop/Terms and List Operators (Leftward)> and 
@@ -266,8 +256,6 @@ L</'X'>, L</q(X)>, and L<perlop/Quote and Quote-like Operators>
 
 =head2 X[Y]
 
-X<X[Y]>
-
 =head3 Class
 
 This belongs to L<perlop/Terms and List Operators (Leftward)> and 
@@ -308,8 +296,6 @@ L</(X)[Y]> and L</X-E<gt>[Y]>
 
 =head2 (X)[Y]
 
-X<(X)[Y]>
-
 =head3 Class
 
 This belongs to L<perlop/Terms and List Operators (Leftward)>.
@@ -337,8 +323,6 @@ L</(X)[Y]>
 
 =head2 X{Y}
 
-X<X{Y}>
-
 =head3 Class
 
 This belongs to L<perlop/Terms and List Operators (Leftward)>.
@@ -363,8 +347,6 @@ L<perldata> for information about slices).
 L</(X){Y}> and L</X-E<gt>{Y}>
 
 =head2 X->[Y]
-
-X<X-E<gt>[Y]>
 
 =head3 Class
 
@@ -400,8 +382,6 @@ L</\X>, L</@{X}>, L</$X[Y]>, L<perlreftut>, and L<perlref>
 
 =head2 X->{Y}
 
-X<X-E<gt>{Y}>
-
 =head3 Class
 
 This belongs to L<perlop/The Arrow Operator>.
@@ -436,8 +416,6 @@ L</\X>, L</%{X}>, L</$X{Y}>, L<perlreftut>, and L<perlref>
 
 =head2 X->(Y)
 
-X<X-E<gt>(Y)>
-
 =head3 Class
 
 This belongs to L<perlop/The Arrow Operator>.
@@ -471,8 +449,6 @@ If X does not evaluate to a code reference, then a runtime error occurs.
 L</\X>, L<perlsub>, L<perlreftut>, and L<perlref>
 
 =head2 ${X}
-
-X<${X}>
 
 =head3 Class
 
@@ -515,8 +491,6 @@ L</\X>, L<perlreftut>, and L<perlref>
 
 =head2 ${X}[Y]
 
-X<${X}[Y]>
-
 =head3 Class
 
 This belongs to L<perlop/Terms and List Operators (Leftward)>.
@@ -555,8 +529,6 @@ L</\X>, L<< /X->[Y] >>, L<perlreftut>, and L<perlref>
 
 =head2 ${X}{Y}
 
-X<${X}{Y}>
-
 =head3 Class
 
 This belongs to L<perlop/Terms and List Operators (Leftward)>.
@@ -594,8 +566,6 @@ whose name is the same as the string.
 L</\X>, L<< /X->{Y} >>, L<perlreftut>, and L<perlref>
 
 =head2 @{X}
-
-X<@{X}>
 
 =head3 Class
 
@@ -638,8 +608,6 @@ L</\X>, L<perlreftut>, and L<perlref>
 
 =head2 %{X}
 
-X<%{X}>
-
 =head3 Class
 
 This belongs to L<perlop/Terms and List Operators (Leftward)>.
@@ -675,8 +643,6 @@ then @{X} returns an array variable whose name is the same as the string.
 L</\X>, L<perlreftut>, and L<perlref>
 
 =head2 ++X
-
-X<++X>
 
 =head3 Class
 
@@ -717,8 +683,6 @@ L</X++>
 
 =head2 X++
 
-X<X++>
-
 =head3 Class
 
 This belongs to L<perlop/Auto-increment and Auto-decrement>.
@@ -744,8 +708,6 @@ auto-increment operator, both values would be C<5>.
 L</++X>
 
 =head2 --X
-
-X<--X>
 
 =head3 Class
 
@@ -774,8 +736,6 @@ are turned on).
 L</X-->
 
 =head2 X--
-
-X<X-->
 
 =head3 Class
 
@@ -808,8 +768,6 @@ L</--X>
 
 =head2 X ** Y
 
-X<X ** Y>
-
 =head3 Class
 
 This belongs to L<perlop/Exponentiation>
@@ -837,8 +795,6 @@ L<warnings> are turned on).
 L</X **= Y> and L<perlfunc/log>
 
 =head2 !X
-
-X<!X>
 
 =head3 Class
 
@@ -871,8 +827,6 @@ L</not X>
 
 =head2 ~X
 
-X<~X>
-
 =head3 Class
 
 This belongs to L<perlop/Symbolic Unary Operators>.
@@ -898,8 +852,6 @@ are turned on).
 L<perlop/Bitwise String Operators> and L<perlop/Integer Arithmetic> 
 
 =head2 \X
-
-X<\X>
 
 =head3 Class
 
@@ -946,8 +898,6 @@ L<< /X -> Y >>, L<perlreftut>, and L<perlref>
 
 =head2 +X
 
-X<+X>
-
 =head3 Class
 
 This belongs to L<perlop/Symbolic Unary Operators>.
@@ -969,8 +919,6 @@ list of function arguments.
 L</-X>
 
 =head2 -X
-
-X<-X>
 
 =head3 Class
 
@@ -1012,8 +960,6 @@ L</+X>
 
 =head2 X =~ Y
 
-X<X =~ Y>
-
 =head3 Class
 
 This belongs to L<perlop/Binding Operators>.
@@ -1051,8 +997,6 @@ L<perlop>, L<perlretut>, and L<prelre>
 
 =head2 X !~ Y
 
-X<X !~ Y>
-
 =head3 Class
 
 This belongs to L<perlop/Binding Operators>.
@@ -1077,8 +1021,6 @@ L</X =~ Y>
 
 =head2 X * Y
 
-X<X * Y>
-
 =head3 Class
 
 This belongs to L<perlop/Multiplicative Operators>.
@@ -1102,8 +1044,6 @@ L<warnings> are turned on).
 L</X *= Y>
 
 =head2 X / Y
-
-X<X E<sol> Y>
 
 =head3 Class
 
@@ -1131,8 +1071,6 @@ like C<Illegal division by zero>.
 L</X E<sol>= Y>
 
 =head2 X % Y
-
-X<X % Y>
 
 =head3 Class
 
@@ -1196,8 +1134,6 @@ L</X E<sol> Y> and L</X %= Y>
 
 =head2 X x Y
 
-X<X x Y>
-
 =head3 Class
 
 This belongs to L<perlop/Multiplicative Operators>.
@@ -1223,8 +1159,6 @@ are turned on).
 
 =head2 X + Y
 
-X<X + Y>
-
 =head3 Class
 
 This belongs to L<perlop/Additive Operators>.
@@ -1248,8 +1182,6 @@ L<warnings> are turned on).
 L</X += Y>
 
 =head2 X - Y
-
-X<X - Y>
 
 =head3 Class
 
@@ -1275,8 +1207,6 @@ L</X -= Y>
 
 =head2 X . Y
 
-X<X . Y>
-
 =head3 Class
 
 This belongs to L<perlop/Additive Operators>.
@@ -1298,8 +1228,6 @@ scalar context on X and Y.
 L</X .= Y>
 
 =head2 X << Y
-
-X<X E<lt>E<lt> Y>
 
 =head3 Class
 
@@ -1341,8 +1269,6 @@ L</X E<lt>E<lt>= Y>
 
 =head2 X >> Y
 
-X<X E<gt>E<gt> Y>
-
 =head3 Class
 
 This belongs to L<perlop/Shift Operators>.
@@ -1375,15 +1301,11 @@ L</X E<gt>E<gt>= Y>
 
 =head2 -r
 
-X<-r>
-
 =head3 Class
 
 This belongs to L<perlop/Named Unary Operators>.
 
 =head2 -w
-
-X<-w>
 
 =head3 Class
 
@@ -1391,15 +1313,11 @@ This belongs to L<perlop/Named Unary Operators>.
 
 =head2 -x
 
-X<-x>
-
 =head3 Class
 
 This belongs to L<perlop/Named Unary Operators>.
 
 =head2 -o
-
-X<-o>
 
 =head3 Class
 
@@ -1407,15 +1325,11 @@ This belongs to L<perlop/Named Unary Operators>.
 
 =head2 -R
 
-X<-R>
-
 =head3 Class
 
 This belongs to L<perlop/Named Unary Operators>.
 
 =head2 -W
-
-X<-W>
 
 =head3 Class
 
@@ -1423,15 +1337,11 @@ This belongs to L<perlop/Named Unary Operators>.
 
 =head2 -X
 
-X<-X>
-
 =head3 Class
 
 This belongs to L<perlop/Named Unary Operators>.
 
 =head2 -O
-
-X<-O>
 
 =head3 Class
 
@@ -1439,15 +1349,11 @@ This belongs to L<perlop/Named Unary Operators>.
 
 =head2 -e
 
-X<-e>
-
 =head3 Class
 
 This belongs to L<perlop/Named Unary Operators>.
 
 =head2 -z
-
-X<-z>
 
 =head3 Class
 
@@ -1455,15 +1361,11 @@ This belongs to L<perlop/Named Unary Operators>.
 
 =head2 -s
 
-X<-s>
-
 =head3 Class
 
 This belongs to L<perlop/Named Unary Operators>.
 
 =head2 -f
-
-X<-f>
 
 =head3 Class
 
@@ -1471,15 +1373,11 @@ This belongs to L<perlop/Named Unary Operators>.
 
 =head2 -d
 
-X<-d>
-
 =head3 Class
 
 This belongs to L<perlop/Named Unary Operators>.
 
 =head2 -l
-
-X<-l>
 
 =head3 Class
 
@@ -1487,15 +1385,11 @@ This belongs to L<perlop/Named Unary Operators>.
 
 =head2 -p
 
-X<-p>
-
 =head3 Class
 
 This belongs to L<perlop/Named Unary Operators>.
 
 =head2 -S
-
-X<-S>
 
 =head3 Class
 
@@ -1503,15 +1397,11 @@ This belongs to L<perlop/Named Unary Operators>.
 
 =head2 -b
 
-X<-b>
-
 =head3 Class
 
 This belongs to L<perlop/Named Unary Operators>.
 
 =head2 -c
-
-X<-c>
 
 =head3 Class
 
@@ -1519,15 +1409,11 @@ This belongs to L<perlop/Named Unary Operators>.
 
 =head2 -t
 
-X<-t>
-
 =head3 Class
 
 This belongs to L<perlop/Named Unary Operators>.
 
 =head2 -u
-
-X<-u>
 
 =head3 Class
 
@@ -1535,15 +1421,11 @@ This belongs to L<perlop/Named Unary Operators>.
 
 =head2 -g
 
-X<-g>
-
 =head3 Class
 
 This belongs to L<perlop/Named Unary Operators>.
 
 =head2 -k
-
-X<-k>
 
 =head3 Class
 
@@ -1551,15 +1433,11 @@ This belongs to L<perlop/Named Unary Operators>.
 
 =head2 -T
 
-X<-T>
-
 =head3 Class
 
 This belongs to L<perlop/Named Unary Operators>.
 
 =head2 -B
-
-X<-B>
 
 =head3 Class
 
@@ -1567,15 +1445,11 @@ This belongs to L<perlop/Named Unary Operators>.
 
 =head2 -M
 
-X<-M>
-
 =head3 Class
 
 This belongs to L<perlop/Named Unary Operators>.
 
 =head2 -A
-
-X<-A>
 
 =head3 Class
 
@@ -1583,15 +1457,11 @@ This belongs to L<perlop/Named Unary Operators>.
 
 =head2 -C
 
-X<-C>
-
 =head3 Class
 
 This belongs to L<perlop/Named Unary Operators>.
 
 =head2 X < Y
-
-X<X E<lt> Y>
 
 =head3 Class
 
@@ -1625,8 +1495,6 @@ L</X E<lt>= Y>, L</X lt Y>, and L</X le Y>
 
 =head2 X > Y
 
-X<X E<gt> Y>
-
 =head3 Class
 
 This belongs to L<perlop/Relational Operators>
@@ -1658,8 +1526,6 @@ L<warnings> are turned on).
 L</X E<gt>= Y> L</X gt Y>, and L</X ge Y>
 
 =head2 X <= Y
-
-X<X E<lt>= Y>
 
 =head3 Class
 
@@ -1693,8 +1559,6 @@ L</X E<lt> Y>, L</X lt Y>, and L</X le Y>
 
 =head2 X >= Y
 
-X<X E<gt>= Y>
-
 =head3 Class
 
 This belongs to L<perlop/Relational Operators>
@@ -1726,8 +1590,6 @@ L<warnings> are turned on).
 L</X E<gt> Y>, L</X gt Y>, and L</X ge Y>
 
 =head2 X lt Y
-
-X<X lt Y>
 
 =head3 Class
 
@@ -1761,8 +1623,6 @@ L</X cmp Y>
 
 =head2 X gt Y
 
-X<X gt Y>
-
 =head3 Class
 
 This belongs to L<perlop/Relational Operators>
@@ -1790,11 +1650,9 @@ C<127> characters, this order is the same as the ASCII order).
 
 =head3 See also
 
-L</X E<gt> Y>, L</X E<gt>= Y>, and L</X ge Y>
+L</X E<gt> Y>, L</X >= Y>, and L</X ge Y>
 
 =head2 X le Y
-
-X<X le Y>
 
 =head3 Class
 
@@ -1828,8 +1686,6 @@ L</X E<lt> Y>, L</X E<lt>= Y>, and L</X lt Y>
 
 =head2 X ge Y
 
-X<X ge Y>
-
 =head3 Class
 
 This belongs to L<perlop/Relational Operators>
@@ -1861,8 +1717,6 @@ order is the same as the ASCII order).
 L</X E<gt> Y>, L</X E<gt>= Y>, L</X gt Y>, and L</X cmp Y>
 
 =head2 X == Y
-
-X<X == Y>
 
 =head3 Class
 
@@ -1914,8 +1768,6 @@ L</X != Y>, L</X eq Y>, and L</X ne Y>
 
 =head2 X != Y
 
-X<X != Y>
-
 =head3 Class
 
 This belongs to L<perlop/Equality Operators>.
@@ -1966,8 +1818,6 @@ L</X == Y>, L</X eq Y>, and L</X ne Y>
 
 =head2 X <=> Y
 
-X<X E<lt>=E<gt> Y>
-
 =head3 Class
 
 This belongs to L<perlop/Equality Operators>.
@@ -1997,8 +1847,6 @@ L</X cmp Y>
 
 =head2 X eq Y
 
-X<X eq Y>
-
 =head3 Class
 
 This belongs to L<perlop/Equality Operators>.
@@ -2027,8 +1875,6 @@ L</X == Y>, L</X != Y>, and L</X ne Y>
 
 =head2 X ne Y
 
-X<X ne Y>
-
 =head3 Class
 
 This belongs to L<perlop/Equality Operators>.
@@ -2056,8 +1902,6 @@ evaluate as the same string.
 L</X == Y>, L</X != Y>, and L</X eq Y>
 
 =head2 X cmp Y
-
-X<X cmp Y>
 
 =head3 Class
 
@@ -2088,8 +1932,6 @@ L</X E<lt>=E<gt> Y>
 
 =head2 X ~~ Y
 
-X<X ~~ Y>
-
 =head3 Class
 
 This belongs to L<perlop/Equality Operators>.
@@ -2112,8 +1954,6 @@ See L<perlsyn/"Smart matching in detail"> for examples.
 L</~~X>, L<perlsyn/"Smart matching in detail">, and L<perlfunc/scalar>
 
 =head2 X & Y
-
-X<X & Y>
 
 =head3 Class
 
@@ -2160,8 +2000,6 @@ L</X and Y>, L</X && Y>, L<perlop/Integer Arithmetic> and
 L<perlop/Bitwise String Operators>.
 
 =head2 X | Y
-
-X<X E<verbar> Y>
 
 =head3 Class
 
@@ -2210,8 +2048,6 @@ L<perlop/Bitwise String Operators>.
 
 =head2 X ^ Y
 
-X<X ^ Y>
-
 =head3 Class
 
 This belongs to L<perlop/Bitwise Or and Exclusive Or>.
@@ -2258,8 +2094,6 @@ L<perlop/Bitwise String Operators>.
 
 =head2 X && Y
 
-X<X && Y>
-
 =head3 Class
 
 This belongs to L<perlop/C-style Logical And>.
@@ -2297,8 +2131,6 @@ C<while>.
 L</X and Y>, L</X & Y>
 
 =head2 X || Y
-
-X<X E<verbar>E<verbar> Y>
 
 =head3 Class
 
@@ -2349,8 +2181,6 @@ L</X ^ Y>
 
 =head2 X // Y
 
-X<X E<sol>E<sol> Y>
-
 =head3 Class
 
 This belongs to L<perlop/C-style Logical Defined-Or>.
@@ -2383,8 +2213,6 @@ L</X or Y>, L</X xor Y>, L</X E<verbar>E<verbar> Y>, L</X E<verbar> Y>,
 and L</X ^ Y>
 
 =head2 X .. Y
-
-X<X .. Y>
 
 =head3 Class
 
@@ -2435,8 +2263,6 @@ L</X ... Y>
 
 =head2 X ... Y
 
-X<X ... Y>
-
 =head3 Class
 
 This belongs to L<perlop/Range Operators>.
@@ -2485,8 +2311,6 @@ L</X .. Y>
 
 =head2 X ? Y : Z
 
-X<X ? Y : Z>
-
 =head3 Class
 
 This belongs to L<perlop/Conditional Operators>.
@@ -2528,8 +2352,6 @@ L<perlsyn/Compound-Statements>
 
 =head2 X = Y
 
-X<X = Y>
-
 =head3 Class
 
 This belongs to L<perlop/Assignment Operators>.
@@ -2563,8 +2385,6 @@ assignment has taken place).
 
 =head2 X **= Y
 
-X<X **= Y>
-
 =head3 Class
 
 This belongs to L<perlop/Assignment Operators>.
@@ -2591,8 +2411,6 @@ that can be assigned to).
 L</X = Y> and L</X ** Y>
 
 =head2 X += Y
-
-X<X += Y>
 
 =head3 Class
 
@@ -2621,8 +2439,6 @@ L</X = Y> and L</X + Y>
 
 =head2 X -= Y
 
-X<X -= Y>
-
 =head3 Class
 
 This belongs to L<perlop/Assignment Operators>.
@@ -2649,8 +2465,6 @@ assigned to).
 L</X = Y> and L</X - Y>
 
 =head2 X .= Y
-
-X<X .= Y>
 
 =head3 Class
 
@@ -2679,8 +2493,6 @@ L</X = Y> and L</X . Y>
 
 =head2 X *= Y
 
-X<X *= Y>
-
 =head3 Class
 
 This belongs to L<perlop/Assignment Operators>.
@@ -2707,8 +2519,6 @@ assigned to).
 L</X = Y> and L</X * Y>
 
 =head2 X /= Y
-
-X<X E<sol>= Y>
 
 =head3 Class
 
@@ -2740,8 +2550,6 @@ L</X = Y> and L</X / Y>
 
 =head2 X %= Y
 
-X<X %= Y>
-
 =head3 Class
 
 This belongs to L<perlop/Assignment Operators>.
@@ -2771,8 +2579,6 @@ like C<Illegal modulus zero>.
 L</X = Y> and L</X % Y>
 
 =head2 X x= Y
-
-X<X x= Y>
 
 =head3 Class
 
@@ -2804,8 +2610,6 @@ L</X = Y> and L</X x Y>
 
 =head2 X &= Y
 
-X<X &= Y>
-
 =head3 Class
 
 This belongs to L<perlop/Assignment Operators>.
@@ -2833,8 +2637,6 @@ L</X = Y> and L</X & Y>
 
 =head2 X |= Y
 
-X<X E<verbar>= Y>
-
 =head3 Class
 
 This belongs to L<perlop/Assignment Operators>.
@@ -2858,11 +2660,9 @@ assigned to).
 
 =head3 See also
 
-L</X = Y> and L</X E<verbar> Y>
+L</X = Y> and L</X | Y>
 
 =head2 X ^= Y
-
-X<X ^= Y>
 
 =head3 Class
 
@@ -2891,8 +2691,6 @@ L</X = Y> and L</X ^ Y>
 
 =head2 X <<= Y
 
-X<X E<lt>E<lt>= Y>
-
 =head3 Class
 
 This belongs to L<perlop/Assignment Operators>.
@@ -2920,8 +2718,6 @@ L</X = Y> and L</X E<lt>E<lt> Y>
 
 =head2 X >>= Y 
 
-X<X E<gt>E<gt>= Y >
-
 =head3 Class
 
 This belongs to L<perlop/Assignment Operators>.
@@ -2948,8 +2744,6 @@ can be assigned to).
 L</X = Y> and L</X E<gt>E<gt> Y>
 
 =head2 X &&= Y
-
-X<X &&= Y>
 
 =head3 Class
 
@@ -2979,8 +2773,6 @@ that can be assigned to).
 L</X = Y> and L</X && Y>
 
 =head2 X ||= Y
-
-X<X E<verbar>E<verbar>= Y>
 
 =head3 Class
 
@@ -3026,8 +2818,6 @@ L</X = Y>, L</X E<verbar>E<verbar> Y>, and L</X E<sol>E<sol>= Y>
 
 =head2 X //= Y
 
-X<X E<sol>E<sol>= Y>
-
 =head3 Class
 
 This belongs to L<perlop/Assignment Operators>.
@@ -3064,8 +2854,6 @@ It is commonly used to ensure that a variable has a value:
 L</X = Y>, L</X E<sol>E<sol> Y>, L</X E<verbar>E<verbar> Y>
 
 =head2 X, Y
-
-X<X, Y>
 
 =head3 Class
 
@@ -3108,8 +2896,6 @@ C<(1,2,3)> and C<(1,2,3,)>) are identical.
 L</X =E<gt> Y>
 
 =head2 X => Y
-
-X<X =E<gt> Y>
 
 =head3 Class
 
@@ -3161,8 +2947,6 @@ L</X, Y>
 
 =head2 not X
 
-X<not X>
-
 =head3 Class
 
 This belongs to L<perlop/Logical Not>.
@@ -3185,8 +2969,6 @@ it returns C<1>.  There is a high-precedence version: C<!>.
 L</!X>
 
 =head2 X and Y
-
-X<X and Y>
 
 =head3 Class
 
@@ -3238,8 +3020,6 @@ L</X && Y> and L</X & Y>
 
 =head2 X or Y
 
-X<X or Y>
-
 =head3 Class
 
 This belongs to L<perlop/Logical or, Defined or, and Exclusive Or>.
@@ -3289,8 +3069,6 @@ L</X E<sol> Y>
 
 =head2 X xor Y
 
-X<X xor Y>
-
 =head3 Class
 
 This belongs to L<perlop/Logical or, Defined or, and Exclusive Or>.
@@ -3326,8 +3104,6 @@ after you.
 
 =head2 !!X
 
-X<!!X>
-
 =head3 Description
 
 This pseudo-operator is the boolean conversion operator.  It is made up of
@@ -3346,8 +3122,6 @@ numerous true and false values in Perl.
 L</!X>
 
 =head2 ()= X
-
-X<()= X>
 
 =head3 Description
 
@@ -3388,8 +3162,6 @@ L</X = Y>
 
 =head2 ~~X
 
-X<~~X>
-
 =head3 Description
 
 This pseudo-operator is named the scalar context operator.  It is made up of
@@ -3414,8 +3186,6 @@ are encouraged to use it instead.
 L</~X>, L</X ~~ Y>, and L<perlfunc/scalar>
 
 =head2 X }{ Y
-
-X<X }{ Y>
 
 =head3 Description
 
