@@ -1404,7 +1404,7 @@ information from the previous call to C<stat> or a filetest operator.
 
 L<perlvar/$E<gt>>, L<perlvar/$)>, L<perlfunc/-X> and L<perlfunc/stat>
 
-=head2 -o
+=head2 -o FILE
 
 =head3 Class
 
@@ -1547,7 +1547,7 @@ information from the previous call to C<stat> or a filetest operator.
 
 L<perlvar/$E<lt>>, L<perlvar/$(>, L<perlfunc/-X> and L<perlfunc/stat>
 
-=head2 -O
+=head2 -O FILE
 
 =head3 Class
 
@@ -1582,7 +1582,7 @@ information from the previous call to C<stat> or a filetest operator.
 
 L<perlvar/$E<lt>>, L<perlvar/$(>, L<perlfunc/-X> and L<perlfunc/stat>
 
-=head2 -e
+=head2 -e FILE
 
 =head3 Class
 
@@ -1612,7 +1612,7 @@ information from the previous call to C<stat> or a filetest operator.
 
 L<perlfunc/-X> and L<perlfunc/stat>
 
-=head2 -z
+=head2 -z FILE
 
 =head3 Class
 
@@ -1647,7 +1647,7 @@ information from the previous call to C<stat> or a filetest operator.
 
 L<perlfunc/-X> and L<perlfunc/stat>
 
-=head2 -s
+=head2 -s FILE
 
 =head3 Class
 
@@ -1677,7 +1677,7 @@ information from the previous call to C<stat> or a filetest operator.
 
 L<perlfunc/-X> and L<perlfunc/stat>
 
-=head2 -f
+=head2 -f FILE
 
 =head3 Class
 
@@ -1712,7 +1712,7 @@ information from the previous call to C<stat> or a filetest operator.
 
 L<perlfunc/-X> and L<perlfunc/stat>
 
-=head2 -d
+=head2 -d FILE
 
 =head3 Class
 
@@ -1747,7 +1747,7 @@ information from the previous call to C<stat> or a filetest operator.
 
 L<perlfunc/-X> and L<perlfunc/stat>
 
-=head2 -l
+=head2 -l FILE
 
 =head3 Class
 
@@ -1782,7 +1782,7 @@ information from the previous call to C<stat> or a filetest operator.
 
 L<perlfunc/-X> and L<perlfunc/stat>
 
-=head2 -p
+=head2 -p FILE
 
 =head3 Class
 
@@ -1823,7 +1823,7 @@ information from the previous call to C<stat> or a filetest operator.
 
 L<perlfunc/-X> and L<perlfunc/stat>
 
-=head2 -S
+=head2 -S FILE
 
 =head3 Class
 
@@ -1858,7 +1858,7 @@ information from the previous call to C<stat> or a filetest operator.
 
 L<perlfunc/-X> and L<perlfunc/stat>
 
-=head2 -b
+=head2 -b FILE
 
 =head3 Class
 
@@ -1893,7 +1893,7 @@ information from the previous call to C<stat> or a filetest operator.
 
 L<perlfunc/-X> and L<perlfunc/stat>
 
-=head2 -c
+=head2 -c FILE
 
 =head3 Class
 
@@ -1928,7 +1928,7 @@ information from the previous call to C<stat> or a filetest operator.
 
 L<perlfunc/-X> and L<perlfunc/stat>
 
-=head2 -t
+=head2 -t FILE
 
 =head3 Class
 
@@ -1954,7 +1954,7 @@ If given no arguments, it will operate on C<$_>.
 
 L<perlfunc/-X> and L<perlfunc/stat>
 
-=head2 -u
+=head2 -u FILE
 
 =head3 Class
 
@@ -1989,7 +1989,7 @@ information from the previous call to C<stat> or a filetest operator.
 
 L<perlfunc/-X> and L<perlfunc/stat>
 
-=head2 -g
+=head2 -g FILE
 
 =head3 Class
 
@@ -2024,7 +2024,7 @@ information from the previous call to C<stat> or a filetest operator.
 
 L<perlfunc/-X> and L<perlfunc/stat>
 
-=head2 -k
+=head2 -k FILE
 
 =head3 Class
 
@@ -2059,7 +2059,7 @@ information from the previous call to C<stat> or a filetest operator.
 
 L<perlfunc/-X> and L<perlfunc/stat>
 
-=head2 -T
+=head2 -T FILE
 
 =head3 Class
 
@@ -2103,7 +2103,7 @@ information from the previous call to C<stat> or a filetest operator.
 
 L</-B>, L<perlfunc/-X> and L<perlfunc/stat>
 
-=head2 -B
+=head2 -B FILE
 
 =head3 Class
 
@@ -2147,7 +2147,7 @@ information from the previous call to C<stat> or a filetest operator.
 
 L</-T>, L<perlfunc/-X> and L<perlfunc/stat>
 
-=head2 -M
+=head2 -M FILE
 
 =head3 Class
 
@@ -2180,7 +2180,7 @@ have an affect on the results of calling C<-M> on a file.
 
 L<perlvar/$^T>, L<perlfunc/-X>, and L<perlfunc/stat>
 
-=head2 -A
+=head2 -A FILE
 
 =head3 Class
 
@@ -2215,7 +2215,7 @@ Warning: many filesystems now turn off atime updating.
 
 L<perlvar/$^T>, L<perlfunc/-X>, and L<perlfunc/stat>
 
-=head2 -C
+=head2 -C FILE
 
 =head3 Class
 
