@@ -1942,9 +1942,6 @@ a tty or C<undef> if it is not.
 
 If given no arguments, it will operate on C<$_>.
 
-If given the C<_> special filehandle as an argument, it will use cached
-information from the previous call to C<stat> or a filetest operator.
-
 =head3 Example
 
     if (-t STDOUT) {
