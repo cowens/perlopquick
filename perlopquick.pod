@@ -124,7 +124,7 @@ L<perlop/Quote and Quote-like Operators>.
 
 =head3 See also
 
-L</q(X)>, L</'X'> L</"X">, L<perlvar/$">, 
+L</q(X)>, L</'X'> L<E<quot>XE<quot>>, L<perlvar/$">, 
 and L<perlop/Quote and Quote-like Operators>
 
 =head2 'X'
@@ -161,7 +161,7 @@ L<perlop/Quote and Quote-like Operators>.
 
 =head3 See also
 
-L</"X">, L</qq(X)>, L</q(X)>, L<perlvar/$">, 
+L<E<quot>XE<quot>>, L</qq(X)>, L</q(X)>, L<perlvar/$">, 
 and L<perlop/Quote and Quote-like Operators>
 
 =head2 q(X)
@@ -207,7 +207,7 @@ L<perlop/Quote and Quote-like Operators>.
 
 =head3 See also
 
-L</"X">, L</'X'>, L</qq(X)>, L<perlvar/$">, 
+L<E<quot>XE<quot>>, L</'X'>, L</qq(X)>, L<perlvar/$">, 
 and L<perlop/Quote and Quote-like Operators>
 
 =head2 qw(X)
@@ -505,7 +505,7 @@ If X evaluates to an array reference then it returns value of the Yth item
 of the referenced array.  If X does not evaluate to an array reference a
 runtime error occurs.  If X is a simple scalar variable the braces are
 unnecessary.  The use of this operator is discouraged, see the 
-L<< /X->[Y] >> operator for a better solution.
+L</X-E<gt>[Y]> operator for a better solution.
 
 If strict is turned off, and it shouldn't be, and X evaluates to a string
 then C<${X}[Y]> returns the Yth item from the array whose name is the same
@@ -525,7 +525,7 @@ as the string.
 
 =head3 See also
 
-L</\X>, L<< /X->[Y] >>, L<perlreftut>, and L<perlref>
+L</\X>, L</X-E<gt>[Y]>, L<perlreftut>, and L<perlref>
 
 =head2 ${X}{Y}
 
@@ -543,7 +543,7 @@ If X evaluates to an hash reference then it returns value associated with
 the key Y of the referenced hash.  If X does not evaluate to an hash
 reference a runtime error occurs.  If X is a simple scalar variable the
 braces are unnecessary.  The use of this operator is discouraged, see the
-L<< /X->{Y} >> operator for a better solution.
+L</X-E<gt>{Y}> operator for a better solution.
 
 If strict is turned off, and it shouldn't be, and X evaluates to a string
 then C<${X}{Y}> returns the value associated with the key Y from the hash
@@ -563,7 +563,7 @@ whose name is the same as the string.
 
 =head3 See also
 
-L</\X>, L<< /X->{Y} >>, L<perlreftut>, and L<perlref>
+L</\X>, L</X-E<gt>{Y}>, L<perlreftut>, and L<perlref>
 
 =head2 @{X}
 
@@ -894,7 +894,8 @@ list.
 
 =head3 See also
 
-L<< /X -> Y >>, L<perlreftut>, and L<perlref>
+L</X-E<gt>[Y]>, L</X-E<gt>{Y}>, L<X-E<gt>(Y)>, L<perlreftut>, and
+L<perlref>
 
 =head2 +X
 
@@ -3452,7 +3453,7 @@ assigned to).
 
 =head3 See also
 
-L</X = Y> and L</X | Y>
+L</X = Y> and L</X E<verbar> Y>
 
 =head2 X ^= Y
 
@@ -3857,7 +3858,7 @@ value).
 =head3 See also
 
 L</X xor Y>, L</X E<verbar>E<verbar> Y>, L</X E<sol>E<sol> Y>, 
-L</X E<sol> Y>
+L</X E<verbar> Y>, and L</X ^ Y>
 
 =head2 X xor Y
 
@@ -3882,7 +3883,7 @@ an empty string.
 =head3 See also
 
 L</X or Y>, L</X E<verbar>E<verbar> Y>, L</X E<sol>E<sol> Y>, 
-L</X E<sol> Y>
+L</X E<verbar> Y>, and L</X ^ Y>
 
 =head1 Secret Operators
 
