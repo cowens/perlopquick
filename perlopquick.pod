@@ -1854,11 +1854,44 @@ information from the previous call to C<stat> or a filetest operator.
         print "somefile doesn't exist\n";
     }
 
+=head3 See also
+
+L<perlfunc/-X> and L<perlfunc/stat>
+
 =head2 -b
 
 =head3 Class
 
 This belongs to L<perlop/Named Unary Operators>.
+
+=head3 Description
+
+This is the block special filetest operator.  FILE must be a filename,
+filehandle, dirhandle, or an expression that returns one of the preceding
+values.  It returns C<1> if the file exists and is a block special file,
+C<""> if the file or directory exists, but isn't a block special file, or
+C<undef> if the file or directory doesn't exist.
+
+If given no arguments, it will operate on C<$_>.
+
+If given the C<_> special filehandle as an argument, it will use cached
+information from the previous call to C<stat> or a filetest operator.
+
+=head3 Example
+
+    if (defined -b "/tmp/somefile") {
+        if (-b _) {
+            print "somefile is a block special file\n";
+        } else {
+            print "somefile is not a block special file\n";
+        }
+    } else {
+        print "somefile doesn't exist\n";
+    }
+
+=head3 See also
+
+L<perlfunc/-X> and L<perlfunc/stat>
 
 =head2 -c
 
@@ -1866,11 +1899,63 @@ This belongs to L<perlop/Named Unary Operators>.
 
 This belongs to L<perlop/Named Unary Operators>.
 
+=head3 Description
+
+This is the character special filetest operator.  FILE must be a filename,
+filehandle, dirhandle, or an expression that returns one of the preceding
+values.  It returns C<1> if the file exists and is a character special file,
+C<""> if the file or directory exists, but isn't a character special file,
+or C<undef> if the file or directory doesn't exist.
+
+If given no arguments, it will operate on C<$_>.
+
+If given the C<_> special filehandle as an argument, it will use cached
+information from the previous call to C<stat> or a filetest operator.
+
+=head3 Example
+
+    if (defined -b "/tmp/somefile") {
+        if (-b _) {
+            print "somefile is a character special file\n";
+        } else {
+            print "somefile is not a character special file\n";
+        }
+    } else {
+        print "somefile doesn't exist\n";
+    }
+
+=head3 See also
+
+L<perlfunc/-X> and L<perlfunc/stat>
+
 =head2 -t
 
 =head3 Class
 
 This belongs to L<perlop/Named Unary Operators>.
+
+=head3 Description
+
+This is the socket filetest operator.  FILE must be a filehandle or an
+expression that returns one.  It returns C<1> if the filehandle is opened to
+a tty or C<undef> if it is not.
+
+If given no arguments, it will operate on C<$_>.
+
+If given the C<_> special filehandle as an argument, it will use cached
+information from the previous call to C<stat> or a filetest operator.
+
+=head3 Example
+
+    if (-t STDOUT) {
+        print "output is going to a console\n";
+    } else {
+        print "output is being redirected\n";
+    }
+
+=head3 See also
+
+L<perlfunc/-X> and L<perlfunc/stat>
 
 =head2 -u
 
