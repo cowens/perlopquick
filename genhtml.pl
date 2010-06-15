@@ -1,4 +1,5 @@
 #!/usr/bin/perl
+# vi: ts=4 sw=4 ht=4 :
 
 use v5.12.0;
 use strict;
@@ -32,17 +33,17 @@ use warnings;
 		my($parser, $element_name, $attr) = @_;
 
 		given ($element_name) {
-			print ""         when "Document";
-			print "<h1>"     when "head1";
+			print ""             when "Document";
+			print "\t\t<h1>"     when "head1";
+			print "\t\t<h3>"     when "head3";
+			print "\t\t<pre>\n"  when "Verbatim";
+			print "\t\t<p>\n"    when "Para";
+			print "<code>"       when "C";
+			print "<em>"         when "I";
 			when ("head2") {
 				$in_head2 = 1;
-				print qq(<h2 id=")
+				print qq(\t\t<h2 id=")
 			}
-			print "<h3>"     when "head3";
-			print "<pre>\n"  when "Verbatim";
-			print "<p>"      when "Para";
-			print "<code>"   when "C";
-			print "<em>"     when "I";
 			when ("L") {
 				my $base;
 				my @to      = @{ref $attr->{to} ? $attr->{to} : []};
@@ -77,13 +78,13 @@ use warnings;
 	sub _handle_element_end {
 		my($parser, $element_name) = @_;
 		given ($element_name) {
-			print ""           when "Document";
-			print "</h1>\n"    when "head1";
-			print "</h3>\n"    when "head3";
-			print "\n</pre>\n" when "Verbatim";
-			print "</p>\n"     when "Para";
-			print "</code>"    when "C";
-			print "</em>"      when "I";
+			print ""                 when "Document";
+			print "</h1>\n"          when "head1";
+			print "</h3>\n"          when "head3";
+			print "\n\t\t</pre>\n"   when "Verbatim";
+			print "\n\t\t</p>\n"     when "Para";
+			print "</code>"          when "C";
+			print "</em>"            when "I";
 			when ("head2") {
 				my $id   = join "", @head2_id;
 				my $name = join "", @head2_name;
@@ -120,4 +121,18 @@ use warnings;
 	}
 }
 
-GenHTML->filter(shift);
+my $filename = shift;
+my ($title) = $filename =~ m{([^/\\]+).pod};
+print <<EOH;
+<!doctype html>
+<html>
+	<head>
+		<title>$title</title>
+	</head>
+	<body>
+EOH
+GenHTML->filter($filename);
+print <<EOH;
+	</body>
+</html>
+EOH
