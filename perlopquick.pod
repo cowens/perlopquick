@@ -378,7 +378,7 @@ If X does not evaluate to an array reference, then a runtime error occurs.
 
 =head3 See also
 
-L</\X>, L</@{X}>, L</$X[Y]>, L<perlreftut>, and L<perlref>
+L</\X>, L</@{X}>, L</${X}[Y]>, L<perlreftut>, and L<perlref>
 
 =head2 X->{Y}
 
@@ -412,7 +412,7 @@ If X does not evaluate to a hash reference, then a runtime error occurs.
 
 =head3 See also
 
-L</\X>, L</%{X}>, L</$X{Y}>, L<perlreftut>, and L<perlref>
+L</\X>, L</%{X}>, L</${X}{Y}>, L<perlreftut>, and L<perlref>
 
 =head2 X->(Y)
 
