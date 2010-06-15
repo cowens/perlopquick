@@ -3884,10 +3884,10 @@ an empty string.
 L</X or Y>, L</X E<verbar>E<verbar> Y>, L</X E<sol>E<sol> Y>, 
 L</X E<sol> Y>
 
-=head1 Pseudo-operators
+=head1 Secret Operators
 
 There are idioms in Perl 5 that appear to be operators, but are really a
-combination of several operators or pieces of syntax. These pseudo-operators
+combination of several operators or pieces of syntax. These Secret Operators
 have the precedence of the constituent parts.
 
 N.B. There are often better ways of doing all of these things and those ways
@@ -3898,7 +3898,7 @@ after you.
 
 =head3 Description
 
-This pseudo-operator is the boolean conversion operator.  It is made up of
+This secret operator is the boolean conversion operator.  It is made up of
 two logical negation operators.  It returns C<1> if X evaluates to a true
 value or C<""> if X evaluates to a false value.  It is useful when you want
 to convert a value to specific true or false values rather than one of the
@@ -3917,7 +3917,7 @@ L</!X>
 
 =head3 Description
 
-This pseudo-operator is the list assignment operator (aka the countof
+This secret operator is the list assignment operator (aka the countof
 operator).  It is made up of two items C<()>, and C<=>.  In scalar context
 it returns the number of items in the list X.  In list context it returns an
 empty list.  It is useful when you have something that returns a list and
@@ -3933,7 +3933,7 @@ list C<($x, $y, $z)>, so C<$count> is assigned C<5>.
 
     my $count = my ($x, $y, $z) = qw/a b c d e/;
 
-The empty list (the C<()> part of the pseudo-operator) triggers this
+The empty list (the C<()> part of the secret operator) triggers this
 behavior.
 
 =head3 Example
@@ -3956,14 +3956,14 @@ L</X = Y>
 
 =head3 Description
 
-This pseudo-operator is named the scalar context operator.  It is made up of
+This secret operator is named the scalar context operator.  It is made up of
 two bitwise negation operators.  It provides scalar context to the
 expression X.  It works because the first bitwise negation operator provides
 scalar context to X and performs a bitwise negation of the result; since the
 result of two bitwise negations is the original item, the value of the
 original expression is preserved.
 
-With the addition of the Smart match operator, this pseudo-operator is even
+With the addition of the Smart match operator, this secret operator is even
 more confusing.  The C<scalar> function is much easier to understand and you
 are encouraged to use it instead.
 
@@ -3981,7 +3981,7 @@ L</~X>, L</X ~~ Y>, and L<perlfunc/scalar>
 
 =head3 Description
 
-This pseudo-operator is called the Eskimo-kiss operator because it looks
+This secret operator is called the Eskimo-kiss operator because it looks
 like two faces touching noses.  It is made up of an closing brace and an
 opening brace.  It is used when using C<perl> as a command-line program with
 the C<-n> or C<-p> options.  It has the effect of running X inside of the
