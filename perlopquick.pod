@@ -2153,17 +2153,105 @@ L</-T>, L<perlfunc/-X> and L<perlfunc/stat>
 
 This belongs to L<perlop/Named Unary Operators>.
 
+=head3 Description
+
+This is the mtime filetest operator.  FILE must be a filename, filehandle,
+dirhandle, or an expression that returns one of the preceding values.  It
+returns the script start time minus file modification time, in days, if the
+file or directory exists or C<undef> if the file or directory doesn't exist.
+
+If given no arguments, it will operate on C<$_>.
+
+If given the C<_> special filehandle as an argument, it will use cached
+information from the previous call to C<stat> or a filetest operator.
+
+The script start time is stored in C<$^T>, so modifying this variable will
+have an affect on the results of calling C<-M> on a file.
+
+=head3 Example
+
+    if (-M "somefile") {
+        print "it has been ", -M _, " days since somefile was modified\n";
+    } else {
+        print "somefile doesn't exist\n";
+    }
+
+=head3 See also
+
+L<perlvar/$^T>, L<perlfunc/-X>, and L<perlfunc/stat>
+
 =head2 -A
 
 =head3 Class
 
 This belongs to L<perlop/Named Unary Operators>.
 
+=head3 Description
+
+This is the atime filetest operator.  FILE must be a filename, filehandle,
+dirhandle, or an expression that returns one of the preceding values.  It
+returns the script start time minus file access time, in days, if the file
+or directory exists or C<undef> if the file or directory doesn't exist.
+
+If given no arguments, it will operate on C<$_>.
+
+If given the C<_> special filehandle as an argument, it will use cached
+information from the previous call to C<stat> or a filetest operator.
+
+The script start time is stored in C<$^T>, so modifying this variable will
+have an affect on the results of calling C<-A> on a file.
+
+Warning: many filesystems now turn off atime updating.
+
+=head3 Example
+
+    if (-A "somefile") {
+        print "it has been ", -A _, " days since somefile was accessed\n";
+    } else {
+        print "somefile doesn't exist\n";
+    }
+
+=head3 See also
+
+L<perlvar/$^T>, L<perlfunc/-X>, and L<perlfunc/stat>
+
 =head2 -C
 
 =head3 Class
 
 This belongs to L<perlop/Named Unary Operators>.
+
+=head3 Description
+
+This is the ctime filetest operator.  FILE must be a filename, filehandle,
+dirhandle, or an expression that returns one of the preceding values.  It
+returns the script start time minus the ctime of the file, in days, if the
+file or directory exists or C<undef> if the file or directory doesn't exist.
+
+If given no arguments, it will operate on C<$_>.
+
+If given the C<_> special filehandle as an argument, it will use cached
+information from the previous call to C<stat> or a filetest operator.
+
+The script start time is stored in C<$^T>, so modifying this variable will
+have an affect on the results of calling C<-A> on a file.
+
+Warning, different filesystems have different ideas about what the ctime is.
+In Unix, the ctime is the inode change time.  The ctime is updated when a
+change occurs to the file's inode (permissions change, ownership change,
+etc.).
+
+=head3 Example
+
+    if (-A "somefile") {
+        print "it has been ", -A _, " days since somefile was accessed\n";
+    } else {
+        print "somefile doesn't exist\n";
+    }
+
+=head3 See also
+
+L<perlvar/$^T>, L<perlfunc/-X>, and L<perlfunc/stat>
 
 =head2 X < Y
 
