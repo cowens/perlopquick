@@ -1963,17 +1963,104 @@ L<perlfunc/-X> and L<perlfunc/stat>
 
 This belongs to L<perlop/Named Unary Operators>.
 
+=head3 Description
+
+This is the setuid filetest operator.  FILE must be a filename, filehandle,
+dirhandle, or an expression that returns one of the preceding values.  It
+returns C<1> if the file exists and has its setuid set, C<""> if the file or
+directory exists, but its setuid isn't set, or C<undef> if the file or
+directory doesn't exist.
+
+If given no arguments, it will operate on C<$_>.
+
+If given the C<_> special filehandle as an argument, it will use cached
+information from the previous call to C<stat> or a filetest operator.
+
+=head3 Example
+
+    if (defined -u "/tmp/somefile") {
+        if (-u _) {
+            print "somefile has setuid set\n";
+        } else {
+            print "somefile dosn't have setuid set\n";
+        }
+    } else {
+        print "somefile doesn't exist\n";
+    }
+
+=head3 See also
+
+L<perlfunc/-X> and L<perlfunc/stat>
+
 =head2 -g
 
 =head3 Class
 
 This belongs to L<perlop/Named Unary Operators>.
 
+=head3 Description
+
+This is the setgid filetest operator.  FILE must be a filename, filehandle,
+dirhandle, or an expression that returns one of the preceding values.  It
+returns C<1> if the file exists and has its setgid set, C<""> if the file or
+directory exists, but its setgid isn't set, or C<undef> if the file or
+directory doesn't exist.
+
+If given no arguments, it will operate on C<$_>.
+
+If given the C<_> special filehandle as an argument, it will use cached
+information from the previous call to C<stat> or a filetest operator.
+
+=head3 Example
+
+    if (defined -u "/tmp/somefile") {
+        if (-u _) {
+            print "somefile has setgid set\n";
+        } else {
+            print "somefile dosn't have setgid set\n";
+        }
+    } else {
+        print "somefile doesn't exist\n";
+    }
+
+=head3 See also
+
+L<perlfunc/-X> and L<perlfunc/stat>
+
 =head2 -k
 
 =head3 Class
 
 This belongs to L<perlop/Named Unary Operators>.
+
+=head3 Description
+
+This is the sticky bit filetest operator.  FILE must be a filename,
+filehandle, dirhandle, or an expression that returns one of the preceding
+values.  It returns C<1> if the file exists and has its sticky bit set,
+C<""> if the file or directory exists, but its sticky bit isn't set, or
+C<undef> if the file or directory doesn't exist.
+
+If given no arguments, it will operate on C<$_>.
+
+If given the C<_> special filehandle as an argument, it will use cached
+information from the previous call to C<stat> or a filetest operator.
+
+=head3 Example
+
+    if (defined -k "/tmp/somefile") {
+        if (-k _) {
+            print "somefile has sticky bit set\n";
+        } else {
+            print "somefile dosn't have sticky bit set\n";
+        }
+    } else {
+        print "somefile doesn't exist\n";
+    }
+
+=head3 See also
+
+L<perlfunc/-X> and L<perlfunc/stat>
 
 =head2 -T
 
