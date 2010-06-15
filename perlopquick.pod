@@ -2068,11 +2068,87 @@ L<perlfunc/-X> and L<perlfunc/stat>
 
 This belongs to L<perlop/Named Unary Operators>.
 
+=head3 Description
+
+This is the ASCII text filetest operator.  FILE must be a filename,
+filehandle, or an expression that returns one of the preceding values.  It
+returns C<1> if the file exists and appears to be a text file, C<""> if the
+file or directory exists, but doesn't appear to be a text file, or C<undef>
+if the file or directory doesn't exist.
+
+If X is a filename, it guesses the type of the file by reading the first
+block from the file.  If the first block doesn't contain any nul characters
+(i.e. C<\0>) and it contains fewer than thirty percent control characters or
+characters that have their high bits set, then it is considered an ASCII
+text file.
+
+If X is a filehandle it guess the type the same way, but uses the current IO
+buffer instead of the first block.
+
+If given no arguments, it will operate on C<$_>.
+
+If given the C<_> special filehandle as an argument, it will use cached
+information from the previous call to C<stat> or a filetest operator.
+
+=head3 Example
+
+    if (defined -T "/tmp/somefile") {
+        if (-T _) {
+            print "somefile looks like a text file\n";
+        } else {
+            print "somefile lokks like a data file\n";
+        }
+    } else {
+        print "somefile doesn't exist\n";
+    }
+
+=head3 See also
+
+L</-B>, L<perlfunc/-X> and L<perlfunc/stat>
+
 =head2 -B
 
 =head3 Class
 
 This belongs to L<perlop/Named Unary Operators>.
+
+=head3 Description
+
+This is the binary filetest operator.  FILE must be a filename, filehandle,
+or an expression that returns one of the preceding values.  It returns C<1>
+if the file exists and appears to be a binary file, C<""> if the file or
+directory exists, but doesn't appear to be a binary file, or C<undef> if the
+file or directory doesn't exist.
+
+If X is a filename, it guesses the type of the file by reading the first
+block from the file.  If the first block contains any nul characters (i.e.
+C<\0>) or it contains more than thirty percent control characters or
+characters that have their high bits set, then it is considered a binary
+file.
+
+If X is a filehandle it guess the type the same way, but uses the current IO
+buffer instead of the first block.
+
+If given no arguments, it will operate on C<$_>.
+
+If given the C<_> special filehandle as an argument, it will use cached
+information from the previous call to C<stat> or a filetest operator.
+
+=head3 Example
+
+    if (defined -B "/tmp/somefile") {
+        if (-B _) {
+            print "somefile lokks like a data file\n";
+        } else {
+            print "somefile looks like a text file\n";
+        }
+    } else {
+        print "somefile doesn't exist\n";
+    }
+
+=head3 See also
+
+L</-T>, L<perlfunc/-X> and L<perlfunc/stat>
 
 =head2 -M
 
