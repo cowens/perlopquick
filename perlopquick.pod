@@ -1914,8 +1914,8 @@ information from the previous call to C<stat> or a filetest operator.
 
 =head3 Example
 
-    if (defined -b "/tmp/somefile") {
-        if (-b _) {
+    if (defined -c "/tmp/somefile") {
+        if (-c _) {
             print "somefile is a character special file\n";
         } else {
             print "somefile is not a character special file\n";
