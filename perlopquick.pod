@@ -697,7 +697,7 @@ This belongs to L<perlop/Auto-increment and Auto-decrement>.
 
 This is the postfix auto-increment operator.  It behaves the same way as the
 prefix auto-increment operator C<++X>, including the magic, but the value is
-taken before the incrementing is done. So, the after the following code
+taken before the incrementing is done.  So, the after the following code
 C<$x> will be C<5> and C<$y> will be 4.  Whereas with the prefix
 auto-increment operator, both values would be C<5>.
 
@@ -1000,7 +1000,7 @@ particular operator.  See L<perlop/"Regexp Quote-Like Operators"> for
 details and L<perlretut> for examples using these operators.
 
 If Y is an expression rather than a search pattern, substitution, or
-transliteration, it is interpreted as a search pattern at run time. Note
+transliteration, it is interpreted as a search pattern at run time.  Note
 that this means that its contents will be interpolated twice, so
 
   "\\" =~ "\\";
@@ -3913,8 +3913,8 @@ L</X E<verbar> Y>, and L</X ^ Y>
 =head1 Secret Operators
 
 There are idioms in Perl 5 that appear to be operators, but are really a
-combination of several operators or pieces of syntax. These Secret Operators
-have the precedence of the constituent parts.
+combination of several operators or pieces of syntax.  These Secret
+Operators have the precedence of the constituent parts.
 
 N.B. There are often better ways of doing all of these things and those ways
 will be easier to understand for the people who will maintain your code
