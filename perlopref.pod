@@ -1,0 +1,102 @@
+=pod
+
+=head1 NAME
+
+perlopref - Perl operators reference
+
+=head1 PERL OPERATORS
+
+=head2 Assignment Operators
+
+Refer to L<perlop/Assignment Operators> for detailed descriptions of the following.
+
+=over
+
+=item X = Y
+
+=item X += Y
+
+=item X 321 Y
+
+=item X ||= Y
+
+Performs a logical OR of X and Y and assigns back to X.
+
+=item X //= Y
+
+Performs a defined OR of X and Y and assigns back to X.
+
+=back
+
+=head2 Section Name Corresponding (Roughly) to L<perlop>
+
+=over
+
+=item X 321 Y
+
+321
+
+=back
+
+=head2 Section Name Corresponding (Roughly) to L<perlop>
+
+=over
+
+=item X 321 Y
+
+321
+
+=back
+
+=head2 Section Name Corresponding (Roughly) to L<perlop>
+
+=over
+
+=item X 321 Y
+
+321
+
+=back
+
+=head2 Section Name Corresponding (Roughly) to L<perlop>
+
+=over
+
+=item X 321 Y
+
+321
+
+=back
+
+=head2 Section Name Corresponding (Roughly) to L<perlop>
+
+=over
+
+=item X 321 Y
+
+321
+
+=back
+
+=head2 Section Name Corresponding (Roughly) to L<perlop>
+
+=over
+
+=item X 321 Y
+
+321
+
+=back
+
+=head2 Section Name Corresponding (Roughly) to L<perlop>
+
+=over
+
+=item X 321 Y
+
+321
+
+=back
+
+
+=cut
