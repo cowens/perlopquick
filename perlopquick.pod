@@ -677,6 +677,9 @@ The incrementing occurs before the use of the value.
     my $s = "a";
     my $t = ++$s; # $s and $t are now "b"
 
+    my $m;
+    my $n = ++$m; # $n is now 1
+
 =head3 See also
 
 L</X++>
@@ -706,6 +709,9 @@ C<0> rather than C<undef>).
 
     my $s = "a";
     my $t = $s++; # $s is now "b" and $t is now "a"
+
+    my $m;
+    my $n = $m++; # $n is now 0
 
 =head3 See also
 
