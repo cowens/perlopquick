@@ -614,7 +614,7 @@ This belongs to L<perlop/Terms and List Operators (Leftward)>.
 
 =head3 Description
 
-If X is the name of an array variable then this is just another way of
+If X is the name of a hash variable then this is just another way of
 saying %X.
 
 When X is an expression, this is the hash dereferencing operator.  If X
