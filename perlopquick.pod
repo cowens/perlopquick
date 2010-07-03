@@ -203,7 +203,7 @@ L<perlop/Quote and Quote-like Operators>.
 =head3 Example
 
     my $name   = "World";
-    my $string = q/Hello, $name!\n/; #$string is now "Hello \$name!\n";
+    my $string = q/Hello, $name!\n/; #$string is now "Hello \$name!\\n";
 
 =head3 See also
 
