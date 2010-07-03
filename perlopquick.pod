@@ -82,9 +82,9 @@ L<perlop/Quote and Quote-like Operators>.
 
 This is the generalized double quote operator (aka the generalized
 interpolating string operator).  It creates a string literal out of X.  If a
-scalar, array, or an index into an array or hash is in X, the value of that
-variable is inserted into the string in place if the variable.  Arrays are
-formated using C<$">:
+scalar, array, or an index into an array or hash is in X, then the value of
+that variable is inserted into the string in place of the variable.  Arrays
+are formated using C<$">:
 
     my $interpolated_value = join $", @array;
 
