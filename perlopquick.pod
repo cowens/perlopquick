@@ -39,7 +39,7 @@ L<perlop/Quote and Quote-like Operators>.
 
 =head3 Description
 
-This is the double quote operator (aka the interpolating string operator).
+This is the double quote operator (AKA the interpolating string operator).
 It creates a string literal out of X.  If a scalar, array, or an index into
 an array or hash is in X, then the value of that variable is inserted into
 the string in place of the variable.  Arrays are formated using C<$">:
@@ -80,7 +80,7 @@ L<perlop/Quote and Quote-like Operators>.
 
 =head3 Description
 
-This is the generalized double quote operator (aka the generalized
+This is the generalized double quote operator (AKA the generalized
 interpolating string operator).  It creates a string literal out of X.  If a
 scalar, array, or an index into an array or hash is in X, then the value of
 that variable is inserted into the string in place of the variable.  Arrays
@@ -136,7 +136,7 @@ L<perlop/Quote and Quote-like Operators>.
 
 =head3 Description
 
-This is the single quote operator (aka the non-interpolating string operator).
+This is the single quote operator (AKA the non-interpolating string operator).
 It creates a string literal out of X.
 
 To place a C<'> character inside the string, you must escape it with C<\>:
@@ -173,7 +173,7 @@ L<perlop/Quote and Quote-like Operators>.
 
 =head3 Description
 
-This is the generalized single quote operator (aka the generalized
+This is the generalized single quote operator (AKA the generalized
 non-interpolating string operator).  It creates a string literal out of X.
 
 The delimiters C<()> are chosen by the user and may consist of either
@@ -2646,7 +2646,7 @@ This belongs to L<perlop/Equality Operators>.
 
 =head3 Description
 
-This is the lexical equality operator (aka the string equality operator or
+This is the lexical equality operator (AKA the string equality operator or
 the stringwise equality operator).  It returns true if X and Y evaluate as
 the same string.
 
@@ -2674,7 +2674,7 @@ This belongs to L<perlop/Equality Operators>.
 
 =head3 Description
 
-This is the lexical not equals operator. (aka the string not equals operator
+This is the lexical not equals operator. (AKA the string not equals operator
 or the stringwise not equals operator).  It returns false if X and Y
 evaluate as the same string.
 
@@ -3918,7 +3918,7 @@ L</!X>
 
 =head3 Description
 
-This secret operator is the list assignment operator (aka the countof
+This secret operator is the list assignment operator (AKA the countof
 operator).  It is made up of two items C<()>, and C<=>.  In scalar context
 it returns the number of items in the list X.  In list context it returns an
 empty list.  It is useful when you have something that returns a list and
