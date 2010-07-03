@@ -139,11 +139,11 @@ L<perlop/Quote and Quote-like Operators>.
 This is the single quote operator (aka the non-interpolating string operator).
 It creates a string literal out of X.
 
-To place a C<'> inside the string, you must escape it with C<\>:
+To place a C<'> character inside the string, you must escape it with C<\>:
 
     my $quote = 'He said \'I like quotes.\'';
 
-To place a C<\> inside the string, you may escape it with another C<\>:
+To place a C<\> character inside the string, you may escape it with another C<\>:
 
     my $quote = 'This is a backslash: \\';
 
