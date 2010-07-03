@@ -891,24 +891,24 @@ list.
 
 =head3 Example
 
-    my $c       = \1024; # $c is now a reference to the literal 1024
+    my $c       = \1024;     # $c is now a reference to the literal 1024
 
     my $s       = 5;
-    my $sref    = \$s; # $sref is now a reference to $s
-    $$sref      = 6;   # $s is now 6
+    my $sref    = \$s;       # $sref is now a reference to $s
+    $$sref      = 6;         # $s is now 6
 
     my @a       = (1, 2, 3);
-    my $aref    = \@a; # $aref is now a reference to @a
-    $aref->[0]  = 5;   # @a is now (5, 2, 3)
-    push @$aref, 6;   # @a is now (5, 2, 3, 6)
+    my $aref    = \@a;       # $aref is now a reference to @a
+    $aref->[0]  = 5;         # @a is now (5, 2, 3)
+    push @$aref, 6;          # @a is now (5, 2, 3, 6)
 
     my %h       = (a => 1, b => 2, c => 3);
-    my $href    = \%h;         # $href is now a reference to %h
-    $href->{b}  = 5;           # %h is now (a => 1, b => 5, c => 3)
-    my @keys    = keys %$href; # @keys is now ("a", "b", "c")
+    my $href    = \%h;                 # $href is now a reference to %h
+    $href->{b}  = 5;                   # %h is now (a => 1, b => 5, c => 3)
+    my @keys    = keys %$href;         # @keys is now ("a", "b", "c")
 
     sub foo {
-        return join "|", @_;
+    return join "|", @_;
     }
     my $coderef = \&foo;
     my $x       = $coderef->(1, 2, 3); # $x is now "1|2|3";
