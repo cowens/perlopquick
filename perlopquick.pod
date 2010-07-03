@@ -367,7 +367,7 @@ If X does not evaluate to an array reference, then a runtime error occurs.
     my @a         = ("a", "b", "c");
     my $aref      = \@a;
     my $x         = $aref->[1]; #$x is now "b"
-    $aref->[4]    = "d";        #@a is now ("a", "b", "c", "d")
+    $aref->[3]    = "d";        #@a is now ("a", "b", "c", "d")
 
     my $aoa = [
         [0,   1,   2  ],
