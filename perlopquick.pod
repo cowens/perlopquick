@@ -46,7 +46,7 @@ the string in place of the variable.  Arrays are formated using C<$">:
 
     my $interpolated_value = join $", @array;
 
-To place a C<"> inside the string, you must escape it with C<\>:
+To place a C<"> character inside the string, you must escape it with C<\>:
 
     my $quote = "He said \"I like quotes.\"";
 
