@@ -674,6 +674,9 @@ The incrementing occurs before the use of the value.
     my $x = 4;
     my $y = ++$x; # $x and $y are now 5
 
+    my $q = "200 Quatloos for the newcomer";
+    my $r = ++$q;  # $q and $r are both now 201
+
     my $s = "a";
     my $t = ++$s; # $s and $t are now "b"
 
@@ -707,6 +710,9 @@ C<0> rather than C<undef>).
     my $x = 4;
     my $y = $x++; # $x is now 5 and $y is now 4
 
+    my $q = "200 Quatloos for the newcomer";
+    my $r = $q++;  # $q is now 201 and $r is "200 Quatloos for the newcomer"
+
     my $s = "a";
     my $t = $s++; # $s is now "b" and $t is now "a"
 
@@ -738,8 +744,14 @@ are turned on).
     my $x = 5;
     my $y = --$x;  # $x and $y are now 4
 
+    my $q = "200 Quatloos for the newcomer";
+    my $r = --$q;  # $q and $r are both now 199
+
     my $s = "foo";
     my $t = --$s;  # $s and $t are now -1
+
+    my $m;
+    my $n = --$m;  # $n is now -1
 
 =head3 See also
 
@@ -771,6 +783,9 @@ are turned on).
 
     my $s = "foo";
     my $t = $s--;  # $s is now -1 and $t is "foo"
+
+    my $m;
+    my $n = $m--;  # $n is now 0
 
 =head3 See also
 
