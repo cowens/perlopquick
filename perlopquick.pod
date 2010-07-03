@@ -2699,7 +2699,7 @@ This belongs to L<perlop/Equality Operators>.
 
 =head3 Description
 
-This is the lexical not equals operator. (AKA the string not equals operator
+This is the lexical not equals operator (AKA the string not equals operator
 or the stringwise not equals operator).  It returns false if X and Y
 evaluate as the same string.
 
