@@ -404,7 +404,7 @@ If X does not evaluate to a hash reference, then a runtime error occurs.
     $href->{d} = 4;          #%h is now (a => 1, b => 2, c => 3, d => 4)
 
     my $hoh    = {
-        a => { a => 1, b => 2, c => 3 }
+        a => { a => 1, b => 2, c => 3 },
         b => { a => 4, b => 5, c => 6 }
     };
 
