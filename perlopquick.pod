@@ -41,7 +41,7 @@ L<perlop/Quote and Quote-like Operators>.
 
 This is the double quote operator (aka the interpolating string operator).
 It creates a string literal out of X.  If a scalar, array, or an index into
-a array or hash is in X, the value of that variable is inserted into the
+an array or hash is in X, the value of that variable is inserted into the
 string in place if the variable.  Arrays are formated using C<$">:
 
     my $interpolated_value = join $", @array;
@@ -82,7 +82,7 @@ L<perlop/Quote and Quote-like Operators>.
 
 This is the generalized double quote operator (aka the generalized
 interpolating string operator).  It creates a string literal out of X.  If a
-scalar, array, or an index into a array or hash is in X, the value of that
+scalar, array, or an index into an array or hash is in X, the value of that
 variable is inserted into the string in place if the variable.  Arrays are
 formated using C<$">:
 
@@ -581,8 +581,8 @@ variable would be ambiguous:
     my $x = "@{a}bar"; #$x is now "1 2 3bar"
 
 When X is an expression, this is the array dereferencing operator.  If X
-evaluates to a array reference then the value of the referenced item is
-returned.  If X does not evaluate to a array reference a runtime error
+evaluates to an array reference then the value of the referenced item is
+returned.  If X does not evaluate to an array reference a runtime error
 occurs.  If X is a simple scalar variable the braces are unnecessary.
 
 If strict is turned off, and it shouldn't be, and X evaluates to a string
