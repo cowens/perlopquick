@@ -695,6 +695,10 @@ taken before the incrementing is done. So, the after the following code
 C<$x> will be C<5> and C<$y> will be 4.  Whereas with the prefix
 auto-increment operator, both values would be C<5>.
 
+C<undef> is always treated as numeric, and in particular is changed to C<0>
+before incrementing (so that a post-increment of an undef value will return
+C<0> rather than C<undef>).
+
 =head3 Example
 
     my $x = 4;
