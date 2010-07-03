@@ -1,4 +1,4 @@
-# vi: ts=4 sw=4 ht=4 et textwidth=76 :
+# Vi: ts=4 sw=4 ht=4 et textwidth=76 :
 
 =head1 PRECEDENCE
 
@@ -987,7 +987,7 @@ C<\>, which it will consider a syntax error.
 
     my $x = "foo bar baz";
 
-    # prints "matched\n"
+    # Prints "matched\n"
     if ($x =~ /foo/) {
         print "matched\n";
     }
@@ -1009,7 +1009,7 @@ but the return is logically negated.
 
 =head3 Example
 
-    # prints "matched\n"
+    # Prints "matched\n"
     if ("foo bar baz" !~ /foo/) {
         print "didn't match\n";
     } else {
@@ -1256,10 +1256,10 @@ L<warnings> are turned on).
 
 =head3 Example
 
-    # on 32-bit machines
+    # On 32-bit machines
     my $x = 0xFF_00_FF_00 << 8; # $x is now not well defined
 
-    # on 64-bit machines
+    # On 64-bit machines
     my $y = 0xFF_00_FF_00 << 8; # $y is now 0xFF_00_FF_00_00
 
     my $z = 6 << 1; # $z is now 12
@@ -2946,7 +2946,7 @@ It is most commonly used in conditional statements such as C<if>, C<unless>,
 C<while>.  It was used in the recent past to create default values:
 
     my %config = get_config();
-    # set $x to $config{x} unless it is false, in which case set it to 5
+    # Set $x to $config{x} unless it is false, in which case set it to 5
     my $x = $config{x} || 5;
 
 but this use has the drawback of not respecting a value of 0 or 0.0, since
@@ -2987,7 +2987,7 @@ have enabled 5.10 features (using the L<feature> pragma or C<use 5.10>).
 It is most commonly used to create default values:
 
     my %config = get_config();
-    # set $x to $config{x} if it is defined, otherwise set it to 5
+    # Set $x to $config{x} if it is defined, otherwise set it to 5
     my $x = $config{x} // 5;
 
 =head3 Example
@@ -3036,15 +3036,15 @@ in which case it will return true and then false on the next test.
 
     prints "4\n", "5\n", "6\n", "7\n", and "8\n"
     for my $i (0 .. 10) {
-        # start printing when $i is 4 and stop after $i is 8
+        # Start printing when $i is 4 and stop after $i is 8
         if ($i == 4 .. $i == 8) {
             print "$i\n";
         }
     }
 
-    # prints "4\n"
+    # Prints "4\n"
     for my $i (0 .. 10) {
-        # start printing when $i is 4 and stop after $i is 4
+        # Start printing when $i is 4 and stop after $i is 4
         if ($i == 4 .. $i == 8) {
             print "$i\n";
         }
@@ -3084,15 +3084,15 @@ called.
 
     prints "4\n", "5\n", "6\n", "7\n", and "8\n"
     for my $i (0 ... 10) {
-        # start printing when $i is 4 and stop after $i is 8
+        # Start printing when $i is 4 and stop after $i is 8
         if ($i == 4 ... $i == 8) {
             print "$i\n";
         }
     }
 
-    # prints "4\n", "5\n", "6\n", "7\n", "8\n", "9\n", and "10\n"
+    # Prints "4\n", "5\n", "6\n", "7\n", "8\n", "9\n", and "10\n"
     for my $i (0 ... 10) {
-        # start printing when $i is 4 and stop after $i is 4 a second time
+        # Start printing when $i is 4 and stop after $i is 4 a second time
         if ($i == 4 ... $i == 8) {
             print "$i\n";
         }
@@ -3124,7 +3124,7 @@ apply.
 
 =head3 Example
 
-    # simple implementation of max
+    # Simple implementation of max
     sub max {
         my ($m, $n) = @_;
         return $m >= $n ? $m : $n;
@@ -3584,7 +3584,7 @@ variable did not already have a value:
 
     my $x;
 
-    # intervening code that might set $x or might leave it undefined
+    # Intervening code that might set $x or might leave it undefined
 
     $x ||= 10; # make sure $x gets set to a default value
 
@@ -3628,7 +3628,7 @@ It is commonly used to ensure that a variable has a value:
 
     my $x;
 
-    # intervening code that might set $x or might leave it undefined
+    # Intervening code that might set $x or might leave it undefined
 
     $x //= 10; # make sure $x gets set to a default value
 
@@ -3801,7 +3801,7 @@ is functionally the same as
     my $y = 1;
     my $z = "foo";
 
-    # not the use of parentheses vs this example in &&
+    # Not the use of parentheses vs this example in &&
     print(($w and $y), "\n"); # prints "\n"
     print(($x and $y), "\n"); # prints "0\n"
     print(($y and $z), "\n"); # prints "foo\n"
@@ -3847,7 +3847,7 @@ value).
     my $y = 1;
     my $z = "foo";
 
-    # not the use of parentheses vs this example in ||
+    # Not the use of parentheses vs this example in ||
     print(($w or $x), "\n"); # prints "0\n";
     print(($x or $w), "\n"); # prints "\n";
     print(($w or $y), "\n"); # prints "1\n"
@@ -4012,10 +4012,10 @@ that was originally intended to close the C<while> loop.
 
 =head3 Example
 
-    # count unique lines in the file FOO
+    # Count unique lines in the file FOO
     perl -nle '$seen{$_}++ }{ print "$_ => $seen{$_}" for keys %seen' FOO
 
-    # sum all of the lines until the user types control-d
+    # Sum all of the lines until the user types control-d
     perl -nle '$sum += $_ }{ print $sum'
 
 =head3 See also
