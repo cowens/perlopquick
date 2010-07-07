@@ -2141,7 +2141,7 @@ information from the previous call to C<stat> or a filetest operator.
 
     if (defined -B "/tmp/somefile") {
         if (-B _) {
-            print "somefile lokks like a data file\n";
+            print "somefile looks like a data file\n";
         } else {
             print "somefile looks like a text file\n";
         }
