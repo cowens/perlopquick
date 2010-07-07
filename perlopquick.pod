@@ -3542,7 +3542,7 @@ can be assigned to).
     my $x = 8;
     my $y = 2;
 
-    $x &= $y; #$x is now 8 & 2 or 2
+    $x >>= $y; #$x is now 8 >> 2 or 2
 
 =head3 See also
 
