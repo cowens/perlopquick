@@ -2987,7 +2987,7 @@ This belongs to L<perlop/C-style Logical Defined-Or>.
 
 This is the high-precedence logical defined-or.  It returns X if X is
 defined, otherwise it returns Y.  This operator is only available if you
-have enabled 5.10 features (using the L<feature> pragma or C<use 5.10>).
+have enabled 5.10 features (using the L<feature> pragma or C<use 5.010>).
 
 It is most commonly used to create default values:
 
