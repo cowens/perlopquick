@@ -1259,7 +1259,6 @@ Shifting 1 bit to the left is the same as multiplying the number by 2.
 Both X and Y will be converted to numbers before the operation; if they
 cannot be converted they will turned into C<0> (and a warning is thrown if
 L<warnings> are turned on).
-
 =head3 Example
 
     #on 32-bit machines
@@ -2017,8 +2016,8 @@ information from the previous call to C<stat> or a filetest operator.
 
 =head3 Example
 
-    if (defined -u "/tmp/somefile") {
-        if (-u _) {
+    if (defined -g "/tmp/somefile") {
+        if (-g _) {
             print "somefile has setgid set\n";
         } else {
             print "somefile dosn't have setgid set\n";
