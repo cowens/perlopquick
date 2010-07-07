@@ -601,9 +601,10 @@ then @{X} returns an array variable whose name is the same as the string.
     @{$b[0]}    = (4, 5, 6); #@a is now (4, 5, 6)
 
     no strict "refs";
+    our @c = @a;             #@c is now (4, 5, 6)
 
-    my $bad = "a";
-    @{$bad}[0,1] = 8;     #$x is now 8
+    my $bad = "c";
+    @{$bad}[0] = 8;          #@c is now (8, 5, 6)
 
 =head3 See also
 
