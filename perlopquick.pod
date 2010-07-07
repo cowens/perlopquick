@@ -2249,8 +2249,8 @@ etc.).
 
 =head3 Example
 
-    if (-A "somefile") {
-        print "it has been ", -A _, " days since somefile was accessed\n";
+    if (-C "somefile") {
+        print "it has been ", -C _, " days since somefile was accessed\n";
     } else {
         print "somefile doesn't exist\n";
     }
