@@ -2505,9 +2505,9 @@ order is the same as the ASCII order).
     }
 
     if ("a" ge "z") {
-        print "this should never be true (unless the local is weird)\n";
+        print "this should never be true (unless the locale is weird)\n";
     } else {
-        print "it should always be false (unless the local is weird)\n";
+        print "it should always be false (unless the locale is weird)\n";
     }
 
 =head3 See also
