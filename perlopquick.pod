@@ -2099,7 +2099,7 @@ information from the previous call to C<stat> or a filetest operator.
         if (-T _) {
             print "somefile looks like a text file\n";
         } else {
-            print "somefile lokks like a data file\n";
+            print "somefile looks like a data file\n";
         }
     } else {
         print "somefile doesn't exist\n";
