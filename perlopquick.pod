@@ -1070,7 +1070,7 @@ like C<Illegal division by zero>.
 
     my $x = 84/2;     #$x is now 42
     my $y = 84/"2";   #$y is now 42
-    my $z = "five"/2  #$z is now 0 (0/2)
+    my $z = "five"/2; #$z is now 0 (0/2)
 
 =head3 See Also
 
