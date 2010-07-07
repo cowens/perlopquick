@@ -2363,9 +2363,9 @@ This belongs to L<perlop/Relational Operators>
 
 =head3 Description
 
-This is the numeric less than or equal to operator.  It returns a true 
-value if X is numerically less than or equal to Y or a false value if 
-X is greater than to Y.
+This is the numeric greater than or equal to operator.  It returns a true 
+value if X is numerically greater than or equal to Y or a false value if 
+X is less than Y.
 
 Both X and Y will be converted to numbers before the operation; if they
 cannot be converted they will turned into C<0> (and a warning is thrown if
