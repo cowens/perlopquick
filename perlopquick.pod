@@ -952,10 +952,10 @@ thrown if L<warnings> are turned on).
     $x    = -$x;     #$x is now -10
     $x    = -$x;     #$x is now 10 again
     my $y = -option; #$y is now "-option"
-    my $z = -"foo":  #$z is now "-foo"
+    my $z = -"foo";  #$z is now "-foo"
     $z = -$z;        #$z is now "+foo"
     $z = -$z;        #$z is now "-foo"
-    $z = -"*foo"     #$z is now -0
+    $z = -"*foo";    #$z is now -0
     
     $x = "\x{e9}";   #$x is now e acute
     $x = -$x;        #$x is now -0 because e acute is not in [_a-zA-Z]
