@@ -885,7 +885,7 @@ list.
     my %h       = (a => 1, b => 2, c => 3);
     my $href    = \%h;         #$href is now a reference to %h
     $href->{b}  = 5;           #%h is now (a => 1, b => 5, c => 3)
-    my @keys    = keys %$href; #@keys is now ("a", "b", "c")
+    my @keys    = sort keys %$href; #@keys is now ("a", "b", "c")
 
     sub foo {
         return join "|", @_;
