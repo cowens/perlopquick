@@ -2720,9 +2720,9 @@ commonly seen used with the C<sort> function:
 
 =head3 Example
 
-    my $x = "a" <=> "b"; #$x is now negative
-    my $y = "b" <=> "b"; #$x is now 0
-    my $z = "c" <=> "b"; #$x is now positive
+    my $x = "a" cmp "b"; #$x is now negative
+    my $y = "b" cmp "b"; #$x is now 0
+    my $z = "c" cmp "b"; #$x is now positive
 
 =head3 See also
 
