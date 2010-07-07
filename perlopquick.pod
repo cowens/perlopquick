@@ -3161,7 +3161,8 @@ The act of assigning creates an lvalue, that is the result of an assignment
 can be used in places where you would normally use a plain variable:
 
     my $str = "foobar";
-    (my $modified = $str) =~ s/foo/bar/; #the substitution affects $modified
+    (my $modified = $str) =~ s/foo/bar/; #$modified is now "barbar"
+                                         #$str is still "foobar"
 
 If X is a list, then this is the list assignment operator and it provides
 list context to Y.  The first item in the list Y is assigned to the first
@@ -3179,7 +3180,7 @@ assignment has taken place).
 
     my $i = my $j = my $k = 10; #$i, $j, and $k are now all 10
 
-    my $m = my ($n, $o) = ("a", "b", "c") #$m is now 3
+    my $m = my ($n, $o) = ("a", "b", "c"); #$m is now 3
 
 =head2 X **= Y
 
