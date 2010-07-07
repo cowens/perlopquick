@@ -3039,7 +3039,7 @@ in which case it will return true and then false on the next test.
     my @list = 0 .. 5;     #@list is now (0, 1, 2, 3, 4, 5)
     my @az   = "a" .. "z"; #@az is now the lowercase ASCII alphabet
 
-    prints "4\n", "5\n", "6\n", "7\n", and "8\n"
+    #prints "4\n", "5\n", "6\n", "7\n", and "8\n"
     for my $i (0 .. 10) {
         #start printing when $i is 4 and stop after $i is 8
         if ($i == 4 .. $i == 8) {
@@ -3050,7 +3050,7 @@ in which case it will return true and then false on the next test.
     #prints "4\n"
     for my $i (0 .. 10) {
         #start printing when $i is 4 and stop after $i is 4
-        if ($i == 4 .. $i == 8) {
+        if ($i == 4 .. $i == 4) {
             print "$i\n";
         }
     }
