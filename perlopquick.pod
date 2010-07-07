@@ -1161,7 +1161,7 @@ are turned on).
     my @a = ("abc") x 3;  #@a is now ("abc", "abc", "abc")
 
     my $s = "abcd" x "a"; #$s is now "" ("abcd" x 0)
-    my $t = "abcd" x "2"; #$t is now "abddabcd"
+    my $t = "abcd" x "2"; #$t is now "abcdabcd"
 
 =head2 X + Y
 
