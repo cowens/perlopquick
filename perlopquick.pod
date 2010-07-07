@@ -3461,7 +3461,7 @@ assigned to).
     my $x = 2;
     my $y = 8;
 
-    $x |= $y; #$x is now 2 & 8 or 10
+    $x |= $y; #$x is now 2 | 8 or 10
 
 =head3 See also
 
