@@ -481,9 +481,10 @@ then C<${X}> returns a scalar variable whose name is the same as the string.
     ${$a[0]} = 7; #$x is now 7
 
     no strict "refs";
+    our $y = $x;  #$y is now 7
 
-    my $bad = "x";
-    $$bad = 8;     #$x is now 8
+    my $bad = "y";
+    $$bad = 8;    #$y is now 8
 
 =head3 See also
 
