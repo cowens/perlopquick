@@ -3612,10 +3612,9 @@ is the right operator to use.
     my $y = 8;
     my $z;
 
-    $x ||= $y; #$x is now 2 || 8 or 2
-    $y ||= $x; #$y is now 8 || 2 or 8
-
-    my $z ||= $x + $y; #$z is now undef || (2 + 8) or 10
+    $x ||= $y;      #$x is now 2 || 8 or 2
+    $y ||= $x;      #$y is now 8 || 2 or 8
+    $z ||= $x + $y; #$z is now undef || (2 + 8) or 10
 
 =head3 See also
 
