@@ -517,12 +517,13 @@ as the string.
     my @a    = qw(a b c);
     my $aref = \@a;
     
-    ${$aref}[0] = 1; #@a is now (1, "b", "c");
+    ${$aref}[0] = 1;  #@a is now (1, "b", "c")
 
     no strict "refs";
+    our @b = @a;      #@b is now (1, "b", "c")
 
-    my $bad = "a";
-    ${$bad}[5] = "d"; #@a is now (1, "b", "c", undef, undef, "d")
+    my $bad = "b";
+    ${$bad}[5] = "d"; #@b is now (1, "b", "c", undef, undef, "d")
 
 =head3 See also
 
