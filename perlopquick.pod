@@ -3281,6 +3281,12 @@ that can be assigned to).
 
 =head3 Example
 
+    my $x = "foo";
+    my $y = "bar";
+
+    $x .= $y; #$x is now "foobar"
+
+
     my $x = 2;
     my $y = 8;
 
