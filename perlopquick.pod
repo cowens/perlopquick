@@ -3560,7 +3560,7 @@ This is the logical and assignment operator.  It is equivalent to
 
     X = X && Y
 
-That is it assigns X to itself if X evaluates to true, otherwise it assigns
+That is it assigns X to itself if X evaluates to false, otherwise it assigns
 Y to X.  This means that X must be a valid lvalue (i.e. it must be something
 that can be assigned to).
 
