@@ -638,9 +638,10 @@ then @{X} returns an array variable whose name is the same as the string.
     %$href   = (a => 1); #%h is now (a => 1)
 
     no strict "refs";
+    our %newh = %h;      #%newh is now (a => 1)
 
-    my $bad = "h";
-    @{$bad}{"c", "d"} = (3, 4); #%h is now (a => 1, c => 3, d => 4)
+    my $bad = "newh";
+    @{$bad}{"c", "d"} = (3, 4); #%newh is now (a => 1, c => 3, d => 4)
 
 =head3 See also
 
