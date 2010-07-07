@@ -2945,7 +2945,7 @@ It binds more tightly than the low-precedence logical or operator:
 
 whereas:
 
-    my $y = 5 or 4; # is equivalent to (my $x = 5) or 4;
+    my $y = 5 or 4; # is equivalent to (my $y = 5) or 4;
 
 It is most commonly used in conditional statements such as C<if>, C<unless>,
 C<while>.  It was used in the recent past to create default values:
