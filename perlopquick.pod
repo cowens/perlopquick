@@ -1225,9 +1225,10 @@ scalar context on X and Y.
 
 =head3 Example
 
-    my @a = (1 .. 10);
     my $x = "foo" . "bar"; #$x is now "foobar"
-    my $y = "the number of elements in \@a is" . @a;
+
+    my @a = (1 .. 10);
+    my $y = "the number of elements in \@a is " . @a;
 
 =head3 See also
 
