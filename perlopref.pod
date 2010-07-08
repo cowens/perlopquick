@@ -1,5 +1,3 @@
-=pod
-
 =head1 NAME
 
 perlopref - Perl operators reference
@@ -8,23 +6,147 @@ perlopref - Perl operators reference
 
 =head2 Assignment Operators
 
-Refer to L<perlop/Assignment Operators> for detailed descriptions of the following.
+Refer to L<perlop/"Assignment Operators"> for detailed descriptions of the following.
 
 =over
 
 =item X = Y
 
+Assigns the value of Y to X.
+
 =item X += Y
 
-=item X 321 Y
+Adds the value of Y to the value of X in place.
+
+=item X -= Y
+
+Subtracts the value of Y from the value of X in place.
+
+=item X *= Y
+
+Multiplies the value of X by the value of Y, assigning the result to X.
+
+=item X /= Y
+
+Divides the value of X by the value of Y, assigning the result to X.
 
 =item X ||= Y
 
-Performs a logical OR of X and Y and assigns back to X.
+Performs a logical OR of X and Y and assigns back to X when X is false.
 
 =item X //= Y
 
-Performs a defined OR of X and Y and assigns back to X.
+Performs a defined OR of X and Y and assigns back to X when X is undef.
+
+=item X <<= Y
+
+TBD.
+
+=item X >>= Y
+
+TBD.
+
+=item X |= Y
+
+TBD.
+
+=item X %= Y
+
+TBD.
+
+=item X ^= Y
+
+TBD.
+
+=item X &= Y
+
+TBD.
+
+=item X &&= Y
+
+TBD.
+
+=item X .= Y
+
+TBD.
+
+=item X x= Y
+
+TBD.
+
+=item X & Y
+
+TBD.
+
+=item X | Y
+
+TBD.
+
+=item X ^ Y
+
+TBD.
+
+=item X and Y
+
+TBD.
+
+=item X or Y
+
+TBD.
+
+=item X xor Y
+
+TBD.
+
+=item X != Y
+
+Compares X and Y for numeric inequality.
+
+=item X ne Y
+
+Compares X and Y for stringwise inequality.
+
+=item X > Y
+
+TBD.
+
+=item X gt Y
+
+TBD.
+
+=item X < Y
+
+TBD.
+
+=item X lt Y
+
+TBD.
+
+=item X >= Y
+
+TBD.
+
+=item X gte Y
+
+TBD.
+
+=item X <= Y
+
+TBD.
+
+=item X lte Y
+
+TBD.
+
+=item X <=> Y
+
+TBD.
+
+=item X cmp Y
+
+TBD.
+
+
 
 =back
 
@@ -32,71 +154,23 @@ Performs a defined OR of X and Y and assigns back to X.
 
 =over
 
-=item X 321 Y
+=item X _OP_ Y
 
-321
+TBD.
 
-=back
+=item X _OP_ Y
 
-=head2 Section Name Corresponding (Roughly) to L<perlop>
+TBD.
 
-=over
+=item X _OP_ Y
 
-=item X 321 Y
-
-321
+TBD.
 
 =back
 
-=head2 Section Name Corresponding (Roughly) to L<perlop>
+=head1 OPERATOR TIPS
 
-=over
-
-=item X 321 Y
-
-321
-
-=back
-
-=head2 Section Name Corresponding (Roughly) to L<perlop>
-
-=over
-
-=item X 321 Y
-
-321
-
-=back
-
-=head2 Section Name Corresponding (Roughly) to L<perlop>
-
-=over
-
-=item X 321 Y
-
-321
-
-=back
-
-=head2 Section Name Corresponding (Roughly) to L<perlop>
-
-=over
-
-=item X 321 Y
-
-321
-
-=back
-
-=head2 Section Name Corresponding (Roughly) to L<perlop>
-
-=over
-
-=item X 321 Y
-
-321
-
-=back
-
+Operators may be overloaded, for example by using L<overload>, to work
+with objects or in new and potentially unexpected ways.
 
 =cut
