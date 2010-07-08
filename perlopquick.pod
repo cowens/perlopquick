@@ -3786,11 +3786,11 @@ and returns its value.
 
 It binds less tightly than the high-precedence logical and operator:
 
-    my $y = 5 and 4; # is equivalent to (my $x = 5) and 4;
+    my $x = 5 and 4; # is equivalent to (my $x = 5) and 4;
 
 whereas:
 
-    my $x = 5 && 4; # is equivalent to my $x = (5 && 4);
+    my $y = 5 && 4;  # is equivalent to my $y = (5 && 4);
 
 It is most commonly used in conditional statements such as C<if>, C<unless>,
 C<while>.  But it is also occasionally used for its short-circuiting affect:
