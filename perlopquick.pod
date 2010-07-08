@@ -3836,11 +3836,11 @@ and returns its value.
 
 It binds less tightly than the high-precedence logical or operator:
 
-    my $y = 5 or 4; # is equivalent to (my $x = 5) or 4;
+    my $x = 5 or 4; # is equivalent to (my $x = 5) or 4;
 
 whereas:
 
-    my $x = 5 && 4; # is equivalent to my $x = (5 || 4);
+    my $y = 5 || 4; # is equivalent to my $y = (5 || 4);
 
 It is most commonly used in conditional statements such as C<if>, C<unless>,
 C<while>.  It is also often used for its short-circuiting behavior:
@@ -3858,7 +3858,7 @@ value).
     my $y = 1;
     my $z = "foo";
 
-    #not the use of parentheses vs this example in ||
+    #note the use of parentheses vs this example in ||
     print(($w or $x), "\n"); #prints "0\n";
     print(($x or $w), "\n"); #prints "\n";
     print(($w or $y), "\n"); #prints "1\n"
