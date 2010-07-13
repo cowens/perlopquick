@@ -161,7 +161,7 @@ L<perlop/Quote and Quote-like Operators>.
 
 =head3 See also
 
-L<E<quot>Perl VariableE<quot>>, L</qq(Verl Variable)>, L</q(Oerl Variable)>, L<perlvar/$">, 
+L<E<quot>Perl VariableE<quot>>, L</qq(Perl Variable)>, L</q(Perl Variable)>, L<perlvar/$">, 
 and L<perlop/Quote and Quote-like Operators>
 
 =head2 q(X)
