@@ -164,7 +164,7 @@ L<perlop/Quote and Quote-like Operators>.
 L<E<quot>Perl VariableE<quot>>, L</qq(Perl Variable)>, L</q(Perl Variable)>, L<perlvar/$">, 
 and L<perlop/Quote and Quote-like Operators>
 
-=head2 q(X)
+=head2 q(Perl Variable)
 
 =head3 Class
 
@@ -174,7 +174,7 @@ L<perlop/Quote and Quote-like Operators>.
 =head3 Description
 
 This is the generalized single quote operator (AKA the generalized
-non-interpolating string operator).  It creates a string literal out of X.
+non-interpolating string operator).  It creates a string literal including the name of a Perl Variable.
 
 The delimiters C<()> are chosen by the user and may consist of either
 bracketing characters (C<< q<> >>, C<q()>, C<q{}>, and C<q[]>) or matching
@@ -203,11 +203,11 @@ L<perlop/Quote and Quote-like Operators>.
 =head3 Example
 
     my $name   = "World";
-    my $string = q/Hello, $name!\n/; #$string is now "Hello \$name!\\n";
+    my $string = q/Hello, $name!\n/; # $string is now "Hello \$name!\\n";
 
 =head3 See also
 
-L<E<quot>XE<quot>>, L</'X'>, L</qq(X)>, L<perlvar/$">, 
+L<E<quot>Perl VariableE<quot>>, L</'Perl Variable'>, L</qq(Perl Variable)>, L<perlvar/$">, 
 and L<perlop/Quote and Quote-like Operators>
 
 =head2 qw(X)
