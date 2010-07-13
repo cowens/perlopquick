@@ -210,7 +210,7 @@ L<perlop/Quote and Quote-like Operators>.
 L<E<quot>Perl VariableE<quot>>, L</'Perl Variable'>, L</qq(Perl Variable)>, L<perlvar/$">, 
 and L<perlop/Quote and Quote-like Operators>
 
-=head2 qw(X)
+=head2 qw(X Y ...)
 
 =head3 Class
 
@@ -247,12 +247,12 @@ escape.
 
 =head3 Example
 
-    my @a = qw/ a b c /;     #@a is now ("a", "b", "c")
-    my @b = qw/ $foo $bar /; #@b is now ('$foo', '$bar')
+    my @a = qw/ a b c /;     # @a is now ("a", "b", "c")
+    my @b = qw/ $foo $bar /; # @b is now ('$foo', '$bar')
 
 =head3 See Also
 
-L</'X'>, L</q(X)>, and L<perlop/Quote and Quote-like Operators>
+L</'Perl Variable'>, L</q(Perl Variable)>, and L<perlop/Quote and Quote-like Operators>
 
 =head2 X[Y]
 
