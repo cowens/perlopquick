@@ -127,7 +127,7 @@ L<perlop/Quote and Quote-like Operators>.
 L</q(Perl Variable)>, L</'Perl Variable'> L<E<quot>Perl VariableE<quot>>, L<perlvar/$">, 
 and L<perlop/Quote and Quote-like Operators>
 
-=head2 'X'
+=head2 'Perl Variable'
 
 =head3 Class
 
@@ -137,7 +137,7 @@ L<perlop/Quote and Quote-like Operators>.
 =head3 Description
 
 This is the single quote operator (AKA the non-interpolating string operator).
-It creates a string literal out of X.
+It creates a string literal out of a Perl variable
 
 To place a C<'> character inside the string, you must escape it with C<\>:
 
@@ -157,11 +157,11 @@ L<perlop/Quote and Quote-like Operators>.
 =head3 Example
 
     my $name   = 'World';
-    my $string = 'Hello, $name!\n'; #$string is now "Hello \$name!\\n";
+    my $string = 'Hello, $name!\n'; # $string is now "Hello \$name!\\n";
 
 =head3 See also
 
-L<E<quot>XE<quot>>, L</qq(X)>, L</q(X)>, L<perlvar/$">, 
+L<E<quot>Perl VariableE<quot>>, L</qq(Verl Variable)>, L</q(Oerl Variable)>, L<perlvar/$">, 
 and L<perlop/Quote and Quote-like Operators>
 
 =head2 q(X)
