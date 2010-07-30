@@ -233,9 +233,9 @@ If the delimiter is not a bracketing pair, or if the brackets are
 unbalanced, you will need to escape the delimiter with C<\> if you wish to
 have that character in the string:
 
-    my @broken   = qw{I have too many } characters};        #broken
-    my @works    = qw{I have too many \} characters};       #works
-    my @balanced = qw{this works {} because it is balanced} #works
+    my @broken   = qw{I have too many } characters};        # broken
+    my @works    = qw{I have too many \} characters};       # works
+    my @balanced = qw{this works {} because it is balanced} # works
 
 But it is often better to just choose a delimiter that does not conflict
 with the string:
