@@ -64,7 +64,7 @@ L<perlop/Quote and Quote-like Operators>.
 =head3 Example
 
     my $name   = "World";
-    my $string = "Hello, $name!\n"; #$string is now "Hello World!\n";
+    my $string = "Hello, $name!\n"; # $string is now "Hello World!\n";
 
 =head3 See also
 
