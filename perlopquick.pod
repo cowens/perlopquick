@@ -482,9 +482,10 @@ then C<${X}> returns a scalar variable whose name is the same as the string.
     ${$a[0]} = 7; # $x is now 7
 
     no strict "refs";
+    our $y = $x;  #$y is now 7
 
-    my $bad = "x";
-    $$bad = 8;     # $x is now 8
+    my $bad = "y";
+    $$bad = 8;     # $y is now 8
 
 =head3 See also
 
@@ -516,13 +517,13 @@ as the string.
 
     my @a    = qw(a b c);
     my $aref = \@a;
-
-    ${$aref}[0] = 1; # @a is now (1, "b", "c");
+    ${$aref}[0] = 1;  # @a is now (1, "b", "c")
 
     no strict "refs";
+    our @b = @a;      # @b is now (1, "b", "c")
 
-    my $bad = "a";
-    ${$bad}[5] = "d"; # @a is now (1, "b", "c", undef, undef, "d")
+    my $bad    = "b";
+    ${$bad}[5] = "d"; # @b is now (1, "b", "c", undef, undef, "d")
 
 =head3 See also
 
@@ -554,13 +555,13 @@ whose name is the same as the string.
 
     my %h    = (a => 1, b => 2, c => 3);
     my $href = \%h;
-
-    ${$href}{a} = 4; # %h is now (a => 4, b => 2, c => 3);
+    ${$href}{a} = 4; # %h is now (a => 4, b => 2, c => 3)
 
     no strict "refs";
+    our %newh = %h;  # %newh is now (a => 4, b => 2, c => 3)
 
-    my $bad = "h";
-    ${$bad}{d} = 4;  # %h is now (a => 4, b => 2, c => 3, d => 4);
+    my $bad = "newh";
+    ${$bad}{d} = 4;  # %newh is now (a => 4, b => 2, c => 3, d => 4)
 
 =head3 See also
 
@@ -599,9 +600,10 @@ then @{X} returns an array variable whose name is the same as the string.
     @{$b[0]}    = (4, 5, 6); # @a is now (4, 5, 6)
 
     no strict "refs";
+    our @c = @a;             # @c is now (4, 5, 6)
 
-    my $bad = "a";
-    @{$bad}[0,1] = 8;     # $x is now 8
+    my $bad    = "c";
+    @{$bad}[0] = 8;          # @c is now (8, 5, 6)
 
 =head3 See also
 
@@ -635,9 +637,9 @@ then @{X} returns an array variable whose name is the same as the string.
     %$href   = (a => 1); # %h is now (a => 1)
 
     no strict "refs";
-
-    my $bad = "h";
-    @{$bad}{"c", "d"} = (3, 4); # %h is now (a => 1, c => 3, d => 4)
+    our %newh         = %h;     # %newh is now (a => 1)
+    my $bad           = "newh";
+    @{$bad}{"c", "d"} = (3, 4); #%newh is now (a => 1, c => 3, d => 4)
 
 =head3 See also
 
@@ -871,7 +873,7 @@ are turned on).
 
 =head3 Example
 
-    my $x = ~0x00_00_00_00 # $x is now 0xFF_FF_FF_FF on 32-bit machines
+    my $x = ~0x00_00_00_00; # $x is now 0xFF_FF_FF_FF on 32-bit machines
 
 =head3 See also
 
@@ -904,12 +906,12 @@ list.
     push @$aref, 6;          # @a is now (5, 2, 3, 6)
 
     my %h       = (a => 1, b => 2, c => 3);
-    my $href    = \%h;                 # $href is now a reference to %h
-    $href->{b}  = 5;                   # %h is now (a => 1, b => 5, c => 3)
-    my @keys    = keys %$href;         # @keys is now ("a", "b", "c")
+    my $href    = \%h;              # $href is now a reference to %h
+    $href->{b}  = 5;                # %h is now (a => 1, b => 5, c => 3)
+    my @keys    = sort keys %$href; # @keys is now ("a", "b", "c")
 
     sub foo {
-    return join "|", @_;
+        return join "|", @_;
     }
     my $coderef = \&foo;
     my $x       = $coderef->(1, 2, 3); # $x is now "1|2|3";
@@ -976,7 +978,7 @@ thrown if L<warnings> are turned on).
     my $z = -"foo":  # $z is now "-foo"
     $z = -$z;        # $z is now "+foo"
     $z = -$z;        # $z is now "-foo"
-    $z = -"*foo"     # $z is now -0
+    $z = -"*foo";    # $z is now -0
 
     $x = "\x{e9}";   # $x is now e acute
     $x = -$x;        # $x is now -0 because e acute is not in [_a-zA-Z]
@@ -1091,8 +1093,8 @@ like C<Illegal division by zero>.
 
     my $x = 84/2;     # $x is now 42
     my $y = 84/"2";   # $y is now 42
-    my $z = "five"/2  # $z is now 0 (0/2)
-    my $d = 2/"five"  # dies (2/0)
+    my $z = "five"/2; # $z is now 0 (0/2)
+    my $d = 2/"five"; # dies (2/0)
 
 =head3 See Also
 
@@ -1183,7 +1185,7 @@ are turned on).
     my @a = ("abc") x 3;  # @a is now ("abc", "abc", "abc")
 
     my $s = "abcd" x "a"; # $s is now "" ("abcd" x 0)
-    my $t = "abcd" x "2"; # $t is now "abddabcd"
+    my $t = "abcd" x "2"; # $t is now "abcdabcd"
 
 =head2 X + Y
 
@@ -1247,9 +1249,10 @@ scalar context on X and Y.
 
 =head3 Example
 
+    my $x = "foo" . "bar"; #$x is now "foobar"
+
     my @a = (1 .. 10);
-    my $x = "foo" . "bar"; # $x is now "foobar"
-    my $y = "the number of elements in \@a is" . @a;
+    my $y = "the number of elements in \@a is " . @a;
 
 =head3 See also
 
@@ -1280,7 +1283,6 @@ Shifting 1 bit to the left is the same as multiplying the number by 2.
 Both X and Y will be converted to numbers before the operation; if they
 cannot be converted they will turned into C<0> (and a warning is thrown if
 L<warnings> are turned on).
-
 =head3 Example
 
     # On 32-bit machines
@@ -2038,8 +2040,8 @@ information from the previous call to C<stat> or a filetest operator.
 
 =head3 Example
 
-    if (defined -u "/tmp/somefile") {
-        if (-u _) {
+    if (defined -g "/tmp/somefile") {
+        if (-g _) {
             print "somefile has setgid set\n";
         } else {
             print "somefile dosn't have setgid set\n";
@@ -2121,7 +2123,7 @@ information from the previous call to C<stat> or a filetest operator.
         if (-T _) {
             print "somefile looks like a text file\n";
         } else {
-            print "somefile lokks like a data file\n";
+            print "somefile looks like a data file\n";
         }
     } else {
         print "somefile doesn't exist\n";
@@ -2163,7 +2165,7 @@ information from the previous call to C<stat> or a filetest operator.
 
     if (defined -B "/tmp/somefile") {
         if (-B _) {
-            print "somefile lokks like a data file\n";
+            print "somefile looks like a data file\n";
         } else {
             print "somefile looks like a text file\n";
         }
@@ -2271,8 +2273,8 @@ etc.).
 
 =head3 Example
 
-    if (-A "somefile") {
-        print "it has been ", -A _, " days since somefile was accessed\n";
+    if (-C "somefile") {
+        print "it has been ", -C _, " days since somefile was accessed\n";
     } else {
         print "somefile doesn't exist\n";
     }
@@ -2385,9 +2387,9 @@ This belongs to L<perlop/Relational Operators>
 
 =head3 Description
 
-This is the numeric less than or equal to operator.  It returns a true
-value if X is numerically less than or equal to Y or a false value if
-X is greater than to Y.
+This is the numeric greater than or equal to operator.  It returns a true
+value if X is numerically greater than or equal to Y or a false value if
+X is less than Y.
 
 Both X and Y will be converted to numbers before the operation; if they
 cannot be converted they will turned into C<0> (and a warning is thrown if
@@ -2431,9 +2433,9 @@ C<127> characters, this order is the same as the ASCII order).
     }
 
     if ("z" lt "a") {
-        print "this should never be true (unless the local is weird)\n";
+        print "this should never be true (unless the locale is weird)\n";
     } else {
-        print "it should always be false (unless the local is weird)\n";
+        print "it should always be false (unless the locale is weird)\n";
     }
 
 =head3 See also
@@ -2463,9 +2465,9 @@ C<127> characters, this order is the same as the ASCII order).
     }
 
     if ("a" gt "z") {
-        print "this should never be true (unless the local is weird)\n";
+        print "this should never be true (unless the locale is weird)\n";
     } else {
-        print "it should always be false (unless the local is weird)\n";
+        print "it should always be false (unless the locale is weird)\n";
     }
 
 =head3 See also
@@ -2495,9 +2497,9 @@ same as the ASCII order).
     }
 
     if ("z" le "a") {
-        print "this should never be true (unless the local is weird)\n";
+        print "this should never be true (unless the locale is weird)\n";
     } else {
-        print "it should always be false (unless the local is weird)\n";
+        print "it should always be false (unless the locale is weird)\n";
     }
 
 =head3 See also
@@ -2527,9 +2529,9 @@ order is the same as the ASCII order).
     }
 
     if ("a" ge "z") {
-        print "this should never be true (unless the local is weird)\n";
+        print "this should never be true (unless the locale is weird)\n";
     } else {
-        print "it should always be false (unless the local is weird)\n";
+        print "it should always be false (unless the locale is weird)\n";
     }
 
 =head3 See also
@@ -2742,9 +2744,9 @@ commonly seen used with the C<sort> function:
 
 =head3 Example
 
-    my $x = "a" <=> "b"; # $x is now negative
-    my $y = "b" <=> "b"; # $x is now 0
-    my $z = "c" <=> "b"; # $x is now positive
+    my $x = "a" cmp "b"; #$x is now negative
+    my $y = "b" cmp "b"; #$x is now 0
+    my $z = "c" cmp "b"; #$x is now positive
 
 =head3 See also
 
@@ -2929,7 +2931,7 @@ It binds more tightly than the low-precedence logical and operator:
 
 whereas:
 
-    my $y = 5 and 4; # is equivalent to (my $x = 5) and 4;
+    my $y = 5 and 4; # is equivalent to (my $y = 5) and 4;
 
 It is most commonly used in conditional statements such as C<if>, C<unless>,
 C<while>.
@@ -2967,7 +2969,7 @@ It binds more tightly than the low-precedence logical or operator:
 
 whereas:
 
-    my $y = 5 or 4; # is equivalent to (my $x = 5) or 4;
+    my $y = 5 or 4; # is equivalent to (my $y = 5) or 4;
 
 It is most commonly used in conditional statements such as C<if>, C<unless>,
 C<while>.  It was used in the recent past to create default values:
@@ -3009,7 +3011,7 @@ This belongs to L<perlop/C-style Logical Defined-Or>.
 
 This is the high-precedence logical defined-or.  It returns X if X is
 defined, otherwise it returns Y.  This operator is only available if you
-have enabled 5.10 features (using the L<feature> pragma or C<use 5.10>).
+have enabled 5.10 features (using the L<feature> pragma or C<use 5.010>).
 
 It is most commonly used to create default values:
 
@@ -3061,7 +3063,7 @@ in which case it will return true and then false on the next test.
     my @list = 0 .. 5;     # @list is now (0, 1, 2, 3, 4, 5)
     my @az   = "a" .. "z"; # @az is now the lowercase ASCII alphabet
 
-    prints "4\n", "5\n", "6\n", "7\n", and "8\n"
+    #prints "4\n", "5\n", "6\n", "7\n", and "8\n"
     for my $i (0 .. 10) {
         # Start printing when $i is 4 and stop after $i is 8
         if ($i == 4 .. $i == 8) {
@@ -3072,7 +3074,7 @@ in which case it will return true and then false on the next test.
     # Prints "4\n"
     for my $i (0 .. 10) {
         # Start printing when $i is 4 and stop after $i is 4
-        if ($i == 4 .. $i == 8) {
+        if ($i == 4 .. $i == 4) {
             print "$i\n";
         }
     }
@@ -3109,7 +3111,7 @@ called.
     my @list = 0 ... 5;     # @list is now (0, 1, 2, 3, 4, 5)
     my @az   = "a" ... "z"; # @az is now the lowercase ASCII alphabet
 
-    prints "4\n", "5\n", "6\n", "7\n", and "8\n"
+    #prints "4\n", "5\n", "6\n", "7\n", and "8\n"
     for my $i (0 ... 10) {
         # Start printing when $i is 4 and stop after $i is 8
         if ($i == 4 ... $i == 8) {
@@ -3120,7 +3122,7 @@ called.
     # Prints "4\n", "5\n", "6\n", "7\n", "8\n", "9\n", and "10\n"
     for my $i (0 ... 10) {
         # Start printing when $i is 4 and stop after $i is 4 a second time
-        if ($i == 4 ... $i == 8) {
+        if ($i == 4 ... $i == 4) {
             print "$i\n";
         }
     }
@@ -3183,7 +3185,8 @@ The act of assigning creates an lvalue, that is the result of an assignment
 can be used in places where you would normally use a plain variable:
 
     my $str = "foobar";
-    (my $modified = $str) =~ s/foo/bar/; # the substitution affects $modified
+    (my $modified = $str) =~ s/foo/bar/; # $modified is now "barbar"
+                                         # $str is still "foobar"
 
 If X is a list, then this is the list assignment operator and it provides
 list context to Y.  The first item in the list Y is assigned to the first
@@ -3201,7 +3204,7 @@ assignment has taken place).
 
     my $i = my $j = my $k = 10; # $i, $j, and $k are now all 10
 
-    my $m = my ($n, $o) = ("a", "b", "c") # $m is now 3
+    my $m = my ($n, $o) = ("a", "b", "c"); # $m is now 3
 
 =head2 X **= Y
 
@@ -3301,6 +3304,12 @@ to X.  This means that X must be a valid lvalue (i.e. it must be something
 that can be assigned to).
 
 =head3 Example
+
+    my $x = "foo";
+    my $y = "bar";
+
+    $x .= $y; #$x is now "foobar"
+
 
     my $x = 2;
     my $y = 8;
@@ -3476,7 +3485,7 @@ assigned to).
     my $x = 2;
     my $y = 8;
 
-    $x |= $y; # $x is now 2 & 8 or 10
+    $x |= $y; #$x is now 2 | 8 or 10
 
 =head3 See also
 
@@ -3502,8 +3511,10 @@ assigned to).
 
     my $x = 2;
     my $y = 8;
+    my $z = 7;
 
-    $x ^= $y; # $x is now 2 & 8 or 10
+    $x ^= $y; # $x is now 0b0010 ^ 0b1000 or 0b1010 or 10
+    $x ^= $z; # $x is now 0b1010 ^ 0b0111 or 0b1101 or 13
 
 =head3 See also
 
@@ -3557,7 +3568,7 @@ can be assigned to).
     my $x = 8;
     my $y = 2;
 
-    $x &= $y; # $x is now 8 & 2 or 2
+    $x >>= $y; # $x is now 8 >> 2 or 2
 
 =head3 See also
 
@@ -3575,7 +3586,7 @@ This is the logical and assignment operator.  It is equivalent to
 
     X = X && Y
 
-That is it assigns X to itself if X evaluates to true, otherwise it assigns
+That is it assigns X to itself if X evaluates to false, otherwise it assigns
 Y to X.  This means that X must be a valid lvalue (i.e. it must be something
 that can be assigned to).
 
@@ -3627,10 +3638,9 @@ is the right operator to use.
     my $y = 8;
     my $z;
 
-    $x ||= $y; # $x is now 2 || 8 or 2
-    $y ||= $x; # $y is now 8 || 2 or 8
-
-    my $z ||= $x + $y; # $z is now undef || (2 + 8) or 10
+    $x ||= $y;      # $x is now 2 || 8 or 2
+    $y ||= $x;      # $y is now 8 || 2 or 8
+    $z ||= $x + $y; # $z is now undef || (2 + 8) or 10
 
 =head3 See also
 
@@ -3802,11 +3812,11 @@ and returns its value.
 
 It binds less tightly than the high-precedence logical and operator:
 
-    my $y = 5 and 4; # is equivalent to (my $x = 5) and 4;
+    my $x = 5 and 4; # is equivalent to (my $x = 5) and 4;
 
 whereas:
 
-    my $x = 5 && 4; # is equivalent to my $x = (5 && 4);
+    my $y = 5 && 4;  # is equivalent to my $y = (5 && 4);
 
 It is most commonly used in conditional statements such as C<if>, C<unless>,
 C<while>.  But it is also occasionally used for its short-circuiting affect:
@@ -3852,11 +3862,11 @@ and returns its value.
 
 It binds less tightly than the high-precedence logical or operator:
 
-    my $y = 5 or 4; # is equivalent to (my $x = 5) or 4;
+    my $x = 5 or 4; # is equivalent to (my $x = 5) or 4;
 
 whereas:
 
-    my $x = 5 && 4; # is equivalent to my $x = (5 || 4);
+    my $y = 5 || 4; # is equivalent to my $y = (5 || 4);
 
 It is most commonly used in conditional statements such as C<if>, C<unless>,
 C<while>.  It is also often used for its short-circuiting behavior:
@@ -3874,13 +3884,13 @@ value).
     my $y = 1;
     my $z = "foo";
 
-    # Not the use of parentheses vs this example in ||
-    print(($w or $x), "\n"); # prints "0\n";
-    print(($x or $w), "\n"); # prints "\n";
-    print(($w or $y), "\n"); # prints "1\n"
-    print(($x or $y), "\n"); # prints "1\n"
-    print(($y or $z), "\n"); # prints "1\n"
-    print(($z or $y), "\n"); # prints "foo\n"
+    # Note the use of parentheses vs this example in ||
+    print(($w or $x), "\n"); #prints "0\n";
+    print(($x or $w), "\n"); #prints "\n";
+    print(($w or $y), "\n"); #prints "1\n"
+    print(($x or $y), "\n"); #prints "1\n"
+    print(($y or $z), "\n"); #prints "1\n"
+    print(($z or $y), "\n"); #prints "foo\n"
 
 =head3 See also
 
