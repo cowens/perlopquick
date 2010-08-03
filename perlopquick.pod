@@ -398,9 +398,12 @@ This belongs to L<perlop/The Arrow Operator>.
 
 =head3 Description
 
-This is the infix hash dereferencing operator (AKA The Arrow Operator).  It
-fetches the value associated with the key Y in a hash reference returned 
-by the expression X.  When dealing with multiple levels of dereferencing
+This is the infix hash dereferencing operator (AKA the Arrow Operator).  It
+fetches the value associated with the key Y in a hash referenced by X.  
+X may be a scalar variable, an expression(an array element or a hash
+value the resolves to a hash-reference), or a subroutine that returns a 
+hash-reference.
+When dealing with multiple levels of dereferencing
 (such as with a reference to a hash of hashes) only the first level requires
 the arrow operator.
 
@@ -410,15 +413,16 @@ If X does not evaluate to a hash reference, then a runtime error occurs.
 
     my %h      = (a => 1, b => 2, c => 3);
     my $href   = \%h;
-    my $x      = $href->{b}; #$x is now 2
-    $href->{d} = 4;          #%h is now (a => 1, b => 2, c => 3, d => 4)
+    my $x      = $href->{b}; # $x is now 2
+    $href->{d} = 4;          # %h is now (a => 1, b => 2, c => 3, d => 4)
 
     my $hoh    = {
         a => { a => 1, b => 2, c => 3 },
         b => { a => 4, b => 5, c => 6 }
     };
 
-    my $y = $hoh->{a}{b};    #$y is now 2
+    my $y = $hoh->{a}{b};    # $y is now 2
+    my $z = $hoh->{b}{b};    # $z is now 5
 
 =head3 See also
 
