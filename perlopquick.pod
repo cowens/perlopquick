@@ -334,17 +334,17 @@ This belongs to L<perlop/Terms and List Operators (Leftward)>.
 =head3 Description
 
 This is the hash index operator.  It retrieves the value associated with the
-key Y from X.  If Y is a list of keys then a slice is returned (see
+key(Y) from a hash(X).  If Y is a list of keys then a slice is returned (see
 L<perldata> for information about slices).
 
 =head3 Example
 
     my %h = (a => 1, b => 2, c => 3);
-    my $x = $h{c};        #$x is now 3
-    my @a = @h{"a", "b"}; #@a is now (1, 2)
+    my $x = $h{c};        # $x is now 3
+    my @a = @h{"a", "b"}; # @a is now (1, 2)
 
-    $h{d}       = 4;      #%h is now (a => 1, b => 2, c => 3, d => 4)
-    @h{qw/a d/} = (0, 1); #%h is now (a => 0, b => 2, c => 3, d => 1)
+    $h{d}       = 4;      # %h is now (a => 1, b => 2, c => 3, d => 4)
+    @h{qw/a d/} = (0, 1); # %h is now (a => 0, b => 2, c => 3, d => 1)
 
 =head3 See also
 
