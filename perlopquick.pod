@@ -436,7 +436,7 @@ This belongs to L<perlop/The Arrow Operator>.
 
 =head3 Description
 
-This is the infix dereferencing function call operator (AKA The Arrow
+This is the infix dereferencing function call operator (AKA the Arrow
 Operator).  It calls the function referred to by X with the arguments Y.
 When dealing with multiple levels of dereferencing (such as with a reference
 to a hash of functions) only the first level requires the arrow operator;
@@ -455,8 +455,8 @@ If X does not evaluate to a code reference, then a runtime error occurs.
         func => $sub,
     };
 
-    $sub->("a", "b", "c");  #prints "a = b + c\n"
-    $href->{func}(1, 2, 3); #prints "1 = 2 + 3\n"
+    $sub->("a", "b", "c");  # prints "a = b + c\n"
+    $href->{func}(1, 2, 3); # prints "1 = 2 + 3\n"
 
 =head3 See also
 
