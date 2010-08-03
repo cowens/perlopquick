@@ -358,9 +358,10 @@ This belongs to L<perlop/The Arrow Operator>.
 
 =head3 Description
 
-This is the infix array dereferencing operator (AKA The Arrow Operator).  It
-fetches the value at position Y in an array reference returned by the
-expression X.  When dealing with multiple levels of dereferencing (such as
+This is the infix array dereferencing operator (AKA the Arrow Operator).
+It fetches the value at position Y in the array referenced by X. 
+X is a simple scalar variable, an expression (an array element or a hash value), or a function returning a reference to an array.
+When dealing with multiple levels of dereferencing (such as
 with a reference to an array of arrays) only the first level requires the
 arrow operator.
 
@@ -369,16 +370,21 @@ If X does not evaluate to an array reference, then a runtime error occurs.
 =head3 Example
 
     my @a         = ("a", "b", "c");
+    my @z         = ("x", "y", "z");
     my $aref      = \@a;
-    my $x         = $aref->[1]; #$x is now "b"
-    $aref->[3]    = "d";        #@a is now ("a", "b", "c", "d")
+    my $zref      = \@z;
+    my @c         = ($aref, $zref);
+
+    my $x         = $aref->[1]; # $x is now "b"
+    $aref->[3]    = "d";        # @a is now ("a", "b", "c", "d")
+    my $y         = $c[0]->[1]; # $y is now "b"
 
     my $aoa = [
         [0,   1,   2  ],
         ["a", "b", "c"],
     ];
 
-    my $y = $aoa->[1][1];       #$y is now "b"
+    my $y = $aoa->[1][1];       # $y is now "b"
 
 =head3 See also
 
