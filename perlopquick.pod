@@ -465,7 +465,7 @@ variable would be ambiguous:
     my $s    = "${base}bar"; # $s is now "foobar"
 
 When X is an expression, this is the scalar dereferencing operator.  If X
-evaluates to a scalar reference then the value of the referenced item it
+evaluates to a scalar reference then the value of the referenced item is
 returned.  If X does not evaluate to a scalar reference a runtime error
 occurs.  If X is a simple scalar variable the braces are unnecessary.
 
