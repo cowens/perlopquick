@@ -503,7 +503,7 @@ If X is the name of an array variable, then this is just another way of
 saying C<$X[Y]>.
 
 When X is an expression, this is the indexing array dereferencing operator.
-If X evaluates to an array reference then it returns value of the Yth item
+If X evaluates to an array reference then it returns the value of the Yth item
 of the referenced array.  If X does not evaluate to an array reference a
 runtime error occurs.  If X is a simple scalar variable the braces are
 unnecessary.  The use of this operator is discouraged, see the
@@ -541,7 +541,7 @@ If X is the name of a hash variable, then this is just another way of saying
 C<$X{Y}>.
 
 When X is an expression, this is the indexing hash dereferencing operator.
-If X evaluates to an hash reference then it returns value associated with
+If X evaluates to an hash reference then it returns the value associated with
 the key Y of the referenced hash.  If X does not evaluate to an hash
 reference a runtime error occurs.  If X is a simple scalar variable the
 braces are unnecessary.  The use of this operator is discouraged, see the
