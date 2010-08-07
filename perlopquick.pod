@@ -712,10 +712,10 @@ auto-increment operator, both values would be C<5>.
 =head3 Example
 
     my $x = 4;
-    my $y = $x++; #$x is now 5 and $y is now 4
+    my $y = $x++;   # $x is now 5 and $y is now 4
 
     my $s = "a";
-    my $t = $s++; #$s is now "b" and $t is now "a"
+    my $t = $s++;   # $s is now "b" and $t is now "a"
 
 =head3 See also
 
