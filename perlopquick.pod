@@ -860,7 +860,7 @@ are turned on).
 
 =head3 Example
 
-    my $x = ~0x00_00_00_00 #$x is now 0xFF_FF_FF_FF on 32-bit machines
+    my $x = ~0x00_00_00_00  # $x is now 0xFF_FF_FF_FF on 32-bit machines
 
 =head3 See also
 
