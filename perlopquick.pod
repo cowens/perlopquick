@@ -686,10 +686,10 @@ The incrementing occurs before the use of the value.
 =head3 Example
 
     my $x = 4;
-    my $y = ++$x; #$x and $y are now 5
+    my $y = ++$x;   # $x and $y are now 5
 
     my $s = "a";
-    my $t = ++$s; #$s and $t are now "b"
+    my $t = ++$s;   # $s and $t are now "b"
 
 =head3 See also
 
