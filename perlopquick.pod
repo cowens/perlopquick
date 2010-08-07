@@ -591,8 +591,8 @@ If X is the name of an array variable then this is just another way of
 saying @X.  This form is handy during interpolation when the name of a
 variable would be ambiguous:
 
-    my @a = (1 .. 5);
-    my $x = "@{a}bar"; #$x is now "1 2 3bar"
+    my @a = (1 .. 3);
+    my $x = "@{a}bar";   # $x is now "1 2 3bar"
 
 When X is an expression, this is the array dereferencing operator.  If X
 evaluates to an array reference then the value of the referenced item is
@@ -608,18 +608,18 @@ then @{X} returns an array variable whose name is the same as the string.
     my $aref = \@a;
     my @b    = ($aref);
 
-    @$aref      = (1, 2, 3); #@a is now (1, 2, 3)
-    @{$b[0]}    = (4, 5, 6); #@a is now (4, 5, 6)
+    @$aref      = (1, 2, 3);   # @a is now (1, 2, 3)
+    @{$b[0]}    = (4, 5, 6);   # @a is now (4, 5, 6)
 
     no strict "refs";
 
     my $bad = "a";
-    @{$bad}[0,1] = 8;     #$x is now 8
+    @{$bad}[0,1] = 8;          # @a is now (8, undef, 3)
 
 =head3 See also
 
 L</\X>, L<perlreftut>, and L<perlref>
-
+ 
 =head2 %{X}
 
 =head3 Class
