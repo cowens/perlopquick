@@ -768,13 +768,14 @@ are turned on).
 =head3 Example
 
     my $x = 5;
-    my $y = $x--;  #$x is now 4 and $y is now 5
+    my $y = $x--;    # $x is now 4 and $y is now 5
 
     my $q = "200 Quatloos for the newcomer";
-    my $r = $q--;  #$q is now 199 and $r is "200 Quatloos for the newcomer"
+    my $r = $q--;    # $q is now 199 
+                     # $r is "200 Quatloos for the newcomer"
 
     my $s = "foo";
-    my $t = $s--;  #$s is now -1 and $t is "foo"
+    my $t = $s--;    # $s is now -1 and $t is "foo"
 
 =head3 See also
 
