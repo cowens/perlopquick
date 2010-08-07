@@ -740,10 +740,10 @@ are turned on).
 =head3 Example
 
     my $x = 5;
-    my $y = --$x;  #$x and $y are now 4
+    my $y = --$x;  # $x and $y are now 4
 
     my $s = "foo";
-    my $t = --$s;  #$s and $t are now -1
+    my $t = --$s;  # $s and $t are now -1
 
 =head3 See also
 
