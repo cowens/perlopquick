@@ -568,12 +568,12 @@ whose name is the same as the string.
     my %h    = (a => 1, b => 2, c => 3);
     my $href = \%h;
     
-    ${$href}{a} = 4; #%h is now (a => 4, b => 2, c => 3);
+    ${$href}{a} = 4;      # %h is now (a => 4, b => 2, c => 3);
 
     no strict "refs";
 
     my $bad = "h";
-    ${$bad}{d} = 4;  #%h is now (a => 4, b => 2, c => 3, d => 4);
+    ${$bad}{d} = 4;       # %h is now (a => 4, b => 2, c => 3, d => 4);
 
 =head3 See also
 
