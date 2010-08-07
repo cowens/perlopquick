@@ -475,7 +475,7 @@ saying C<$X>.  This form is handy during interpolation when the name of a
 variable would be ambiguous:
 
     my $base = "foo"; 
-    my $s    = "${base}bar"; #$s is now "foobar"
+    my $s    = "${base}bar";     # $s is now "foobar"
 
 When X is an expression, this is the scalar dereferencing operator.  If X
 evaluates to a scalar reference then the value of the referenced item it
@@ -491,13 +491,13 @@ then C<${X}> returns a scalar variable whose name is the same as the string.
     my $sref = \$x;
     my @a    = ($sref);
 
-    $$sref   = 6; #$x is now 6
-    ${$a[0]} = 7; #$x is now 7
+    $$sref   = 6;      # $x is now 6
+    ${$a[0]} = 7;      # $x is now 7
 
     no strict "refs";
 
     my $bad = "x";
-    $$bad = 8;     #$x is now 8
+    $$bad = 8;         # $x is now 8
 
 =head3 See also
 
