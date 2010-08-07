@@ -927,8 +927,8 @@ list of function arguments.
 
 =head3 Example
 
-    print (split ",", "a,b,c,d")[2], "\n";  #syntax error
-    print +(split ",", "a,b,c,d")[2], "\n"; #prints "c\n"
+    print (split ",", "a,b,c,d")[2], "\n";  # syntax error
+    print +(split ",", "a,b,c,d")[2], "\n"; # prints "c\n"
 
 =head3 See also
 
