@@ -799,11 +799,11 @@ L<warnings> are turned on).
 
 =head3 Example
 
-    my $x = 2 ** 8;             #$x is now 256
-    my $y = log(2 ** 8)/log(2); #$y is now 8;
+    my $x = 2 ** 8;                # $x is now 256
+    my $y = log(2 ** 8)/log(2);    # $y is now 8;
 
-    my $s = 2 ** "foo";         #$s is now 1 (2 ** 0 is 1)
-    my $t = 2 ** "4ever";       #$t is now 16
+    my $s = 2 ** "foo";            # $s is now 1 (2 ** 0 is 1)
+    my $t = 2 ** "4ever";          # $t is now 16
 
 =head3 See also
 
