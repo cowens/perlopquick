@@ -628,7 +628,7 @@ This belongs to L<perlop/Terms and List Operators (Leftward)>.
 
 =head3 Description
 
-If X is the name of an array variable then this is just another way of
+If X is the name of a hash variable then this is just another way of
 saying %X.
 
 When X is an expression, this is the hash dereferencing operator.  If X
@@ -645,12 +645,12 @@ then @{X} returns an array variable whose name is the same as the string.
     my $href = \%h;
     my @a    = ($href);
 
-    %$href   = (a => 1); #%h is now (a => 1)
+    %$href   = (a => 1);   # %h is now (a => 1)
 
     no strict "refs";
 
     my $bad = "h";
-    @{$bad}{"c", "d"} = (3, 4); #%h is now (a => 1, c => 3, d => 4)
+    @{$bad}{"c", "d"} = (3, 4);   # %h is now (a => 1, c => 3, d => 4)
 
 =head3 See also
 
