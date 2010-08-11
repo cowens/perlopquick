@@ -1015,12 +1015,12 @@ L<perlop>, L<perlretut>, and L<prelre>
 
 =head3 Class
 
-This belongs to L<perlop/Binding Operators>.
+C<!~> belongs to L<perlop/Binding Operators>.
 
 =head3 Description
 
-This is the negative binding operator.  It behaves like the C<=~> operator,
-but the return is logically negated.
+C<!~> is the negative binding operator.  
+It behaves like the C<=~> operator, but the return is logically negated.
 
 =head3 Example
 
