@@ -1038,7 +1038,7 @@ L</STRING =~ PATTERN>
 
 =head3 Class
 
-This belongs to L<perlop/Multiplicative Operators>.
+C<*> belongs to L<perlop/Multiplicative Operators>.
 
 =head3 Description
 
