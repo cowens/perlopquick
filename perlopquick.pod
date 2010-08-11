@@ -979,7 +979,7 @@ L</+X>
 
 =head3 Class
 
-This belongs to L<perlop/Binding Operators>.
+C<=~> belongs to L<perlop/Binding Operators>.
 
 =head3 Description
 
