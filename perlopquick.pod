@@ -1062,11 +1062,11 @@ L</X *= Y>
 
 =head3 Class
 
-This belongs to L<perlop/Multiplicative Operators>.
+C</> belongs to L<perlop/Multiplicative Operators>.
 
 =head3 Description
 
-This is the division operator.  It divides X by Y.
+C</> is the division operator; it returns the quotient of X divided by Y.
 
 Both X and Y will be converted to numbers before the operation; if they
 cannot be converted they will turned into C<0> (and a warning is thrown if
@@ -1077,9 +1077,9 @@ like C<Illegal division by zero>.
 
 =head3 Example
 
-    my $x = 84/2;     #$x is now 42
-    my $y = 84/"2";   #$y is now 42
-    my $z = "five"/2  #$z is now 0 (0/2)
+    my $x = 84/2;     # $x is now 42
+    my $y = 84/"2";   # $y is now 42
+    my $z = "five"/2  # $z is now 0 (0/2)
 
 =head3 See Also
 
