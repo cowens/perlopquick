@@ -1011,7 +1011,7 @@ C<\>, which it will consider a syntax error.
 
 L<perlop>, L<perlretut>, and L<prelre>
 
-=head2 X !~ Y
+=head2 STRING !~ PATTERN
 
 =head3 Class
 
@@ -1024,12 +1024,11 @@ but the return is logically negated.
 
 =head3 Example
 
-    #prints "matched\n"
     if ("foo bar baz" !~ /foo/) {
         print "didn't match\n";
     } else {
         print "matched\n";
-    }
+    }                      # prints "matched\n" 
 
 =head3 See also
 
