@@ -1032,7 +1032,7 @@ but the return is logically negated.
 
 =head3 See also
 
-L</X =~ Y>
+L</STRING =~ PATTERN>
 
 =head2 X * Y
 
