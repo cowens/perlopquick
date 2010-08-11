@@ -975,7 +975,7 @@ thrown if L<warnings> are turned on).
 L</+X>
 
 
-=head2 X =~ Y
+=head2 STRING =~ PATTERN
 
 =head3 Class
 
@@ -984,13 +984,14 @@ This belongs to L<perlop/Binding Operators>.
 =head3 Description
 
 This is the binding operator.  It applies a regex match (C<m//>),
-substitution (C<s///>), or transliteration (C<tr///> or C<y///>) Y against a
-string X.  When used in scalar context, the return value generally indicates
+substitution (C<s///>), or transliteration (C<tr///> or C<y///>) 
+PATTERN against a string variable.  
+When used in scalar context, the return value generally indicates
 the success of the operation.  Behavior in list context depends on the
 particular operator.  See L<perlop/"Regexp Quote-Like Operators"> for
 details and L<perlretut> for examples using these operators.
 
-If Y is an expression rather than a search pattern, substitution, or
+If PATTERN is an expression rather than a search pattern, substitution, or
 transliteration, it is interpreted as a search pattern at run time. Note
 that this means that its contents will be interpolated twice, so
 
@@ -1002,11 +1003,9 @@ C<\>, which it will consider a syntax error.
 =head3 Example
 
     my $x = "foo bar baz";
-
-    #prints "matched\n"
     if ($x =~ /foo/) {
         print "matched\n";
-    }
+    }                      # prints "matched\n"
 
 =head3 See also
 
