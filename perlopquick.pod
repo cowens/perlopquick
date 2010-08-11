@@ -983,7 +983,7 @@ C<=~> belongs to L<perlop/Binding Operators>.
 
 =head3 Description
 
-This is the binding operator.  It applies a regex match (C<m//>),
+C<=~> is the binding operator.  It applies a regex match (C<m//>),
 substitution (C<s///>), or transliteration (C<tr///> or C<y///>) 
 PATTERN against a string variable.  
 When used in scalar context, the return value generally indicates
@@ -1010,7 +1010,7 @@ C<\>, which it will consider a syntax error.
 =head3 See also
 
 L<perlop>, L<perlretut>, and L<prelre>
-
+  
 =head2 STRING !~ PATTERN
 
 =head3 Class
