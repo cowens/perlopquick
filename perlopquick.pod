@@ -143,7 +143,8 @@ To place a C<'> character inside the string, you must escape it with C<\>:
 
     my $quote = 'He said \'I like quotes.\'';
 
-To place a C<\> character inside the string, you may escape it with another C<\>:
+To place a C<\> character inside the string, you may escape it with another
+C<\>:
 
     my $quote = 'This is a backslash: \\';
 
@@ -187,15 +188,25 @@ If the delimiter is not a bracketing pair, or if the brackets are
 unbalanced, you will need to escape the delimiter with C<\> if you wish to
 have that character in the string:
 
-    my $quote = q{I have too many \} characters};
+    my $okay = q{I have too many \} characters};
 
 But it is often better to just choose a delimiter that does not conflict
 with the string:
 
     my $better = q/I have too many } characters/;
 
-Unlike double quoted strings, the escaping of the delimiter is the only
-escape.
+To place a C<\> character inside the string, you may escape it with another
+C<\>:
+
+    my $quote = q/This, \\, is a backslash./;
+
+but this is only necessary when the C<\> is followed by the closing delimiter:
+
+    my $fine     = q/This, \, is a backslash./;
+    my $required = q/This is a backslash:\\/;
+
+Unlike double quoted strings, the escaping of the delimiter and C<\> are the
+only escapes.
 
 For a full discussion of how strings work, see
 L<perlop/Quote and Quote-like Operators>.
