@@ -851,23 +851,24 @@ This belongs to L<perlop/Symbolic Unary Operators>.
 =head3 Description
 
 This is the high-precedence logical negation operator.  It performs logical
-negation, i.e., "not".  If X is a true value it returns an empty string,
-otherwise it returns 1.  There is a low-precedence version: C<not>.
+negation, i.e., "not".  If X is a true value it returns the L<Canonical
+False Value> otherwise it returns L<Canonical True Value>.  There is a
+low-precedence version: C<not>.
 
-It is occasionally used in pairs (C<!!>) to convert any false value to
-C<""> and any true value to C<1>.
+It is occasionally used in pairs (C<!!>) to convert any false value to the
+L<Canonical False Value> and any true value to the L<Canonical True Value>.
 
 =head3 Example
 
-    my $m = !5;      # $m is now the empty string ("")
-    my $n = !0;      # $n is now 1
-    my $o = !"";     # $o is now 1
-    my $p = !undef;  # $p is now 1
+    my $m = !5;      # $m is now the canonical false value
+    my $n = !0;      # $n is now the canonical true value
+    my $o = !"";     # $o is now the canonical true value
+    my $p = !undef;  # $p is now the canonical true value
 
-    my $q = !!5;     # $q is now 1
-    my $r = !!0;     # $r is now ""
-    my $s = !!"";    # $s is now ""
-    my $t = !!undef; # $t is now ""
+    my $q = !!5;     # $q is now the canonical true value
+    my $r = !!0;     # $r is now the canonical false value
+    my $s = !!"";    # $s is now the canonical false value
+    my $t = !!undef; # $t is now the canonical false value
 
 =head3 See also
 
@@ -4098,5 +4099,23 @@ that was originally intended to close the C<while> loop.
 =head3 See also
 
 L<perlrun> and L<perlsyn>
+
+=head1 NOTES
+
+=head2 Canonical True Value
+
+The canonical true value is a tri-value, that is it contains a floating
+point number (C<1.0>), integer (C<1>), and string (C<"1">).  It is possible,
+but inadvisable, to change its value.  Which of the three value gets used in
+an expression depends on how the value is used (e.g. if the expression
+expects a string then the string value will be used).
+
+=head2 Canonical False Value
+
+The canonical false value is a tri-value, that is it contains a floating
+point number (C<0.0>), integer (C<0>), and string (C<"">).  It is possible,
+but inadvisable, to change its value.  Which of the three value gets used in
+an expression depends on how the value is used (e.g. if the expression
+expects a string then the string value will be used).
 
 =cut
