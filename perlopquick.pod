@@ -851,12 +851,12 @@ This belongs to L<perlop/Symbolic Unary Operators>.
 =head3 Description
 
 This is the high-precedence logical negation operator.  It performs logical
-negation, i.e., "not".  If X is a true value it returns the L<Canonical
-False Value> otherwise it returns L<Canonical True Value>.  There is a
+negation, i.e., "not".  If X is a true value it returns the L</Canonical
+False Value> otherwise it returns L</Canonical True Value>.  There is a
 low-precedence version: C<not>.
 
 It is occasionally used in pairs (C<!!>) to convert any false value to the
-L<Canonical False Value> and any true value to the L<Canonical True Value>.
+L</Canonical False Value> and any true value to the L</Canonical True Value>.
 
 =head3 Example
 
@@ -1758,9 +1758,9 @@ This belongs to L<perlop/Named Unary Operators>.
 
 This is the regular file filetest operator.  FILE must be a filename,
 filehandle, dirhandle, or an expression that returns one of the preceding
-values.  It returns C<1> if the file exists and is a regular file, C<""> if
-the file or directory exists, but isn't a regular file, or C<undef> if the
-file or directory doesn't exist.
+values.  It returns the L</Canonical True Value> if the file exists and is a
+regular file, the L</Canonical False Value> if the file or directory exists, but
+isn't a regular file, or C<undef> if the file or directory doesn't exist.
 
 If given no arguments, it will operate on C<$_>.
 
@@ -1791,11 +1791,11 @@ This belongs to L<perlop/Named Unary Operators>.
 
 =head3 Description
 
-This is the directory filetest operator.  FILE must be a filename,
-filehandle, dirhandle, or an expression that returns one of the preceding
-values.  It returns C<1> if the directory exists , C<""> if the file exists,
-but isn't a directory file, or C<undef> if the file or directory doesn't
-exist.
+This is the directory filetest operator.  FILE must be a filename, filehandle,
+dirhandle, or an expression that returns one of the preceding values.  It
+returns the L</Canonical True Value> if the directory exists , the L</Canonical
+False Value> if the file exists, but isn't a directory file, or C<undef> if the
+file or directory doesn't exist.
 
 If given no arguments, it will operate on C<$_>.
 
@@ -1828,9 +1828,10 @@ This belongs to L<perlop/Named Unary Operators>.
 
 This is the symbolic link filetest operator.  FILE must be a filename,
 filehandle, dirhandle, or an expression that returns one of the preceding
-values.  It returns C<1> if the file or directory exists and is a symbolic
-link, C<""> if the file or directory exists, but isn't a symbolic link, or
-C<undef> if the file or directory doesn't exist.
+values.  It returns the L</Canonical True Value> if the file or directory exists
+and is a symbolic link, the L</Canonical False Value> if the file or directory
+exists, but isn't a symbolic link, or C<undef> if the file or directory doesn't
+exist.
 
 If given no arguments, it will operate on C<$_>.
 
@@ -1863,9 +1864,9 @@ This belongs to L<perlop/Named Unary Operators>.
 
 This is the pipe filetest operator.  FILE must be a filename, filehandle,
 dirhandle, or an expression that returns one of the preceding values.  It
-returns C<1> if the file exists and is a pipe, C<""> if the file or
-directory exists, but isn't a pipe, or C<undef> if the file or directory
-doesn't exist.
+returns the L</Canonical True Value> if the file exists and is a pipe, the
+L</Canonical False Value> if the file or directory exists, but isn't a pipe, or
+C<undef> if the file or directory doesn't exist.
 
 If given no arguments, it will operate on C<$_>.
 
@@ -1904,9 +1905,9 @@ This belongs to L<perlop/Named Unary Operators>.
 
 This is the socket filetest operator.  FILE must be a filename, filehandle,
 dirhandle, or an expression that returns one of the preceding values.  It
-returns C<1> if the file exists and is a socket, C<""> if the file or
-directory exists, but isn't a socket, or C<undef> if the file or directory
-doesn't exist.
+returns the L</Canonical True Value> if the file exists and is a socket, the
+L</Canonical False Value> if the file or directory exists, but isn't a socket,
+or C<undef> if the file or directory doesn't exist.
 
 If given no arguments, it will operate on C<$_>.
 
@@ -1939,9 +1940,10 @@ This belongs to L<perlop/Named Unary Operators>.
 
 This is the block special filetest operator.  FILE must be a filename,
 filehandle, dirhandle, or an expression that returns one of the preceding
-values.  It returns C<1> if the file exists and is a block special file,
-C<""> if the file or directory exists, but isn't a block special file, or
-C<undef> if the file or directory doesn't exist.
+values.  It returns the L</Canonical True Value> if the file exists and is a
+block special file, the L</Canonical False Value> if the file or directory
+exists, but isn't a block special file, or C<undef> if the file or directory
+doesn't exist.
 
 If given no arguments, it will operate on C<$_>.
 
@@ -1974,9 +1976,10 @@ This belongs to L<perlop/Named Unary Operators>.
 
 This is the character special filetest operator.  FILE must be a filename,
 filehandle, dirhandle, or an expression that returns one of the preceding
-values.  It returns C<1> if the file exists and is a character special file,
-C<""> if the file or directory exists, but isn't a character special file,
-or C<undef> if the file or directory doesn't exist.
+values.  It returns the L</Canonical True Value> if the file exists and is a
+character special file, the L</Canonical False Value> if the file or directory
+exists, but isn't a character special file, or C<undef> if the file or
+directory doesn't exist.
 
 If given no arguments, it will operate on C<$_>.
 
@@ -2008,8 +2011,8 @@ This belongs to L<perlop/Named Unary Operators>.
 =head3 Description
 
 This is the socket filetest operator.  FILE must be a filehandle or an
-expression that returns one.  It returns C<1> if the filehandle is opened to
-a tty or C<undef> if it is not.
+expression that returns one.  It returns the L</Canonical True Value> if the
+filehandle is opened to a tty or C<undef> if it is not.
 
 If given no arguments, it will operate on C<$_>.
 
@@ -2035,9 +2038,9 @@ This belongs to L<perlop/Named Unary Operators>.
 
 This is the setuid filetest operator.  FILE must be a filename, filehandle,
 dirhandle, or an expression that returns one of the preceding values.  It
-returns C<1> if the file exists and has its setuid set, C<""> if the file or
-directory exists, but its setuid isn't set, or C<undef> if the file or
-directory doesn't exist.
+returns the L</Canonical True Value> if the file exists and has its setuid set,
+the L</Canonical False Value> if the file or directory exists, but its setuid
+isn't set, or C<undef> if the file or directory doesn't exist.
 
 If given no arguments, it will operate on C<$_>.
 
@@ -2070,9 +2073,9 @@ This belongs to L<perlop/Named Unary Operators>.
 
 This is the setgid filetest operator.  FILE must be a filename, filehandle,
 dirhandle, or an expression that returns one of the preceding values.  It
-returns C<1> if the file exists and has its setgid set, C<""> if the file or
-directory exists, but its setgid isn't set, or C<undef> if the file or
-directory doesn't exist.
+returns the L</Canonical True Value> if the file exists and has its setgid set,
+the L</Canonical False Value> if the file or directory exists, but its setgid
+isn't set, or C<undef> if the file or directory doesn't exist.
 
 If given no arguments, it will operate on C<$_>.
 
@@ -2103,11 +2106,11 @@ This belongs to L<perlop/Named Unary Operators>.
 
 =head3 Description
 
-This is the sticky bit filetest operator.  FILE must be a filename,
-filehandle, dirhandle, or an expression that returns one of the preceding
-values.  It returns C<1> if the file exists and has its sticky bit set,
-C<""> if the file or directory exists, but its sticky bit isn't set, or
-C<undef> if the file or directory doesn't exist.
+This is the sticky bit filetest operator.  FILE must be a filename, filehandle,
+dirhandle, or an expression that returns one of the preceding values.  It
+returns the L</Canonical True Value> if the file exists and has its sticky bit
+set, the L</Canonical False Value> if the file or directory exists, but its
+sticky bit isn't set, or C<undef> if the file or directory doesn't exist.
 
 If given no arguments, it will operate on C<$_>.
 
@@ -2138,11 +2141,11 @@ This belongs to L<perlop/Named Unary Operators>.
 
 =head3 Description
 
-This is the ASCII text filetest operator.  FILE must be a filename,
-filehandle, or an expression that returns one of the preceding values.  It
-returns C<1> if the file exists and appears to be a text file, C<""> if the
-file or directory exists, but doesn't appear to be a text file, or C<undef>
-if the file or directory doesn't exist.
+This is the ASCII text filetest operator.  FILE must be a filename, filehandle,
+or an expression that returns one of the preceding values.  It returns the
+L</Canonical True Value> if the file exists and appears to be a text file, the
+L</Canonical False Value> if the file or directory exists, but doesn't appear to
+be a text file, or C<undef> if the file or directory doesn't exist.
 
 If X is a filename, it guesses the type of the file by reading the first
 block from the file.  If the first block doesn't contain any nul characters
@@ -2182,11 +2185,11 @@ This belongs to L<perlop/Named Unary Operators>.
 
 =head3 Description
 
-This is the binary filetest operator.  FILE must be a filename, filehandle,
-or an expression that returns one of the preceding values.  It returns C<1>
-if the file exists and appears to be a binary file, C<""> if the file or
-directory exists, but doesn't appear to be a binary file, or C<undef> if the
-file or directory doesn't exist.
+This is the binary filetest operator.  FILE must be a filename, filehandle, or
+an expression that returns one of the preceding values.  It returns the
+L</Canonical True Value> if the file exists and appears to be a binary file, the
+L</Canonical False Value> if the file or directory exists, but doesn't appear to
+be a binary file, or C<undef> if the file or directory doesn't exist.
 
 If X is a filename, it guesses the type of the file by reading the first
 block from the file.  If the first block contains any nul characters (i.e.
@@ -2332,9 +2335,9 @@ This belongs to L<perlop/Relational Operators>
 
 =head3 Description
 
-This is the numeric less than operator.  It returns a true value if X is
-numerically less than Y or a false value if X is greater than or equal to
-Y.
+This is the numeric less than operator.  It returns the L</Canonical True Value>
+if X is numerically less than Y or the L</Canonical False Value> if X is greater
+than or equal to Y.
 
 Both X and Y will be converted to numbers before the operation; if they
 cannot be converted they will turned into C<0> (and a warning is thrown if
@@ -2364,9 +2367,9 @@ This belongs to L<perlop/Relational Operators>
 
 =head3 Description
 
-This is the numeric greater than operator.  It returns a true value if X is
-numerically greater than Y or a false value if X is less than or equal to
-Y.
+This is the numeric greater than operator.  It returns the 
+L</Canonical True Value> if X is numerically greater than Y or the 
+L</Canonical False Value> if X is less than or equal to Y.
 
 Both X and Y will be converted to numbers before the operation; if they
 cannot be converted they will turned into C<0> (and a warning is thrown if
@@ -2396,9 +2399,9 @@ This belongs to L<perlop/Relational Operators>
 
 =head3 Description
 
-This is the numeric less than or equal to operator.  It returns a true
-value if X is numerically less than or equal to Y or a false value if
-X is greater than to Y.
+This is the numeric less than or equal to operator.  It returns the 
+L</Canonical True Value> if X is numerically less than or equal to Y or the
+L</Canonical False Value> if X is greater than to Y.
 
 Both X and Y will be converted to numbers before the operation; if they
 cannot be converted they will turned into C<0> (and a warning is thrown if
@@ -2428,9 +2431,9 @@ This belongs to L<perlop/Relational Operators>
 
 =head3 Description
 
-This is the numeric greater than or equal to operator.  It returns a true
-value if X is numerically greater than or equal to Y or a false value if
-X is less than Y.
+This is the numeric greater than or equal to operator.  It returns 
+the L</Canonical True Value> if X is numerically greater than or equal to Y or
+the L</Canonical False Value> if X is less than Y.
 
 Both X and Y will be converted to numbers before the operation; if they
 cannot be converted they will turned into C<0> (and a warning is thrown if
@@ -2461,11 +2464,12 @@ This belongs to L<perlop/Relational Operators>
 =head3 Description
 
 This is the lexical less than operator (also known as the string less than
-operator or the stringwise less than operator).  It returns true if X is
-less than Y and false if X is greater than or equal to Y.  The order of
-various characters is locale dependent.  The default order is determined by
-the Unicode ordinal value (since Unicode contains the ASCII set as its first
-C<127> characters, this order is the same as the ASCII order).
+operator or the stringwise less than operator).  It returns the 
+L</Canonical True Value> if X is less than Y and the L</Canonical False Value> if
+X is greater than or equal to Y.  The order of various characters is locale
+dependent.  The default order is determined by the Unicode ordinal value (since
+Unicode contains the ASCII set as its first C<127> characters, this order is
+the same as the ASCII order).
 
 =head3 Example
 
@@ -2493,11 +2497,12 @@ This belongs to L<perlop/Relational Operators>
 =head3 Description
 
 This is the lexical greater than operator (also known as the string greater
-than operator or the stringwise greater than operator).  It returns true if
-X is greater than Y and false if X is less than or equal to Y.  The order of
-various characters is locale dependent.  The default order is determined by
-the Unicode ordinal value (since Unicode contains the ASCII set as its first
-C<127> characters, this order is the same as the ASCII order).
+than operator or the stringwise greater than operator).  It returns the
+L</Canonical True Value> if X is greater than Y and the L</Canonical False Value>
+if X is less than or equal to Y.  The order of various characters is locale
+dependent.  The default order is determined by the Unicode ordinal value (since
+Unicode contains the ASCII set as its first C<127> characters, this order is
+the same as the ASCII order).
 
 =head3 Example
 
@@ -2525,11 +2530,11 @@ This belongs to L<perlop/Relational Operators>
 
 This is the lexical less than or equal to operator (also known as the string
 less than or equal to operator or the stringwise less than or equal to
-operator).  It returns true if X is less than or equal to Y and false if X
-is greater than Y.  The order of various characters is locale dependent.
-The default order is determined by the Unicode ordinal value (since Unicode
-contains the ASCII set as its first C<127> characters, this order is the
-same as the ASCII order).
+operator).  It returns the L</Canonical True Value> if X is less than or equal
+to Y and the L</Canonical False Value> if X is greater than Y.  The order of
+various characters is locale dependent.  The default order is determined by the
+Unicode ordinal value (since Unicode contains the ASCII set as its first C<127>
+characters, this order is the same as the ASCII order).
 
 =head3 Example
 
@@ -2555,13 +2560,13 @@ This belongs to L<perlop/Relational Operators>
 
 =head3 Description
 
-This is the lexical greater than or equal to operator (also known as the
-string greater than or equal to operator or the stringwise greater than or
-equal to operator).  It returns true if X is greater than Y and false if X
-is less than or equal to Y.  The order of various characters is locale
-dependent.  The default order is determined by the Unicode ordinal value
-(since Unicode contains the ASCII set as its first C<127> characters, this
-order is the same as the ASCII order).
+This is the lexical greater than or equal to operator (also known as the string
+greater than or equal to operator or the stringwise greater than or equal to
+operator).  It returns the L</Canonical True Value> if X is greater than Y and
+the L</Canonical False Value> if X is less than or equal to Y.  The order of
+various characters is locale dependent.  The default order is determined by the
+Unicode ordinal value (since Unicode contains the ASCII set as its first C<127>
+characters, this order is the same as the ASCII order).
 
 =head3 Example
 
@@ -2587,8 +2592,9 @@ This belongs to L<perlop/Equality Operators>.
 
 =head3 Description
 
-This is the numeric equality operator.  It returns true if X and Y evaluate
-as the same number.
+This is the numeric equality operator.  It returns the L</Canonical True Value>
+if X and Y evaluate as the same number and the L</Canonical False Value> if they
+don't.
 
 Both X and Y will be converted to numbers before the operation; if they
 cannot be converted they will turned into C<0> (and a warning is thrown if
@@ -2637,8 +2643,9 @@ This belongs to L<perlop/Equality Operators>.
 
 =head3 Description
 
-This is the numeric not equals operator.  It returns true if X does not
-evaluate to the same numeric value as Y.
+This is the numeric not equals operator.  It returns the 
+L</Canonical True Value> if X does not evaluate to the same numeric value as Y,
+and the L</Canonical False Value> if it doesn't.
 
 Both X and Y will be converted to numbers before the operation; if they
 cannot be converted they will turned into C<0> (and a warning is thrown if
@@ -2745,8 +2752,9 @@ This belongs to L<perlop/Equality Operators>.
 =head3 Description
 
 This is the lexical not equals operator (AKA the string not equals operator
-or the stringwise not equals operator).  It returns false if X and Y
-evaluate as the same string.
+or the stringwise not equals operator).  It returns the 
+L</Canonical False Value> if X and Y evaluate as the same string, and the
+L</Canonical True Value> if they don't.
 
 =head3 Example
 
@@ -3091,8 +3099,8 @@ is inclusive).  If Y is less than X then an empty list is returned.  If both
 X and Y are strings, then the auto-magical behavior of L</X++> is used to
 generate the list.
 
-The flip-flop operator returns false as long as X is false, once X becomes
-true it returns true until I<after> Y is true, at which time it returns
+The flip-flop operator returns false as long as X is false, once X returns
+true the flip-flop returns true until I<after> Y is true, at which time it returns
 false.  Each flip-flop operator keeps track of its own state separately from
 the other flip-flop operators.
 
@@ -3825,8 +3833,9 @@ This belongs to L<perlop/Logical Not>.
 =head3 Description
 
 This is the low-precedence logical negation operator.  It performs logical
-negation, i.e., "not".  It returns an empty string if X is true, otherwise
-it returns C<1>.  There is a high-precedence version: C<!>.
+negation, i.e., "not".  It returns the L</Canonical False Value> if X is
+true, otherwise it returns the L</Canonical True Value>.  There is a
+high-precedence version: C<!>.
 
 =head3 Example
 
