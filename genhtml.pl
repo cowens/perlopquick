@@ -4,6 +4,7 @@
 use v5.12.0;
 use strict;
 use warnings;
+no warnings "experimental::smartmatch";
 
 {
 	package GenHTML;
@@ -40,6 +41,7 @@ use warnings;
 			print "\t\t<p>\n"    when "Para";
 			print "<code>"       when "C";
 			print "<em>"         when "I";
+			print "<strong>"     when "B";
 			when ("head2") {
 				$in_head2 = 1;
 				print qq(\t\t<h2 id=")
@@ -50,14 +52,14 @@ use warnings;
 				my $doc     = join('', @to[2 .. $#to]);
 				my @sec     = @{ref $attr->{section} ? $attr->{section} : []};
 				my $section = join('',  @sec[2 .. $#sec]);
-				
+
 				if ($doc eq '"X"') {
 					($section, $doc) = ($doc, $section);
 				}
 
 				if ($doc) {
 					$base    = "http://perldoc.perl.org/$doc.html#";
-					$in_link = $section ? 
+					$in_link = $section ?
 						"<em>" . encode_entities($section) . "</em> in $doc" :
 						$doc;
 				} else {
@@ -85,6 +87,7 @@ use warnings;
 			print "\n\t\t</p>\n"     when "Para";
 			print "</code>"          when "C";
 			print "</em>"            when "I";
+			print "</strong>"        when "B";
 			when ("head2") {
 				my $id   = join "", @head2_id;
 				my $name = join "", @head2_name;
