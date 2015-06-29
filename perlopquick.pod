@@ -221,6 +221,146 @@ L<perlop/Quote and Quote-like Operators>.
 L<E<quot>XE<quot>>, L</'X'>, L</qq(X)>, L<perlvar/$">,
 and L<perlop/Quote and Quote-like Operators>
 
+=head2 `X`
+
+=head3 Class
+
+This belongs to L<perlop/Terms and List Operators (Leftward)>,
+L<perlop/Quote and Quote-like Operators>, and L<perlop/I/O Operators>
+
+=head3 Description
+
+This is the backtick operator. It runs X as an external command.
+
+It is an interpolating string like C<""> that, instead of returning the
+interpolated value, returns the value of running the interpolated value as an
+external command.  In addition to Perl's interpolation, the string undergoes
+shell expansion as well (eg * will become a list of the filenames in the
+current directory).  Perl interpolation happens first, so to send a literal
+dollar sign to the external command, you must escape it and the escape
+character:
+
+    my $stdout = `command \\\$`;
+
+In list context, it will return the output broken into chunks using the input
+record separator (C<$/>).
+
+In scalar context, a single string containing the entire output of the
+external command will be returned.
+
+For a full discussion of how strings work, see
+L<perlop/Quote and Quote-like Operators>.
+
+=head3 Example
+
+    my $processes = `ps -ef`; # $processes contains the output of ps -ef
+
+    # note the use of the escape character to prevent Perl's
+    # interpolation of $USER.  This allows the shell to interpolate
+    # the value of the $USER environment variable.
+
+    local $/ = "\n"; # this is the default, but it pays to be careful
+
+    # @matches contains one element for every line in the command's output
+    my @matches = `grep \$USER /etc/group`;
+
+=head3 See also
+
+L<E<quot>XE<quot>>, L</qq(X)>, L</qx(X)>L<perlvar/$/>,
+L<perlop/Quote and Quote-like Operators>,
+L<perlop/I/O Operators>
+
+=head2 qx(X)
+
+=head3 Class
+
+This belongs to L<perlop/Terms and List Operators (Leftward)>,
+L<perlop/Quote and Quote-like Operators>, and L<perlop/I/O Operators>
+
+=head3 Description
+
+This is the generalized backtick operator.  It runs X as an external command.
+
+The delimiters C<()> are chosen by the user and may consist of either
+bracketing characters (C<< qx<> >>, C<qx()>, C<qx{}>, and C<qx[]>) or matching
+characters (C<qx##>, C<qxaa>, etc.).  It is generally used to allow the user
+to avoid having to escape characters.
+
+It is an interpolating string like C<qq()> that, instead of returning the
+interpolated value, returns the value of running the interpolated value as an
+external command.  In addition to Perl's interpolation, the string undergoes
+shell expansion as well (eg * will become a list of the filenames in the
+current directory).  Perl interpolation happens first, so to send a literal
+dollar sign to the external command, you must escape it and the escape
+character:
+
+    my $stdout = qx(command \\\$);
+
+In list context, it will return the output broken into chunks using the input
+record separator (C<$/>).
+
+In scalar context, a single string containing the entire output of the
+external command will be returned.
+
+For a full discussion of how strings work, see
+L<perlop/Quote and Quote-like Operators>.
+
+=head3 Example
+
+    my $processes = qx(ps -ef); # $processes contains the output of ps -ef
+
+    # note the use of the escape character to prevent Perl's
+    # interpolation of $USER.  This allows the shell to interpolate
+    # the value of the $USER environment variable.
+
+    local $/ = "\n"; # this is the default, but it pays to be careful
+
+    # @matches contains one element for every line in the command's output
+    my @matches = qx(grep \$USER /etc/group);
+
+=head3 See also
+
+L<E<quot>XE<quot>>, L</`X`>, L</qx(X)>L<perlvar/$/>,
+L<perlop/Quote and Quote-like Operators>,
+L<perlop/I/O Operators>
+
+=head2 qr(X)
+
+=head3 Class
+
+This belongs to L<perlop/Terms and List Operators (Leftward)> and
+L<perlop/Regexp Quote-Like Operators>.
+
+=head3 Description
+
+This is the regular expression (aka regex or regexp) compiler operator.  It
+returns a compiled regular expression suitable for interpolation into the
+match operator (C<m/X/>) or another regular expression compiler operator.
+
+It takes all of the regular expression modifiers that the match and
+substitution operators allow.
+
+=head3 Example
+
+    # regex to match an octet
+    my $octet = qr(
+       [0-9]       |
+       [1-9][0-9]  |
+       1[0-9][0-9] |
+       2[0-4][0-9] |
+       25[0-5]     |
+    )x;
+
+    $ regex to match an ip address
+    my $ip_addr = qr( \b (?: $octet [.] ){3} $octet \b )x;
+
+    # $match will contain 8.8.8.8
+    my ($match) = "ip addr: 8.8.8.8" =~ /($ip_addr)/;
+
+=head3 See Also
+
+ L</m/X/>, L<s/X/Y/>, and L<perlop/Regexp Quote-Like Operators>
+
 =head2 qw(X)
 
 =head3 Class
@@ -1188,8 +1328,8 @@ This belongs to L<perlop/Binding Operators>.
 
 =head3 Description
 
-This is the binding operator.  It applies a regex match (C<m//>),
-substitution (C<s///>), or transliteration (C<tr///> or C<y///>) 
+This is the binding operator.  It applies a regex match (C<m/X/>),
+substitution (C<s/X/Y/>), or transliteration (C<tr/X/Y/> or C<y/X/Y/>) 
 PATTERN against a string variable.  
 
 When used in scalar context, the return value generally indicates
@@ -1218,7 +1358,7 @@ C<\>, which it will consider a syntax error.
 =head3 See also
 
 L<perlop>, L<perlretut>, and L<prelre>
-  
+
 =head2 STRING !~ PATTERN
 
 =head3 Class
@@ -1227,13 +1367,13 @@ This belongs to L<perlop/Binding Operators>.
 
 =head3 Description
 
-This is the negative binding operator.  It applies a regex match (C<m//>),
-substitution (C<s///>), or transliteration (C<tr///> or C<y///>) 
-PATTERN against a string variable.  
+This is the negative binding operator.  It applies a regex match (C<m/X/>),
+substitution (C<s/X/Y/>), or transliteration (C<tr/X/Y/> or C<y/X/Y/>)
+PATTERN against a string variable.
 
 When used in scalar context, the return value is the opposite of what the
 return value would have been if the C<=~> had been used.  Behavior in list
-context depends on the particular operator.  See 
+context depends on the particular operator.  See
 L<perlop/"Regexp Quote-Like Operators"> for details and L<perlretut> for
 examples using these operators.
 
