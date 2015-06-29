@@ -557,6 +557,69 @@ then @{X} returns an array variable whose name is the same as the string.
 
 L</\X>, L<perlreftut>, and L<perlref>
 
+=head2 <>
+
+=head3 Class
+
+This belongs to L<perlop/I/O Operators>.
+
+=head3 Description
+
+When the readline operator (<>) is empty, it is the magic readline operator.
+It reads from C<STDIN> or files passed as an argument to the program much in the
+same way classic Unix filter programs (eg grep, sed, awk, etc.) do.
+
+When first called in a program, if nothing is currently in C<@ARGV>, and the
+C<ARGV> filehandle is not open, it will C<push> "-" onto @ARGV before
+running.
+
+If the C<ARGV> filehandle is open, it reads from that file until the input
+record separator (C<$/>) is satisfied or the end of the file is reached and
+returns the string it read.  Once it has reached the end of C<ARGV> it will
+C<shift> the first element of <@ARGV> off and store it in C<$ARGV>.  It will
+then open the file named by C<$ARGV> using the two argument version of C<open>
+(this means the string "-", as added to C<@ARGV> above, will open STDIN, not
+the file named "-") and store the resulting filehandle in C<ARGV>.  If there
+are no more elements in C<@ARGV> when the current file ends, it will return
+C<undef>.
+
+There is special magic for the magic readline operator when it is called from
+inside of the test portion of a C<while> loop.  All of the following
+statements are syntactically equivalent:
+
+    while (<>) { ... }
+    while ($_ = <>) { ... }
+    while (defined($_ = <>)) { ... }
+
+That is, when the magic readline operator is used in a while loop, it will
+return its value to the default variable (C<$_>) unless you assign it a
+different variable, and it will test for definedness rather than truthiness.
+
+=head3 Security Warning
+
+The magic readline operator uses the two argument version of open to open
+files.  This means if one of your files is named "|command" or "command|",
+then perl will attempt to run "command".  It also means if one of your files
+is named ">file", it will attempt to open the file named "file", not ">file".
+Likewise, there is no way to open a file named "-" since that will open STDIN
+instead.
+
+To fix this problem, use the CPAN module ARGV::readonly.  It cleans up the
+contents of C<@ARGV> to prevent accidental code execution or opening of the
+wrong files.
+
+=head3 Example
+
+	while (my $record = <>) {
+		# $record contains data from either STDIN or
+		# a file from @ARGV
+	}
+
+=head3 See also
+
+L<perlvar/$/>, L<perlvar/ARGV>, L<perlvar/@ARGV>, L<perlvar/$ARGV>,
+L<perlfunc/open>, L<perlfunc/readline>, and L<perlop/I/O Operators>
+
 =head2 X->[Y]
 
 =head3 Class
