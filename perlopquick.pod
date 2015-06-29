@@ -659,7 +659,8 @@ different variable, and it will test for definedness rather than truthiness.
 
 =head3 See also
 
-L<perlvar/$/>, L<perlfunc/open>, L<perlfunc/readline>, and L<perlop/I/O Operators>
+L<perlvar/$/>, L<perlfunc/open>, L<perlfunc/readline>, and
+L<perlop/I/O Operators>
 
 =head2 X->[Y]
 
