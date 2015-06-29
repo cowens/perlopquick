@@ -757,10 +757,10 @@ wrong files.
 
 =head3 Example
 
-	while (my $record = <>) {
-		# $record contains data from either STDIN or
-		# a file from @ARGV
-	}
+    while (my $record = <>) {
+        # $record contains data from either STDIN or
+        # a file from @ARGV
+    }
 
 =head3 See also
 
@@ -800,20 +800,20 @@ different variable, and it will test for definedness rather than truthiness.
 
 =head3 Example
 
-	my $filename = "/etc/passwd";
+    my $filename = "/etc/passwd";
 
-	local $/ = "\n"; # this is the default, but best to be certain
+    local $/ = "\n"; # this is the default, but best to be certain
 
-	open my $fh, "<", $filename or die "could not open $filename: $!";
+    open my $fh, "<", $filename or die "could not open $filename: $!";
 
-	while (my $record = <$fh>) {
-		# $record contains the next record from /etc/passwd
-	}
+    while (my $record = <$fh>) {
+        # $record contains the next record from /etc/passwd
+    }
 
-	fseek $fh, 0, 0; # rewind the file
+    fseek $fh, 0, 0; # rewind the file
 
-	my $record1 = <$fh>; #reads the first record from /etc/passwd
-	my $record2 = <$fh>; #reads the second record from /etc/passwd
+    my $record1 = <$fh>; #reads the first record from /etc/passwd
+    my $record2 = <$fh>; #reads the second record from /etc/passwd
 
 =head3 See also
 
@@ -853,16 +853,16 @@ different variable, and it will test for definedness rather than truthiness.
 
 =head3 Example
 
-	# @files contains the list of files and directories in /etc.
-	my @files = </etc/*>;
+    # @files contains the list of files and directories in /etc.
+    my @files = </etc/*>;
 
-	my $filename = "/etc/passwd";
+    my $filename = "/etc/passwd";
 
-	open my $fh, "<", $filename or die "could not open $filename: $!";
+    open my $fh, "<", $filename or die "could not open $filename: $!";
 
-	while (my $record = <$fh>) {
-		# $record contains data /etc/passwd
-	}
+    while (my $record = <$fh>) {
+        # $record contains data /etc/passwd
+    }
 
 =head3 See also
 
