@@ -40,13 +40,13 @@ This belongs to <a href="http://perldoc.perl.org/perlop.html#Terms-and-List-Oper
 		</p>
 		<h3>Description</h3>
 		<p>
-This is the double quote operator (aka the interpolating string operator). It creates a string literal out of X. If a scalar, array, or an index into a array or hash is in X, the value of that variable is inserted into the string in place if the variable. Arrays are formated using <code>$&quot;</code>:
+This is the double quote operator (AKA the interpolating string operator). It creates a string literal out of X. If a scalar, array, or an index into an array or hash is in X, then the value of that variable is inserted into the string in place of the variable. Arrays are formatted using <code>$&quot;</code>:
 		</p>
 		<pre>
     my $interpolated_value = join $&quot;, @array;
 		</pre>
 		<p>
-To place a <code>&quot;</code> inside the string, you must escape it with <code>\</code>:
+To place a <code>&quot;</code> character inside the string, you must escape it with <code>\</code>:
 		</p>
 		<pre>
     my $quote = &quot;He said \&quot;I like quotes.\&quot;&quot;;
@@ -66,7 +66,7 @@ For a full discussion of how strings work, see <a href="http://perldoc.perl.org/
 		<h3>Example</h3>
 		<pre>
     my $name   = &quot;World&quot;;
-    my $string = &quot;Hello, $name!\n&quot;; #$string is now &quot;Hello World!\n&quot;;
+    my $string = &quot;Hello, $name!\n&quot;; # $string is now &quot;Hello World!\n&quot;;
 		</pre>
 		<h3>See also</h3>
 		<p>
@@ -79,7 +79,7 @@ This belongs to <a href="http://perldoc.perl.org/perlop.html#Terms-and-List-Oper
 		</p>
 		<h3>Description</h3>
 		<p>
-This is the generalized double quote operator (aka the generalized interpolating string operator). It creates a string literal out of X. If a scalar, array, or an index into a array or hash is in X, the value of that variable is inserted into the string in place if the variable. Arrays are formated using <code>$&quot;</code>:
+This is the generalized double quote operator (AKA the generalized interpolating string operator). It creates a string literal out of X. If a scalar, array, or an index into an array or hash is in X, then the value of that variable is inserted into the string in place of the variable. Arrays are formated using <code>$&quot;</code> (which is a space by default):
 		</p>
 		<pre>
     my $interpolated_value = join $&quot;, @array;
@@ -117,7 +117,7 @@ For a full discussion of how strings work, see <a href="http://perldoc.perl.org/
 		<h3>Example</h3>
 		<pre>
     my $name   = &quot;World&quot;;
-    my $string = qq/Hello, $name!\n/; #$string is now &quot;Hello World!\n&quot;;
+    my $string = qq/Hello, $name!\n/; # $string is now &quot;Hello World!\n&quot;;
 		</pre>
 		<h3>See also</h3>
 		<p>
@@ -130,16 +130,16 @@ This belongs to <a href="http://perldoc.perl.org/perlop.html#Terms-and-List-Oper
 		</p>
 		<h3>Description</h3>
 		<p>
-This is the single quote operator (aka the non-interpolating string operator). It creates a string literal out of X.
+This is the single quote operator (AKA the non-interpolating string operator). It creates a string literal out of X.
 		</p>
 		<p>
-To place a <code>&#39;</code> inside the string, you must escape it with <code>\</code>:
+To place a <code>&#39;</code> character inside the string, you must escape it with <code>\</code>:
 		</p>
 		<pre>
     my $quote = &#39;He said \&#39;I like quotes.\&#39;&#39;;
 		</pre>
 		<p>
-To place a <code>\</code> inside the string, you may escape it with another <code>\</code>:
+To place a <code>\</code> character inside the string, you may escape it with another <code>\</code>:
 		</p>
 		<pre>
     my $quote = &#39;This is a backslash: \\&#39;;
@@ -153,7 +153,7 @@ For a full discussion of how strings work, see <a href="http://perldoc.perl.org/
 		<h3>Example</h3>
 		<pre>
     my $name   = &#39;World&#39;;
-    my $string = &#39;Hello, $name!\n&#39;; #$string is now &quot;Hello \$name!\n&quot;;
+    my $string = &#39;Hello, $name!\n&#39;; # $string is now &quot;Hello \$name!\\n&quot;;
 		</pre>
 		<h3>See also</h3>
 		<p>
@@ -166,7 +166,7 @@ This belongs to <a href="http://perldoc.perl.org/perlop.html#Terms-and-List-Oper
 		</p>
 		<h3>Description</h3>
 		<p>
-This is the generalized single quote operator (aka the generalized non-interpolating string operator). It creates a string literal out of X.
+This is the generalized single quote operator (AKA the generalized non-interpolating string operator). It creates a string literal out of X
 		</p>
 		<p>
 The delimiters <code>()</code> are chosen by the user and may consist of either bracketing characters (<code>q&lt;&gt;</code>, <code>q()</code>, <code>q{}</code>, and <code>q[]</code>) or matching characters (<code>q##</code>, <code>qaa</code>, etc.). It is generally used to allow the user to avoid having to escape characters:
@@ -178,7 +178,7 @@ The delimiters <code>()</code> are chosen by the user and may consist of either 
 If the delimiter is not a bracketing pair, or if the brackets are unbalanced, you will need to escape the delimiter with <code>\</code> if you wish to have that character in the string:
 		</p>
 		<pre>
-    my $quote = q{I have too many \} characters};
+    my $okay = q{I have too many \} characters};
 		</pre>
 		<p>
 But it is often better to just choose a delimiter that does not conflict with the string:
@@ -187,7 +187,20 @@ But it is often better to just choose a delimiter that does not conflict with th
     my $better = q/I have too many } characters/;
 		</pre>
 		<p>
-Unlike double quoted strings, the escaping of the delimiter is the only escape.
+To place a <code>\</code> character inside the string, you may escape it with another <code>\</code>:
+		</p>
+		<pre>
+    my $quote = q/This, \\, is a backslash./;
+		</pre>
+		<p>
+but this is only necessary when the <code>\</code> is followed by the closing delimiter:
+		</p>
+		<pre>
+    my $fine     = q/This, \, is a backslash./;
+    my $required = q/This is a backslash:\\/;
+		</pre>
+		<p>
+Unlike double quoted strings, the escaping of the delimiter and <code>\</code> are the only escapes.
 		</p>
 		<p>
 For a full discussion of how strings work, see <a href="http://perldoc.perl.org/perlop.html#Quote-and-Quote-like-Operators"><em>Quote and Quote-like Operators</em> in perlop</a>.
@@ -195,7 +208,7 @@ For a full discussion of how strings work, see <a href="http://perldoc.perl.org/
 		<h3>Example</h3>
 		<pre>
     my $name   = &quot;World&quot;;
-    my $string = q/Hello, $name!\n/; #$string is now &quot;Hello \$name!\n&quot;;
+    my $string = q/Hello, $name!\n/; # $string is now &quot;Hello \$name!\\n&quot;;
 		</pre>
 		<h3>See also</h3>
 		<p>
@@ -214,15 +227,15 @@ This is the quote word operator. It creates a list of strings. The individual st
 The delimiters <code>()</code> are chosen by the user and may consist of either bracketing characters (<code>qw&lt;&gt;</code>, <code>qw()</code>, <code>qw{}</code>, and <code>qw[]</code>) or matching characters (<code>qw##</code>, <code>qwaa</code>, etc.). It is generally used to allow the user to avoid having to escape characters:
 		</p>
 		<pre>
-     my @list = qw/&#39;a&#39; &#39;b&#39; &#39;c&#39;/; #@list is now (&quot;&#39;a&#39;&quot;, &quot;&#39;b&#39;&quot;, &quot;&#39;c&#39;&quot;)
+     my @list = qw/&#39;a&#39; &#39;b&#39; &#39;c&#39;/; # @list is now (&quot;&#39;a&#39;&quot;, &quot;&#39;b&#39;&quot;, &quot;&#39;c&#39;&quot;)
 		</pre>
 		<p>
 If the delimiter is not a bracketing pair, or if the brackets are unbalanced, you will need to escape the delimiter with <code>\</code> if you wish to have that character in the string:
 		</p>
 		<pre>
-    my @broken   = qw{I have too many } characters};        #broken
-    my @works    = qw{I have too many \} characters};       #works
-    my @balanced = qw{this works {} because it is balanced} #works
+    my @broken   = qw{I have too many } characters};        # broken
+    my @works    = qw{I have too many \} characters};       # works
+    my @balanced = qw{this works {} because it is balanced} # works
 		</pre>
 		<p>
 But it is often better to just choose a delimiter that does not conflict with the string:
@@ -235,8 +248,8 @@ Unlike double quoted strings, the escaping of the delimiter is the only escape.
 		</p>
 		<h3>Example</h3>
 		<pre>
-    my @a = qw/ a b c /;     #@a is now (&quot;a&quot;, &quot;b&quot;, &quot;c&quot;)
-    my @b = qw/ $foo $bar /; #@b is now (&#39;$foo&#39;, &#39;$bar&#39;)
+    my @a = qw/ a b c /;     # @a is now (&quot;a&quot;, &quot;b&quot;, &quot;c&quot;)
+    my @b = qw/ $foo $bar /; # @b is now (&#39;$foo&#39;, &#39;$bar&#39;)
 		</pre>
 		<h3>See Also</h3>
 		<p>
@@ -252,20 +265,23 @@ This belongs to <a href="http://perldoc.perl.org/perlop.html#Terms-and-List-Oper
 This is the array index operator. Indexes are <code>0</code> based (unless <code>$[</code> has been set to a non-zero value). Negative indexes count backwards from the end of the list or array.
 		</p>
 		<p>
-If X&#39;s sigil is <code>$</code>, then the expression Y is placed in scalar context when it is evaluated and then treated as a number, so, it is converted to a number before it is used. If it cannot be converted then it is turned into <code>0</code> (and a warning is thrown if <a href="http://perldoc.perl.org/warnings.html#">warnings</a> are turned on). It returns the Yth item from X.
+If X&#39;s sigil is <code>$</code>, then the expression Y is placed in scalar context when it is evaluated and then treated as a number; hence it is converted to a number before it is used. If it cannot be converted then it is turned into <code>0</code> (and a warning is thrown if <a href="http://perldoc.perl.org/warnings.html#">warnings</a> are turned on). It returns the Yth item from X.
 		</p>
 		<p>
-If X&#39;s sigil is <code>@</code> instead, then the expression Y is placed in list context when it is evaluated and each item in the resulting list is then treated as a number, so, they are converted to a number before it is used. Each one will be turned into <code>0</code> if it cannot be converted (and a warning is thrown if <a href="http://perldoc.perl.org/warnings.html#">warnings</a> are turned on). It returns a list of items from the array X at the indexes in the list generated by Y.
+If X&#39;s sigil is <code>@</code> instead, then an <code>array slice</code> is created. The expression Y is placed in list context when it is evaluated and each item in the resulting list is then treated as a number; hence they are converted to a number before the list is used. Each item will be turned into <code>0</code> if it cannot be converted (and a warning is thrown if <a href="http://perldoc.perl.org/warnings.html#">warnings</a> are turned on). The operator returns a list of items from the array X at the indexes in the list generated by Y.
+		</p>
+		<p>
+Note: The string contents of elements of Y are not modified by the internal conversion to numerical values.
 		</p>
 		<h3>Example</h3>
 		<pre>
     my @a = (&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;);
-    my $x = $a[2];    #$x is now equal to &quot;c&quot;
-    my $y = $a[-3];   #$y is now equal to &quot;b&quot;
-    my @b = @a[1, 2]; #@b is now (&quot;b&quot;, &quot;c&quot;)
+    my $x = $a[2];    # $x is now equal to &quot;c&quot;
+    my $y = $a[-3];   # $y is now equal to &quot;b&quot;
+    my @b = @a[1, 2]; # @b is now (&quot;b&quot;, &quot;c&quot;)
 
-    $a[2]    = &#39;e&#39;;      #@a is now (&#39;a&#39;, &#39;b&#39;, &#39;e&#39;, &#39;d&#39;)
-    @b[0, 1] = @b[1, 0]; #swap values @b is now (&#39;c&#39;, &#39;b&#39;)
+    $a[2]    = &#39;e&#39;;      # @a is now (&#39;a&#39;, &#39;b&#39;, &#39;e&#39;, &#39;d&#39;)
+    @b[0, 1] = @b[1, 0]; # swap values @b is now (&#39;c&#39;, &#39;b&#39;)
 		</pre>
 		<h3>See also</h3>
 		<p>
@@ -278,19 +294,19 @@ This belongs to <a href="http://perldoc.perl.org/perlop.html#Terms-and-List-Oper
 		</p>
 		<h3>Description</h3>
 		<p>
-This is the list index operator. The expression Y is placed in list context when it is evaluated and each item in the resulting list is then treated as a number, so, they are converted to a number before it is used. Each one will be turned into <code>0</code> if it cannot be converted (and a warning is thrown if <a href="http://perldoc.perl.org/warnings.html#">warnings</a> are turned on). It returns a list of items from the list X at the indexes in the list generated by Y.
+This is the list index operator. The expression Y is placed in list context when it is evaluated and each item in the resulting list is then treated as a number; hence they are converted to a number before it is used. Each one will be turned into <code>0</code> if it cannot be converted (and a warning is thrown if <a href="http://perldoc.perl.org/warnings.html#">warnings</a> are turned on). It returns a list of items from the list X at the indexes in the list generated by Y.
 		</p>
 		<h3>Example</h3>
 		<pre>
      my $i = 4;
-     my $x = (&quot;a&quot; .. &quot;z&quot;)[$i];      #$x is now &quot;e&quot;
-     my $y = (&quot;a&quot; .. &quot;z&quot;)[-$i];     #$y is now &quot;w&quot;
-     my @a = (&quot;a&quot; .. &quot;z&quot;)[0 .. $i]; #@a is now (&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;, &quot;e&quot;)
-     my @b = (&quot;a&quot; .. &quot;z&quot;)[1, 0, 3]; #@b is now (&quot;b&quot;, &quot;a&quot;, &quot;d&quot;)
+     my $x = (&quot;a&quot; .. &quot;z&quot;)[$i];      # $x is now &quot;e&quot;
+     my $y = (&quot;a&quot; .. &quot;z&quot;)[-$i];     # $y is now &quot;w&quot;
+     my @a = (&quot;a&quot; .. &quot;z&quot;)[0 .. $i]; # @a is now (&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;, &quot;e&quot;)
+     my @b = (&quot;a&quot; .. &quot;z&quot;)[1, 0, 3]; # @b is now (&quot;b&quot;, &quot;a&quot;, &quot;d&quot;)
 		</pre>
 		<h3>See also</h3>
 		<p>
-<a href="#(X)[Y]">(X)[Y]</a>
+<a href="http://perldoc.perl.org/X[Y].html#">X[Y]</a>
 		</p>
 		<h2 id="X{Y}">X{Y}</h2>
 		<h3>Class</h3>
@@ -299,109 +315,20 @@ This belongs to <a href="http://perldoc.perl.org/perlop.html#Terms-and-List-Oper
 		</p>
 		<h3>Description</h3>
 		<p>
-This is the hash index operator. It retrieves the value associated with the key Y from X. If Y is a list of keys then a slice is returned (see <a href="http://perldoc.perl.org/perldata.html#">perldata</a> for information about slices).
+This is the hash index operator. It retrieves the value associated with the key Y from a hash X. If Y is a list of keys then a slice is returned (see <a href="http://perldoc.perl.org/perldata.html#">perldata</a> for information about slices).
 		</p>
 		<h3>Example</h3>
 		<pre>
     my %h = (a =&gt; 1, b =&gt; 2, c =&gt; 3);
-    my $x = $h{c};        #$x is now 3
-    my @a = @h{&quot;a&quot;, &quot;b&quot;}; #@a is now (1, 2)
+    my $x = $h{c};        # $x is now 3
+    my @a = @h{&quot;a&quot;, &quot;b&quot;}; # @a is now (1, 2)
 
-    $h{d}       = 4;      #%h is now (a =&gt; 1, b =&gt; 2, c =&gt; 3, d =&gt; 4)
-    @h{qw/a d/} = (0, 1); #%h is now (a =&gt; 0, b =&gt; 1, c =&gt; 3, d =&gt; 4)
+    $h{d}       = 4;      # %h is now (a =&gt; 1, b =&gt; 2, c =&gt; 3, d =&gt; 4)
+    @h{qw/a d/} = (0, 1); # %h is now (a =&gt; 0, b =&gt; 2, c =&gt; 3, d =&gt; 1)
 		</pre>
 		<h3>See also</h3>
 		<p>
 <a href="#(X){Y}">(X){Y}</a> and <a href="#X->{Y}">X->{Y}</a>
-		</p>
-		<h2 id="X->[Y]">X->[Y]</h2>
-		<h3>Class</h3>
-		<p>
-This belongs to <a href="http://perldoc.perl.org/perlop.html#The-Arrow-Operator"><em>The Arrow Operator</em> in perlop</a>.
-		</p>
-		<h3>Description</h3>
-		<p>
-This is the infix array dereferencing operator (AKA The Arrow Operator). It fetches the value at position Y in an array reference returned by the expression X. When dealing with multiple levels of dereferencing (such as with a reference to an array of arrays) only the first level requires the arrow operator.
-		</p>
-		<p>
-If X does not evaluate to an array reference, then a runtime error occurs.
-		</p>
-		<h3>Example</h3>
-		<pre>
-    my @a         = (&quot;a&quot;, &quot;b&quot;, &quot;c&quot;);
-    my $aref      = \@a;
-    my $x         = $aref-&gt;[1]; #$x is now &quot;b&quot;
-    $aref-&gt;[4]    = &quot;d&quot;;        #@a is now (&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;)
-
-    my $aoa = [
-        [0,   1,   2  ],
-        [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;],
-    ];
-
-    my $y = $aoa-&gt;[1][1];       #$y is now &quot;b&quot;
-		</pre>
-		<h3>See also</h3>
-		<p>
-<a href="#\X">\X</a>, <a href="#@{X}">@{X}</a>, <a href="#${X}[Y]">${X}[Y]</a>, <a href="http://perldoc.perl.org/perlreftut.html#">perlreftut</a>, and <a href="http://perldoc.perl.org/perlref.html#">perlref</a>
-		</p>
-		<h2 id="X->{Y}">X->{Y}</h2>
-		<h3>Class</h3>
-		<p>
-This belongs to <a href="http://perldoc.perl.org/perlop.html#The-Arrow-Operator"><em>The Arrow Operator</em> in perlop</a>.
-		</p>
-		<h3>Description</h3>
-		<p>
-This is the infix hash dereferencing operator (AKA The Arrow Operator). It fetches the value associated with the key Y in a hash reference returned by the expression X. When dealing with multiple levels of dereferencing (such as with a reference to a hash of hashes) only the first level requires the arrow operator.
-		</p>
-		<p>
-If X does not evaluate to a hash reference, then a runtime error occurs.
-		</p>
-		<h3>Example</h3>
-		<pre>
-    my %h      = (a =&gt; 1, b =&gt; 2, c =&gt; 3);
-    my $href   = \%h;
-    my $x      = $href-&gt;{b}; #$x is now 2
-    $href-&gt;{d} = 4;          #%h is now (a =&gt; 1, b =&gt; 2, c =&gt; 3, d =&gt; 4)
-
-    my $hoh    = {
-        a =&gt; { a =&gt; 1, b =&gt; 2, c =&gt; 3 }
-        b =&gt; { a =&gt; 4, b =&gt; 5, c =&gt; 6 }
-    };
-
-    my $y = $hoh-&gt;{a}{b};    #$y is now 2
-		</pre>
-		<h3>See also</h3>
-		<p>
-<a href="#\X">\X</a>, <a href="#%{X}">%{X}</a>, <a href="#${X}{Y}">${X}{Y}</a>, <a href="http://perldoc.perl.org/perlreftut.html#">perlreftut</a>, and <a href="http://perldoc.perl.org/perlref.html#">perlref</a>
-		</p>
-		<h2 id="X->(Y)">X->(Y)</h2>
-		<h3>Class</h3>
-		<p>
-This belongs to <a href="http://perldoc.perl.org/perlop.html#The-Arrow-Operator"><em>The Arrow Operator</em> in perlop</a>.
-		</p>
-		<h3>Description</h3>
-		<p>
-This is the infix dereferencing function call operator (AKA The Arrow Operator). It calls the function referred to by X with the arguments Y. When dealing with multiple levels of dereferencing (such as with a reference to a hash of functions) only the first level requires the arrow operator; however, it is recommended you do not use this feature as it tends to cause confusion.
-		</p>
-		<p>
-If X does not evaluate to a code reference, then a runtime error occurs.
-		</p>
-		<h3>Example</h3>
-		<pre>
-    my $sub = sub {
-        my ($arg1, $arg2, $arg3) = @_;
-        print &quot;$arg1 = $arg2 + $arg3\n&quot;;
-    };
-    my $href = {
-        func =&gt; $sub,
-    };
-
-    $sub-&gt;(&quot;a&quot;, &quot;b&quot;, &quot;c&quot;);  #prints &quot;a = b + c\n&quot;
-    $href-&gt;{func}(1, 2, 3); #prints &quot;1 = 2 + 3\n&quot;
-		</pre>
-		<h3>See also</h3>
-		<p>
-<a href="#\X">\X</a>, <a href="http://perldoc.perl.org/perlsub.html#">perlsub</a>, <a href="http://perldoc.perl.org/perlreftut.html#">perlreftut</a>, and <a href="http://perldoc.perl.org/perlref.html#">perlref</a>
 		</p>
 		<h2 id="${X}">${X}</h2>
 		<h3>Class</h3>
@@ -413,11 +340,11 @@ This belongs to <a href="http://perldoc.perl.org/perlop.html#Terms-and-List-Oper
 If X is the name of a scalar variable, then this is just another way of saying <code>$X</code>. This form is handy during interpolation when the name of a variable would be ambiguous:
 		</p>
 		<pre>
-    my $base = &quot;foo&quot;; 
-    my $s    = &quot;${base}bar&quot;; #$s is now &quot;foobar&quot;
+    my $base = &quot;foo&quot;;
+    my $s    = &quot;${base}bar&quot;; # $s is now &quot;foobar&quot;
 		</pre>
 		<p>
-When X is an expression, this is the scalar dereferencing operator. If X evaluates to a scalar reference then the value of the referenced item it returned. If X does not evaluate to a scalar reference a runtime error occurs. If X is a simple scalar variable the braces are unnecessary.
+When X is an expression, this is the scalar dereferencing operator. If X evaluates to a scalar reference then the value of the referenced item is returned. If X does not evaluate to a scalar reference a runtime error occurs. If X is a simple scalar variable the braces are unnecessary.
 		</p>
 		<p>
 If strict is turned off, and it shouldn&#39;t be, and X evaluates to a string then <code>${X}</code> returns a scalar variable whose name is the same as the string.
@@ -428,13 +355,14 @@ If strict is turned off, and it shouldn&#39;t be, and X evaluates to a string th
     my $sref = \$x;
     my @a    = ($sref);
 
-    $$sref   = 6; #$x is now 6
-    ${$a[0]} = 7; #$x is now 7
+    $$sref   = 6; # $x is now 6
+    ${$a[0]} = 7; # $x is now 7
 
     no strict &quot;refs&quot;;
+    our $y = $x;  #$y is now 7
 
-    my $bad = &quot;x&quot;;
-    $$bad = 8;     #$x is now 8
+    my $bad = &quot;y&quot;;
+    $$bad = 8;    # $y is now 8
 		</pre>
 		<h3>See also</h3>
 		<p>
@@ -450,7 +378,7 @@ This belongs to <a href="http://perldoc.perl.org/perlop.html#Terms-and-List-Oper
 If X is the name of an array variable, then this is just another way of saying <code>$X[Y]</code>.
 		</p>
 		<p>
-When X is an expression, this is the indexing array dereferencing operator. If X evaluates to an array reference then it returns value of the Yth item of the referenced array. If X does not evaluate to an array reference a runtime error occurs. If X is a simple scalar variable the braces are unnecessary. The use of this operator is discouraged, see the <a href="#X->[Y]">X->[Y]</a> operator for a better solution.
+When X is an expression, this is the indexing array dereferencing operator. If X evaluates to an array reference then it returns the value of the Yth item of the referenced array. If X does not evaluate to an array reference a runtime error occurs. If X is a simple scalar variable the braces are unnecessary. The use of this operator is discouraged, see the <a href="#X->[Y]">X->[Y]</a> operator for a better solution.
 		</p>
 		<p>
 If strict is turned off, and it shouldn&#39;t be, and X evaluates to a string then <code>${X}[Y]</code> returns the Yth item from the array whose name is the same as the string.
@@ -459,13 +387,13 @@ If strict is turned off, and it shouldn&#39;t be, and X evaluates to a string th
 		<pre>
     my @a    = qw(a b c);
     my $aref = \@a;
-    
-    ${$aref}[0] = 1; #@a is now (1, &quot;b&quot;, &quot;c&quot;);
+    ${$aref}[0] = 1;  # @a is now (1, &quot;b&quot;, &quot;c&quot;)
 
     no strict &quot;refs&quot;;
+    our @b = @a;      # @b is now (1, &quot;b&quot;, &quot;c&quot;)
 
-    my $bad = &quot;a&quot;;
-    ${$bad}[5] = &quot;d&quot;; #@a is now (1, &quot;b&quot;, &quot;c&quot;, undef, undef, &quot;d&quot;)
+    my $bad    = &quot;b&quot;;
+    ${$bad}[5] = &quot;d&quot;; # @b is now (1, &quot;b&quot;, &quot;c&quot;, undef, undef, &quot;d&quot;)
 		</pre>
 		<h3>See also</h3>
 		<p>
@@ -481,7 +409,7 @@ This belongs to <a href="http://perldoc.perl.org/perlop.html#Terms-and-List-Oper
 If X is the name of a hash variable, then this is just another way of saying <code>$X{Y}</code>.
 		</p>
 		<p>
-When X is an expression, this is the indexing hash dereferencing operator. If X evaluates to an hash reference then it returns value associated with the key Y of the referenced hash. If X does not evaluate to an hash reference a runtime error occurs. If X is a simple scalar variable the braces are unnecessary. The use of this operator is discouraged, see the <a href="#X->{Y}">X->{Y}</a> operator for a better solution.
+When X is an expression, this is the indexing hash dereferencing operator. If X evaluates to an hash reference then it returns the value associated with the key Y of the referenced hash. If X does not evaluate to an hash reference a runtime error occurs. If X is a simple scalar variable the braces are unnecessary. The use of this operator is discouraged, see the <a href="#X->{Y}">X->{Y}</a> operator for a better solution.
 		</p>
 		<p>
 If strict is turned off, and it shouldn&#39;t be, and X evaluates to a string then <code>${X}{Y}</code> returns the value associated with the key Y from the hash whose name is the same as the string.
@@ -490,13 +418,13 @@ If strict is turned off, and it shouldn&#39;t be, and X evaluates to a string th
 		<pre>
     my %h    = (a =&gt; 1, b =&gt; 2, c =&gt; 3);
     my $href = \%h;
-    
-    ${$href}{a} = 4; #%h is now (a =&gt; 4, b =&gt; 2, c =&gt; 3);
+    ${$href}{a} = 4; # %h is now (a =&gt; 4, b =&gt; 2, c =&gt; 3)
 
     no strict &quot;refs&quot;;
+    our %newh = %h;  # %newh is now (a =&gt; 4, b =&gt; 2, c =&gt; 3)
 
-    my $bad = &quot;h&quot;;
-    ${$bad}{d} = 4;  #%h is now (a =&gt; 4, b =&gt; 2, c =&gt; 3, d =&gt; 4);
+    my $bad = &quot;newh&quot;;
+    ${$bad}{d} = 4;  # %newh is now (a =&gt; 4, b =&gt; 2, c =&gt; 3, d =&gt; 4)
 		</pre>
 		<h3>See also</h3>
 		<p>
@@ -512,11 +440,11 @@ This belongs to <a href="http://perldoc.perl.org/perlop.html#Terms-and-List-Oper
 If X is the name of an array variable then this is just another way of saying @X. This form is handy during interpolation when the name of a variable would be ambiguous:
 		</p>
 		<pre>
-    my @a = (1 .. 5);
-    my $x = &quot;@{a}bar&quot;; #$x is now &quot;1 2 3bar&quot;
+    my @a = (1 .. 3);
+    my $x = &quot;@{a}bar&quot;; # $x is now &quot;1 2 3bar&quot;
 		</pre>
 		<p>
-When X is an expression, this is the array dereferencing operator. If X evaluates to a array reference then the value of the referenced item is returned. If X does not evaluate to a array reference a runtime error occurs. If X is a simple scalar variable the braces are unnecessary.
+When X is an expression, this is the array dereferencing operator. If X evaluates to an array reference then the value of the referenced item is returned. If X does not evaluate to an array reference a runtime error occurs. If X is a simple scalar variable the braces are unnecessary.
 		</p>
 		<p>
 If strict is turned off, and it shouldn&#39;t be, and X evaluates to a string then @{X} returns an array variable whose name is the same as the string.
@@ -527,13 +455,14 @@ If strict is turned off, and it shouldn&#39;t be, and X evaluates to a string th
     my $aref = \@a;
     my @b    = ($aref);
 
-    @$aref      = (1, 2, 3); #@a is now (1, 2, 3)
-    @{$b[0]}    = (4, 5, 6); #@a is now (4, 5, 6)
+    @$aref      = (1, 2, 3); # @a is now (1, 2, 3)
+    @{$b[0]}    = (4, 5, 6); # @a is now (4, 5, 6)
 
     no strict &quot;refs&quot;;
+    our @c = @a;             # @c is now (4, 5, 6)
 
-    my $bad = &quot;a&quot;;
-    @{$bad}[0,1] = 8;     #$x is now 8
+    my $bad    = &quot;c&quot;;
+    @{$bad}[0] = 8;          # @c is now (8, 5, 6)
 		</pre>
 		<h3>See also</h3>
 		<p>
@@ -546,7 +475,7 @@ This belongs to <a href="http://perldoc.perl.org/perlop.html#Terms-and-List-Oper
 		</p>
 		<h3>Description</h3>
 		<p>
-If X is the name of an array variable then this is just another way of saying %X.
+If X is the name of a hash variable then this is just another way of saying %X.
 		</p>
 		<p>
 When X is an expression, this is the hash dereferencing operator. If X evaluates to a hash reference then the value of the referenced item is returned. If X does not evaluate to a hash reference a runtime error occurs. If X is a simple scalar variable the braces are unnecessary.
@@ -560,16 +489,250 @@ If strict is turned off, and it shouldn&#39;t be, and X evaluates to a string th
     my $href = \%h;
     my @a    = ($href);
 
-    %$href   = (a =&gt; 1); #%h is now (a =&gt; 1)
+    %$href   = (a =&gt; 1); # %h is now (a =&gt; 1)
 
     no strict &quot;refs&quot;;
-
-    my $bad = &quot;h&quot;;
-    @{$bad}{&quot;c&quot;, &quot;d&quot;} = (3, 4); #%h is now (a =&gt; 1, c =&gt; 3, d =&gt; 4)
+    our %newh         = %h;     # %newh is now (a =&gt; 1)
+    my $bad           = &quot;newh&quot;;
+    @{$bad}{&quot;c&quot;, &quot;d&quot;} = (3, 4); #%newh is now (a =&gt; 1, c =&gt; 3, d =&gt; 4)
 		</pre>
 		<h3>See also</h3>
 		<p>
 <a href="#\X">\X</a>, <a href="http://perldoc.perl.org/perlreftut.html#">perlreftut</a>, and <a href="http://perldoc.perl.org/perlref.html#">perlref</a>
+		</p>
+		<h2 id="<>"><></h2>
+		<h3>Class</h3>
+		<p>
+This belongs to <a href="http://perldoc.perl.org/perlop.html#I/O-Operators"><em>I/O Operators</em> in perlop</a>.
+		</p>
+		<h3>Description</h3>
+		<p>
+When the readline operator (&lt;&gt;) is empty, it is the magic readline operator (also called the null filehandle readline operator). It reads from <code>STDIN</code> or files passed as an argument to the program much in the same way classic Unix filter programs (eg grep, sed, awk, etc.) do.
+		</p>
+		<p>
+When first called in a program, if nothing is currently in <code>@ARGV</code>, and the <code>ARGV</code> filehandle is not open, it will <code>push</code> &quot;-&quot; onto @ARGV before running.
+		</p>
+		<p>
+If the <code>ARGV</code> filehandle is open, it reads from that file until the input record separator (<code>$/</code>) is satisfied or the end of the file is reached and returns the string it read. Once it has reached the end of <code>ARGV</code> it will <code>shift</code> the first element of &lt;@ARGV&gt; off and store it in <code>$ARGV</code>. It will then open the file named by <code>$ARGV</code> using the two argument version of <code>open</code> (this means the string &quot;-&quot;, as added to <code>@ARGV</code> above, will open STDIN, not the file named &quot;-&quot;) and store the resulting filehandle in <code>ARGV</code>. If there are no more elements in <code>@ARGV</code> when the current file ends, it will return <code>undef</code> (if in scalar context).
+		</p>
+		<p>
+In list context, it returns a list of all of the remaining records based on the contents to input record separator (&lt;$/&gt;).
+		</p>
+		<p>
+In scalar context, it returns the next record based on the contents to input record separator (&lt;$/&gt;) or <code>undef</code> if there are no more records.
+		</p>
+		<p>
+There is special magic for the magic readline operator when it is called from inside of the test portion of a <code>while</code> loop. All of the following statements are syntactically equivalent:
+		</p>
+		<pre>
+    while (&lt;&gt;) { ... }
+    while ($_ = &lt;&gt;) { ... }
+    while (defined($_ = &lt;&gt;)) { ... }
+		</pre>
+		<p>
+That is, when the magic readline operator is used in a while loop, it will return its value to the default variable (<code>$_</code>) unless you assign it a different variable, and it will test for definedness rather than truthiness.
+		</p>
+		<h3>Security Warning</h3>
+		<p>
+The magic readline operator uses the two argument version of open to open files. This means if one of your files is named &quot;|command&quot; or &quot;command|&quot;, then perl will attempt to run &quot;command&quot;. It also means if one of your files is named &quot;&gt;file&quot;, it will attempt to open the file named &quot;file&quot;, not &quot;&gt;file&quot;. Likewise, there is no way to open a file named &quot;-&quot; since that will open STDIN instead.
+		</p>
+		<p>
+To fix this problem, use the CPAN module ARGV::readonly. It cleans up the contents of <code>@ARGV</code> to prevent accidental code execution or opening of the wrong files.
+		</p>
+		<h3>Example</h3>
+		<pre>
+        while (my $record = &lt;&gt;) {
+                # $record contains data from either STDIN or
+                # a file from @ARGV
+        }
+		</pre>
+		<h3>See also</h3>
+		<p>
+<a href="http://perldoc.perl.org/perlvar.html#$/"><em>$/</em> in perlvar</a>, <a href="http://perldoc.perl.org/perlvar.html#ARGV"><em>ARGV</em> in perlvar</a>, <a href="http://perldoc.perl.org/perlvar.html#@ARGV"><em>@ARGV</em> in perlvar</a>, <a href="http://perldoc.perl.org/perlvar.html#$ARGV"><em>$ARGV</em> in perlvar</a>, <a href="http://perldoc.perl.org/perlfunc.html#open"><em>open</em> in perlfunc</a>, <a href="http://perldoc.perl.org/perlfunc.html#readline"><em>readline</em> in perlfunc</a>, and <a href="http://perldoc.perl.org/perlop.html#I/O-Operators"><em>I/O Operators</em> in perlop</a>
+		</p>
+		<h2 id="<FILEHANDLE>"><FILEHANDLE></h2>
+		<h3>Class</h3>
+		<p>
+This belongs to <a href="http://perldoc.perl.org/perlop.html#I/O-Operators"><em>I/O Operators</em> in perlop</a>.
+		</p>
+		<h3>Description</h3>
+		<p>
+When what is between &quot;&lt;&quot; and &quot;&gt;&quot; is a bareword filehandle (eg <code>STDIN</code>), a lexical filehandle created with the <code>open</code> function, or a simple scalar variable containing the name of a bareword filehandle, typeglob (<code>*STDIN</code>), or a reference to a typeglob (<code>\*STDIN</code>), it is the readline operator.
+		</p>
+		<p>
+In list context, it returns the remaining contents of the file in chunks as determined by the input record separator (<code>$/</code>).
+		</p>
+		<p>
+In scalar context, it returns the next record from the file as determined by the input record separator (<code>$/</code>) or <code>undef</code> if there are no more records.
+		</p>
+		<p>
+There is special magic for the readline operator when it is called from inside of the test portion of a <code>while</code> loop. All of the following statements are syntactically equivalent:
+		</p>
+		<pre>
+    while (&lt;$fh&gt;) { ... }
+    while ($_ = &lt;$fh&gt;) { ... }
+    while (defined($_ = &lt;$fh&gt;)) { ... }
+		</pre>
+		<p>
+That is, when the readline operator is used in a while loop, it will return its value to the default variable (<code>$_</code>) unless you assign it a different variable, and it will test for definedness rather than truthiness.
+		</p>
+		<h3>Example</h3>
+		<pre>
+        my $filename = &quot;/etc/passwd&quot;;
+
+        local $/ = &quot;\n&quot;; # this is the default, but best to be certain
+
+        open my $fh, &quot;&lt;&quot;, $filename or die &quot;could not open $filename: $!&quot;;
+
+        while (my $record = &lt;$fh&gt;) {
+                # $record contains the next record from /etc/passwd
+        }
+
+        fseek $fh, 0, 0; # rewind the file
+
+        my $record1 = &lt;$fh&gt;; #reads the first record from /etc/passwd
+        my $record2 = &lt;$fh&gt;; #reads the second record from /etc/passwd
+		</pre>
+		<h3>See also</h3>
+		<p>
+<a href="http://perldoc.perl.org/perlvar.html#$/"><em>$/</em> in perlvar</a>, <a href="http://perldoc.perl.org/perlfunc.html#open"><em>open</em> in perlfunc</a>, <a href="http://perldoc.perl.org/perlfunc.html#readline"><em>readline</em> in perlfunc</a>, and <a href="http://perldoc.perl.org/perlop.html#I/O-Operators"><em>I/O Operators</em> in perlop</a>
+		</p>
+		<h2 id="<GLOB>"><GLOB></h2>
+		<h3>Class</h3>
+		<p>
+This belongs to <a href="http://perldoc.perl.org/perlop.html#I/O-Operators"><em>I/O Operators</em> in perlop</a>.
+		</p>
+		<h3>Description</h3>
+		<p>
+When what is between &quot;&lt;&quot; and &quot;&gt;&quot; is a bareword filehandle (eg <code>STDIN</code>), a lexical filehandle created with the <code>open</code> function, or a simple scalar variable containing the name of a bareword filehandle, typeglob (<code>*STDIN</code>), or a reference to a typeglob (<code>\*STDIN</code>), it is the glob operator.
+		</p>
+		<p>
+In list context, the glob operator returns a list of filename expansions from the GLOB expression such as the standard Unix shell (/bin/csh) would do.
+		</p>
+		<p>
+In scalar context, it iterates over the such a list returning undef when there are no more matching files.
+		</p>
+		<p>
+There is special magic for the glob operator when it is called from inside of the test portion of a <code>while</code> loop. All of the following statements are syntactically equivalent:
+		</p>
+		<pre>
+    while (&lt;/etc/*&gt;) { ... }
+    while ($_ = &lt;/etc/*&gt;) { ... }
+    while (defined($_ = &lt;/etc/*&gt;)) { ... }
+		</pre>
+		<p>
+That is, when the glob operator is used in a while loop, it will return its value to the default variable (<code>$_</code>) unless you assign it a different variable, and it will test for definedness rather than truthiness.
+		</p>
+		<h3>Example</h3>
+		<pre>
+        # @files contains the list of files and directories in /etc.
+        my @files = &lt;/etc/*&gt;;
+
+        my $filename = &quot;/etc/passwd&quot;;
+
+        open my $fh, &quot;&lt;&quot;, $filename or die &quot;could not open $filename: $!&quot;;
+
+        while (my $record = &lt;$fh&gt;) {
+                # $record contains data /etc/passwd
+        }
+		</pre>
+		<h3>See also</h3>
+		<p>
+<a href="http://perldoc.perl.org/perlfunc.html#glob"><em>glob</em> in perlfunc</a> and <a href="http://perldoc.perl.org/perlop.html#I/O-Operators"><em>I/O Operators</em> in perlop</a>
+		</p>
+		<h2 id="X->[Y]">X->[Y]</h2>
+		<h3>Class</h3>
+		<p>
+This belongs to <a href="http://perldoc.perl.org/perlop.html#The-Arrow-Operator"><em>The Arrow Operator</em> in perlop</a>.
+		</p>
+		<h3>Description</h3>
+		<p>
+This is the infix array dereferencing operator (AKA the Arrow Operator). It fetches the value at position Y in the array referenced by X. X is a simple scalar variable, an expression (an array element or a hash value), or a function returning a reference to an array. When dealing with multiple levels of dereferencing (such as with a reference to an array of arrays) only the first level requires the arrow operator.
+		</p>
+		<p>
+If X does not evaluate to an array reference, then a runtime error occurs.
+		</p>
+		<h3>Example</h3>
+		<pre>
+    my @a         = (&quot;a&quot;, &quot;b&quot;, &quot;c&quot;);
+    my $aref      = \@a;
+
+    my $x         = $aref-&gt;[1]; # $x is now &quot;b&quot;
+    $aref-&gt;[3]    = &quot;d&quot;;        # @a is now (&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;)
+
+    my $aoa = [
+        [0,   1,   2  ],
+        [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;],
+    ];
+
+    my $y = $aoa-&gt;[1][1];       # $y is now &quot;b&quot;
+		</pre>
+		<h3>See also</h3>
+		<p>
+<a href="#\X">\X</a>, <a href="#@{X}">@{X}</a>, <a href="#${X}[Y]">${X}[Y]</a>, <a href="http://perldoc.perl.org/perlreftut.html#">perlreftut</a>, and <a href="http://perldoc.perl.org/perlref.html#">perlref</a>
+		</p>
+		<h2 id="X->{Y}">X->{Y}</h2>
+		<h3>Class</h3>
+		<p>
+This belongs to <a href="http://perldoc.perl.org/perlop.html#The-Arrow-Operator"><em>The Arrow Operator</em> in perlop</a>.
+		</p>
+		<h3>Description</h3>
+		<p>
+This is the infix hash dereferencing operator (AKA the Arrow Operator). It fetches the value associated with the key Y in a hash referenced by X. X may be a scalar variable, an expression(an array element or a hash value the resolves to a hash-reference), or a subroutine that returns a hash-reference.
+		</p>
+		<p>
+When dealing with multiple levels of dereferencing (such as with a reference to a hash of hashes) only the first level requires the arrow operator.
+		</p>
+		<p>
+If X does not evaluate to a hash reference, then a runtime error occurs.
+		</p>
+		<h3>Example</h3>
+		<pre>
+    my %h      = (a =&gt; 1, b =&gt; 2, c =&gt; 3);
+    my $href   = \%h;
+    my $x      = $href-&gt;{b}; # $x is now 2
+    $href-&gt;{d} = 4;          # %h is now (a =&gt; 1, b =&gt; 2, c =&gt; 3, d =&gt; 4)
+
+    my $hoh    = {
+        a =&gt; { a =&gt; 1, b =&gt; 2, c =&gt; 3 },
+        b =&gt; { a =&gt; 4, b =&gt; 5, c =&gt; 6 }
+    };
+
+    my $y = $hoh-&gt;{a}{b};    # $y is now 2
+    my $z = $hoh-&gt;{b}{b};    # $z is now 5
+		</pre>
+		<h3>See also</h3>
+		<p>
+<a href="#\X">\X</a>, <a href="#%{X}">%{X}</a>, <a href="#${X}{Y}">${X}{Y}</a>, <a href="http://perldoc.perl.org/perlreftut.html#">perlreftut</a>, and <a href="http://perldoc.perl.org/perlref.html#">perlref</a>
+		</p>
+		<h2 id="X->(Y)">X->(Y)</h2>
+		<h3>Class</h3>
+		<p>
+This belongs to <a href="http://perldoc.perl.org/perlop.html#The-Arrow-Operator"><em>The Arrow Operator</em> in perlop</a>.
+		</p>
+		<h3>Description</h3>
+		<p>
+This is the infix dereferencing function call operator (AKA the Arrow Operator). It calls the function referred to by X with the arguments Y. When dealing with multiple levels of dereferencing (such as with a reference to a hash of functions) only the first level requires the arrow operator; however, it is recommended you do not use this feature as it tends to cause confusion.
+		</p>
+		<p>
+If X does not evaluate to a code reference, then a runtime error occurs.
+		</p>
+		<h3>Example</h3>
+		<pre>
+    my $sub = sub {
+        my ($arg1, $arg2, $arg3) = @_;
+        print &quot;$arg1 = $arg2 + $arg3\n&quot;;
+    };
+    my $href = {
+        func =&gt; $sub,
+    };
+
+    $sub-&gt;(&quot;a&quot;, &quot;b&quot;, &quot;c&quot;);  # prints &quot;a = b + c\n&quot;
+    $href-&gt;{func}(1, 2, 3); # prints &quot;1 = 2 + 3\n&quot;
+		</pre>
+		<h3>See also</h3>
+		<p>
+<a href="#\X">\X</a>, <a href="http://perldoc.perl.org/perlsub.html#">perlsub</a>, <a href="http://perldoc.perl.org/perlreftut.html#">perlreftut</a>, and <a href="http://perldoc.perl.org/perlref.html#">perlref</a>
 		</p>
 		<h2 id="++X">++X</h2>
 		<h3>Class</h3>
@@ -587,7 +750,7 @@ This is the prefix auto-increment operator. It is roughly equivalent to <code>X 
     print ++($foo = &quot;zz&quot;);      # prints &quot;aaa&quot;
 		</pre>
 		<p>
-<code>undef</code> is always treated as numeric, and in particular is changed to <code>0</code> before incrementing (so that a post-increment of an undef value will return <code>0</code> rather than <code>undef</code>).
+<code>undef</code> is always treated as numeric, and in particular is changed to <code>0</code> before incrementing (so that a pre-increment of an undef value will return <code>1</code> rather than <code>undef</code>).
 		</p>
 		<p>
 The incrementing occurs before the use of the value.
@@ -595,10 +758,16 @@ The incrementing occurs before the use of the value.
 		<h3>Example</h3>
 		<pre>
     my $x = 4;
-    my $y = ++$x; #$x and $y are now 5
+    my $y = ++$x; # $x and $y are now 5
+
+    my $q = &quot;200 Quatloos for the newcomer&quot;;
+    my $r = ++$q;  # $q and $r are both now 201
 
     my $s = &quot;a&quot;;
-    my $t = ++$s; #$s and $t are now &quot;b&quot;
+    my $t = ++$s; # $s and $t are now &quot;b&quot;
+
+    my $m;
+    my $n = ++$m; # $n is now 1
 		</pre>
 		<h3>See also</h3>
 		<p>
@@ -613,13 +782,22 @@ This belongs to <a href="http://perldoc.perl.org/perlop.html#Auto-increment-and-
 		<p>
 This is the postfix auto-increment operator. It behaves the same way as the prefix auto-increment operator <code>++X</code>, including the magic, but the value is taken before the incrementing is done. So, the after the following code <code>$x</code> will be <code>5</code> and <code>$y</code> will be 4. Whereas with the prefix auto-increment operator, both values would be <code>5</code>.
 		</p>
+		<p>
+<code>undef</code> is always treated as numeric, and in particular is changed to <code>0</code> before incrementing (so that a post-increment of an undef value will return <code>0</code> rather than <code>undef</code>).
+		</p>
 		<h3>Example</h3>
 		<pre>
     my $x = 4;
-    my $y = $x++; #$x is now 5 and $y is now 4
+    my $y = $x++; # $x is now 5 and $y is now 4
+
+    my $q = &quot;200 Quatloos for the newcomer&quot;;
+    my $r = $q++;  # $q is now 201 and $r is &quot;200 Quatloos for the newcomer&quot;
 
     my $s = &quot;a&quot;;
-    my $t = $s++; #$s is now &quot;b&quot; and $t is now &quot;a&quot;
+    my $t = $s++; # $s is now &quot;b&quot; and $t is now &quot;a&quot;
+
+    my $m;
+    my $n = $m++; # $n is now 0
 		</pre>
 		<h3>See also</h3>
 		<p>
@@ -640,10 +818,16 @@ X will be converted to a number before decrementing, and if it cannot be convert
 		<h3>Example</h3>
 		<pre>
     my $x = 5;
-    my $y = --$x;  #$x and $y are now 4
+    my $y = --$x;  # $x and $y are now 4
+
+    my $q = &quot;200 Quatloos for the newcomer&quot;;
+    my $r = --$q;  # $q and $r are both now 199
 
     my $s = &quot;foo&quot;;
-    my $t = --$s;  #$s and $t are now -1
+    my $t = --$s;  # $s and $t are now -1
+
+    my $m;
+    my $n = --$m;  # $n is now -1
 		</pre>
 		<h3>See also</h3>
 		<p>
@@ -664,13 +848,16 @@ X will be converted to a number before the operation, and if it cannot be conver
 		<h3>Example</h3>
 		<pre>
     my $x = 5;
-    my $y = $x--;  #$x is now 4 and $y is now 5
+    my $y = $x--;  # $x is now 4 and $y is now 5
 
     my $q = &quot;200 Quatloos for the newcomer&quot;;
-    my $r = $q--;  #$q is now 199 and $r is &quot;200 Quatloos for the newcomer&quot;
+    my $r = $q--;  # $q is now 199 and $r is &quot;200 Quatloos for the newcomer&quot;
 
     my $s = &quot;foo&quot;;
-    my $t = $s--;  #$s is now -1 and $t is &quot;foo&quot;
+    my $t = $s--;  # $s is now -1 and $t is &quot;foo&quot;
+
+    my $m;
+    my $n = $m--;  # $n is now 0
 		</pre>
 		<h3>See also</h3>
 		<p>
@@ -690,11 +877,11 @@ Both X and Y will be converted to numbers before the operation; if they cannot b
 		</p>
 		<h3>Example</h3>
 		<pre>
-    my $x = 2 ** 8;             #$x is now 256
-    my $y = log(2 ** 8)/log(2); #$y is now 8;
+    my $x = 2 ** 8;             # $x is now 256
+    my $y = log(2 ** 8)/log(2); # $y is now 8;
 
-    my $s = 2 ** &quot;foo&quot;;         #$s is now 1 (2 ** 0 is 1)
-    my $t = 2 ** &quot;4ever&quot;;       #$t is now 16
+    my $s = 2 ** &quot;foo&quot;;         # $s is now 1 (2 ** 0 is 1)
+    my $t = 2 ** &quot;4ever&quot;;       # $t is now 16
 		</pre>
 		<h3>See also</h3>
 		<p>
@@ -707,22 +894,22 @@ This belongs to <a href="http://perldoc.perl.org/perlop.html#Symbolic-Unary-Oper
 		</p>
 		<h3>Description</h3>
 		<p>
-This is the high-precedence logical negation operator. It performs logical negation, i.e., &quot;not&quot;. If X is a true value it returns an empty string, otherwise it returns 1. There is a low-precedence version: <code>not</code>.
+This is the high-precedence logical negation operator. It performs logical negation, i.e., &quot;not&quot;. If X is a true value it returns the <a href="#Canonical-False-Value">Canonical False Value</a> otherwise it returns <a href="#Canonical-True-Value">Canonical True Value</a>. There is a low-precedence version: <code>not</code>.
 		</p>
 		<p>
-It is occasionally used in pairs (<code>!!</code>) to convert any false value to <code>&quot;&quot;</code> and any true value to <code>1</code>.
+It is occasionally used in pairs (<code>!!</code>) to convert any false value to the <a href="#Canonical-False-Value">Canonical False Value</a> and any true value to the <a href="#Canonical-True-Value">Canonical True Value</a>.
 		</p>
 		<h3>Example</h3>
 		<pre>
-    my $m = !5;      #$m is now the empty string (&quot;&quot;)
-    my $n = !0;      #$n is now 1
-    my $o = !&quot;&quot;;     #$o is now 1
-    my $p = !undef;  #$p is now 1
+    my $m = !5;      # $m is now the canonical false value
+    my $n = !0;      # $n is now the canonical true value
+    my $o = !&quot;&quot;;     # $o is now the canonical true value
+    my $p = !undef;  # $p is now the canonical true value
 
-    my $q = !!5;     #$q is now 1
-    my $r = !!0;     #$r is now &quot;&quot;
-    my $s = !!&quot;&quot;;    #$s is now &quot;&quot;
-    my $t = !!undef; #$t is now &quot;&quot;
+    my $q = !!5;     # $q is now the canonical true value
+    my $r = !!0;     # $r is now the canonical false value
+    my $s = !!&quot;&quot;;    # $s is now the canonical false value
+    my $t = !!undef; # $t is now the canonical false value
 		</pre>
 		<h3>See also</h3>
 		<p>
@@ -742,7 +929,7 @@ X will be converted to a number before the operation, and if it cannot be conver
 		</p>
 		<h3>Example</h3>
 		<pre>
-    my $x = ~0x00_00_00_00 #$x is now 0xFF_FF_FF_FF on 32-bit machines
+    my $x = ~0x00_00_00_00; # $x is now 0xFF_FF_FF_FF on 32-bit machines
 		</pre>
 		<h3>See also</h3>
 		<p>
@@ -755,34 +942,34 @@ This belongs to <a href="http://perldoc.perl.org/perlop.html#Symbolic-Unary-Oper
 		</p>
 		<h3>Description</h3>
 		<p>
-This is the backslash operator (AKA the reference operator). If X is a variable, function, or a scalar literal, then it creates a reference to X. If X is a list, then it creates a list of references to the items in the list.
+This is the backslash operator (AKA the Reference Operator). If X is a variable, function, or a scalar literal, then it creates a reference to X. If X is a list, then it creates a list of references to the items in the list.
 		</p>
 		<h3>Example</h3>
 		<pre>
-    my $c       = \1024; #$c is now a reference to the literal 1024
+    my $c       = \1024;     # $c is now a reference to the literal 1024
 
     my $s       = 5;
-    my $sref    = \$s; #$sref is now a reference to $s
-    $$sref      = 6;   #$s is now 6
+    my $sref    = \$s;       # $sref is now a reference to $s
+    $$sref      = 6;         # $s is now 6
 
     my @a       = (1, 2, 3);
-    my $aref    = \@a; #$aref is now a reference to @a
-    $aref-&gt;[0]  = 5;   #@a is now (5, 2, 3)
-    push @$aref, 6;   #@a is now (5, 2, 3, 6)
+    my $aref    = \@a;       # $aref is now a reference to @a
+    $aref-&gt;[0]  = 5;         # @a is now (5, 2, 3)
+    push @$aref, 6;          # @a is now (5, 2, 3, 6)
 
     my %h       = (a =&gt; 1, b =&gt; 2, c =&gt; 3);
-    my $href    = \%h;         #$href is now a reference to %h
-    $href-&gt;{b}  = 5;           #%h is now (a =&gt; 1, b =&gt; 5, c =&gt; 3)
-    my @keys    = keys %$href; #@keys is now (&quot;a&quot;, &quot;b&quot;, &quot;c&quot;)
+    my $href    = \%h;              # $href is now a reference to %h
+    $href-&gt;{b}  = 5;                # %h is now (a =&gt; 1, b =&gt; 5, c =&gt; 3)
+    my @keys    = sort keys %$href; # @keys is now (&quot;a&quot;, &quot;b&quot;, &quot;c&quot;)
 
     sub foo {
         return join &quot;|&quot;, @_;
     }
     my $coderef = \&amp;foo;
-    my $x       = $coderef-&gt;(1, 2, 3); #$x is now &quot;1|2|3&quot;;
-    my $y       = &amp;$coderef(4, 5, 6);  #$y is now &quot;4|5|6&quot;;
+    my $x       = $coderef-&gt;(1, 2, 3); # $x is now &quot;1|2|3&quot;;
+    my $y       = &amp;$coderef(4, 5, 6);  # $y is now &quot;4|5|6&quot;;
 
-    #@refs now holds references to $s, @a, and %h
+    # @refs now holds references to $s, @a, and %h
     my @refs    = \($s, @a, %h);
 		</pre>
 		<h3>See also</h3>
@@ -800,8 +987,8 @@ This is the unary plus operator. It has no effect whatsoever, even on strings. I
 		</p>
 		<h3>Example</h3>
 		<pre>
-    print (split &quot;,&quot;, &quot;a,b,c,d&quot;)[2], &quot;\n&quot;;  #syntax error
-    print +(split &quot;,&quot;, &quot;a,b,c,d&quot;)[2], &quot;\n&quot;; #prints &quot;c\n&quot;
+    print (split &quot;,&quot;, &quot;a,b,c,d&quot;)[2], &quot;\n&quot;;  # syntax error
+    print +(split &quot;,&quot;, &quot;a,b,c,d&quot;)[2], &quot;\n&quot;; # prints &quot;c\n&quot;
 		</pre>
 		<h3>See also</h3>
 		<p>
@@ -831,32 +1018,35 @@ In all other cases, X will be converted to a number before the operation, and if
 		<h3>Example</h3>
 		<pre>
     my $x = 10;
-    $x    = -$x;     #$x is now -10
-    $x    = -$x;     #$x is now 10 again
-    my $y = -option; #$y is now &quot;-option&quot;
-    my $z = -&quot;foo&quot;:  #$z is now &quot;-foo&quot;
-    $z = -$z;        #$z is now &quot;+foo&quot;
-    $z = -$z;        #$z is now &quot;-foo&quot;
-    $z = -&quot;*foo&quot;     #$z is now -0
-    
-    $x = &quot;\x{e9}&quot;;   #$x is now e acute
-    $x = -$x;        #$x is now -0 because e acute is not in [_a-zA-Z]
+    $x    = -$x;     # $x is now -10
+    $x    = -$x;     # $x is now 10 again
+    my $y = -option; # $y is now &quot;-option&quot;
+    my $z = -&quot;foo&quot;:  # $z is now &quot;-foo&quot;
+    $z = -$z;        # $z is now &quot;+foo&quot;
+    $z = -$z;        # $z is now &quot;-foo&quot;
+    $z = -&quot;*foo&quot;;    # $z is now -0
+
+    $x = &quot;\x{e9}&quot;;   # $x is now e acute
+    $x = -$x;        # $x is now -0 because e acute is not in [_a-zA-Z]
 		</pre>
 		<h3>See also</h3>
 		<p>
 <a href="#+X">+X</a>
 		</p>
-		<h2 id="X-=~-Y">X =~ Y</h2>
+		<h2 id="STRING-=~-PATTERN">STRING =~ PATTERN</h2>
 		<h3>Class</h3>
 		<p>
 This belongs to <a href="http://perldoc.perl.org/perlop.html#Binding-Operators"><em>Binding Operators</em> in perlop</a>.
 		</p>
 		<h3>Description</h3>
 		<p>
-This is the binding operator. It applies a regex match (<code>m//</code>), substitution (<code>s///</code>), or transliteration (<code>tr///</code> or <code>y///</code>) Y against a string X. When used in scalar context, the return value generally indicates the success of the operation. Behavior in list context depends on the particular operator. See <a href="http://perldoc.perl.org/perlop.html#Regexp-Quote-Like-Operators"><em>Regexp Quote-Like Operators</em> in perlop</a> for details and <a href="http://perldoc.perl.org/perlretut.html#">perlretut</a> for examples using these operators.
+This is the binding operator. It applies a regex match (<code>m//</code>), substitution (<code>s///</code>), or transliteration (<code>tr///</code> or <code>y///</code>) PATTERN against a string variable.
 		</p>
 		<p>
-If Y is an expression rather than a search pattern, substitution, or transliteration, it is interpreted as a search pattern at run time. Note that this means that its contents will be interpolated twice, so
+When used in scalar context, the return value generally indicates the success of the operation. Behavior in list context depends on the particular operator. See <a href="http://perldoc.perl.org/perlop.html#Regexp-Quote-Like-Operators"><em>Regexp Quote-Like Operators</em> in perlop</a> for details and <a href="http://perldoc.perl.org/perlretut.html#">perlretut</a> for examples using these operators.
+		</p>
+		<p>
+If PATTERN is an expression rather than a search pattern, substitution, or transliteration, it is interpreted as a search pattern at run time. Note that this means that its contents will be interpolated twice, so
 		</p>
 		<pre>
   &quot;\\&quot; =~ &quot;\\&quot;;
@@ -868,7 +1058,7 @@ is not ok, as the regex engine will end up trying to compile the pattern <code>\
 		<pre>
     my $x = &quot;foo bar baz&quot;;
 
-    #prints &quot;matched\n&quot;
+    # This will print &quot;matched\n&quot;
     if ($x =~ /foo/) {
         print &quot;matched\n&quot;;
     }
@@ -877,18 +1067,30 @@ is not ok, as the regex engine will end up trying to compile the pattern <code>\
 		<p>
 <a href="http://perldoc.perl.org/perlop.html#">perlop</a>, <a href="http://perldoc.perl.org/perlretut.html#">perlretut</a>, and <a href="http://perldoc.perl.org/prelre.html#">prelre</a>
 		</p>
-		<h2 id="X-!~-Y">X !~ Y</h2>
+		<h2 id="STRING-!~-PATTERN">STRING !~ PATTERN</h2>
 		<h3>Class</h3>
 		<p>
 This belongs to <a href="http://perldoc.perl.org/perlop.html#Binding-Operators"><em>Binding Operators</em> in perlop</a>.
 		</p>
 		<h3>Description</h3>
 		<p>
-This is the negative binding operator. It behaves like the <code>=~</code> operator, but the return is logically negated.
+This is the negative binding operator. It applies a regex match (<code>m//</code>), substitution (<code>s///</code>), or transliteration (<code>tr///</code> or <code>y///</code>) PATTERN against a string variable.
+		</p>
+		<p>
+When used in scalar context, the return value is the opposite of what the return value would have been if the <code>=~</code> had been used. Behavior in list context depends on the particular operator. See <a href="http://perldoc.perl.org/perlop.html#Regexp-Quote-Like-Operators"><em>Regexp Quote-Like Operators</em> in perlop</a> for details and <a href="http://perldoc.perl.org/perlretut.html#">perlretut</a> for examples using these operators.
+		</p>
+		<p>
+If PATTERN is an expression rather than a search pattern, substitution, or transliteration, it is interpreted as a search pattern at run time. Note that this means that its contents will be interpolated twice, so
+		</p>
+		<pre>
+  &quot;\\&quot; =~ &quot;\\&quot;;
+		</pre>
+		<p>
+is not ok, as the regex engine will end up trying to compile the pattern <code>\</code>, which it will consider a syntax error.
 		</p>
 		<h3>Example</h3>
 		<pre>
-    #prints &quot;matched\n&quot;
+    # This will print &quot;matched\n&quot;
     if (&quot;foo bar baz&quot; !~ /foo/) {
         print &quot;didn&#39;t match\n&quot;;
     } else {
@@ -897,7 +1099,7 @@ This is the negative binding operator. It behaves like the <code>=~</code> opera
 		</pre>
 		<h3>See also</h3>
 		<p>
-<a href="#X-=~-Y">X =~ Y</a>
+<a href="#STRING-=~-PATTERN">STRING =~ PATTERN</a>
 		</p>
 		<h2 id="X-*-Y">X * Y</h2>
 		<h3>Class</h3>
@@ -906,16 +1108,16 @@ This belongs to <a href="http://perldoc.perl.org/perlop.html#Multiplicative-Oper
 		</p>
 		<h3>Description</h3>
 		<p>
-This is the multiplication operator. It returns X multiplied by Y.
+This is the multiplication operator; it returns the product of X multiplied by Y.
 		</p>
 		<p>
 Both X and Y will be converted to numbers before the operation; if they cannot be converted they will turned into <code>0</code> (and a warning is thrown if <a href="http://perldoc.perl.org/warnings.html#">warnings</a> are turned on).
 		</p>
 		<h3>Example</h3>
 		<pre>
-    my $x = 2 * 21;      #$x is now 42
-    my $y = 2 * &quot;five&quot;;  #$y is now 0 (2 * 0)
-    my $z = 2 * &quot;80s&quot;;   #$z is now 160
+    my $x = 2 * 21;      # $x is now 42
+    my $y = 2 * &quot;five&quot;;  # $y is now 0 (2 * 0)
+    my $z = 2 * &quot;80s&quot;;   # $z is now 160
 		</pre>
 		<h3>See also</h3>
 		<p>
@@ -928,7 +1130,7 @@ This belongs to <a href="http://perldoc.perl.org/perlop.html#Multiplicative-Oper
 		</p>
 		<h3>Description</h3>
 		<p>
-This is the division operator. It divides X by Y.
+This is the division operator; it returns the quotient of X divided by Y.
 		</p>
 		<p>
 Both X and Y will be converted to numbers before the operation; if they cannot be converted they will turned into <code>0</code> (and a warning is thrown if <a href="http://perldoc.perl.org/warnings.html#">warnings</a> are turned on).
@@ -938,9 +1140,10 @@ Warning: If Y is 0 or evaluates to 0 the program will die with a message like <c
 		</p>
 		<h3>Example</h3>
 		<pre>
-    my $x = 84/2;     #$x is now 42
-    my $y = 84/&quot;2&quot;;   #$y is now 42
-    my $z = &quot;five&quot;/2  #$z is now 0 (0/2)
+    my $x = 84/2;     # $x is now 42
+    my $y = 84/&quot;2&quot;;   # $y is now 42
+    my $z = &quot;five&quot;/2; # $z is now 0 (0/2)
+    my $d = 2/&quot;five&quot;; # dies (2/0)
 		</pre>
 		<h3>See Also</h3>
 		<p>
@@ -967,7 +1170,7 @@ And here is <code>-9</code> through <code>9</code> modded with <code>-4</code>:
 		</p>
 		<pre>
     when X is  -9 -8 -7 -6 -5 -4 -3 -2 -1  0  1  2  3  4  5  6  7  8  9
-    result is  -1  0 -3 -2 -1  0 -3 -2 -1  0 -3 -2 -1  0 -3 -2 -1  0 -3 
+    result is  -1  0 -3 -2 -1  0 -3 -2 -1  0 -3 -2 -1  0 -3 -2 -1  0 -3
 		</pre>
 		<p>
 From this we can see a positive Y constrains X to a range from <code>0</code> to <code>(Y - 1)</code> that wraps around and a negative Y constrains X to a range from <code>(Y + 1)</code> to <code>0</code>.
@@ -986,12 +1189,12 @@ Warning: If Y is 0 or evaluates to 0 the program will die with a message like <c
 		</p>
 		<h3>Example</h3>
 		<pre>
-    my $odd = $x % 2; #$odd is 1 when $x is odd and 0 when $x is even
+    my $odd = $x % 2; # $odd is 1 when $x is odd and 0 when $x is even
 
-    my $hour = ($hour + 1) % 24; # 23 (11pm) plus 1 hour is 0 (12am). 
+    my $hour = ($hour + 1) % 24; # 23 (11pm) plus 1 hour is 0 (12am).
 
-    my $x = &quot;foo&quot; % 3;           #$x is now 0 (0 % 3)
-    my $y = &quot;5&quot; % 4;             #$y is now 1
+    my $x = &quot;foo&quot; % 3;           # $x is now 0 (0 % 3)
+    my $y = &quot;5&quot; % 4;             # $y is now 1
 		</pre>
 		<h3>See also</h3>
 		<p>
@@ -1011,11 +1214,11 @@ Y will be converted to a number before the operation, and if it cannot be conver
 		</p>
 		<h3>Example</h3>
 		<pre>
-    my $x = &quot;abc&quot; x 3;    #$x is now the string &quot;abcabcabc&quot;
-    my @a = (&quot;abc&quot;) x 3;  #@a is now (&quot;abc&quot;, &quot;abc&quot;, &quot;abc&quot;)
+    my $x = &quot;abc&quot; x 3;    # $x is now the string &quot;abcabcabc&quot;
+    my @a = (&quot;abc&quot;) x 3;  # @a is now (&quot;abc&quot;, &quot;abc&quot;, &quot;abc&quot;)
 
-    my $s = &quot;abcd&quot; x &quot;a&quot;; #$s is now &quot;&quot; (&quot;abcd&quot; x 0)
-    my $t = &quot;abcd&quot; x &quot;2&quot;; #$t is now &quot;abddabcd&quot;
+    my $s = &quot;abcd&quot; x &quot;a&quot;; # $s is now &quot;&quot; (&quot;abcd&quot; x 0)
+    my $t = &quot;abcd&quot; x &quot;2&quot;; # $t is now &quot;abcdabcd&quot;
 		</pre>
 		<h2 id="X-+-Y">X + Y</h2>
 		<h3>Class</h3>
@@ -1031,9 +1234,9 @@ Both X and Y will be converted to numbers before the operation; if they cannot b
 		</p>
 		<h3>Example</h3>
 		<pre>
-    my $x = 40 + 2;   #$x is now 42
-    my $y = 40 + &quot;a&quot;; #$y is now 40 (40 + 0)
-    my $y = 40 + &quot;2&quot;; #$y is now 42
+    my $x = 40 + 2;   # $x is now 42
+    my $y = 40 + &quot;a&quot;; # $y is now 40 (40 + 0)
+    my $y = 40 + &quot;2&quot;; # $y is now 42
 		</pre>
 		<h3>See also</h3>
 		<p>
@@ -1053,9 +1256,9 @@ Both X and Y will be converted to numbers before the operation; if they cannot b
 		</p>
 		<h3>Example</h3>
 		<pre>
-    my $x = 100 - 58;     #$x is now 42
-    my $y = 100 - &quot;five&quot;; #$y is now 100 (100 - 0)
-    my $z = 100 - &quot;58&quot;;   #$z is now 42
+    my $x = 100 - 58;     # $x is now 42
+    my $y = 100 - &quot;five&quot;; # $y is now 100 (100 - 0)
+    my $z = 100 - &quot;58&quot;;   # $z is now 42
 		</pre>
 		<h3>See also</h3>
 		<p>
@@ -1072,9 +1275,10 @@ This is the concatenation operator. It coerces its arguments to strings, then re
 		</p>
 		<h3>Example</h3>
 		<pre>
-    my @a = (1 .. 10);
     my $x = &quot;foo&quot; . &quot;bar&quot;; #$x is now &quot;foobar&quot;
-    my $y = &quot;the number of elements in \@a is&quot; . @a;
+
+    my @a = (1 .. 10);
+    my $y = &quot;the number of elements in \@a is &quot; . @a;
 		</pre>
 		<h3>See also</h3>
 		<p>
@@ -1096,17 +1300,16 @@ New bits added to the right side are all <code>0</code>. Overflowing the integer
 Shifting 1 bit to the left is the same as multiplying the number by 2.
 		</p>
 		<p>
-Both X and Y will be converted to numbers before the operation; if they cannot be converted they will turned into <code>0</code> (and a warning is thrown if <a href="http://perldoc.perl.org/warnings.html#">warnings</a> are turned on).
+Both X and Y will be converted to numbers before the operation; if they cannot be converted they will turned into <code>0</code> (and a warning is thrown if <a href="http://perldoc.perl.org/warnings.html#">warnings</a> are turned on). =head3 Example
 		</p>
-		<h3>Example</h3>
 		<pre>
-    #on 32-bit machines
-    my $x = 0xFF_00_FF_00 &lt;&lt; 8; #$x is now not well defined
+    # On 32-bit machines
+    my $x = 0xFF_00_FF_00 &lt;&lt; 8; # $x is now not well defined
 
-    #on 64-bit machines
-    my $y = 0xFF_00_FF_00 &lt;&lt; 8; #$y is now 0xFF_00_FF_00_00
+    # On 64-bit machines
+    my $y = 0xFF_00_FF_00 &lt;&lt; 8; # $y is now 0xFF_00_FF_00_00
 
-    my $z = 6 &lt;&lt; 1; #$z is now 12
+    my $z = 6 &lt;&lt; 1; # $z is now 12
 		</pre>
 		<h3>See also</h3>
 		<p>
@@ -1129,8 +1332,8 @@ Both X and Y will be converted to numbers before the operation; if they cannot b
 		</p>
 		<h3>Example</h3>
 		<pre>
-    my $x = 0x00_FF_00_FF &gt;&gt; 8; #$x is now 0x00_00_FF_00
-    my $y = 12 &gt;&gt; 1;            #$y is now 6
+    my $x = 0x00_FF_00_FF &gt;&gt; 8; # $x is now 0x00_00_FF_00
+    my $y = 12 &gt;&gt; 1;            # $y is now 6
 		</pre>
 		<h3>See also</h3>
 		<p>
@@ -1476,7 +1679,7 @@ This belongs to <a href="http://perldoc.perl.org/perlop.html#Named-Unary-Operato
 		</p>
 		<h3>Description</h3>
 		<p>
-This is the regular file filetest operator. FILE must be a filename, filehandle, dirhandle, or an expression that returns one of the preceding values. It returns <code>1</code> if the file exists and is a regular file, <code>&quot;&quot;</code> if the file or directory exists, but isn&#39;t a regular file, or <code>undef</code> if the file or directory doesn&#39;t exist.
+This is the regular file filetest operator. FILE must be a filename, filehandle, dirhandle, or an expression that returns one of the preceding values. It returns the <a href="#Canonical-True-Value">Canonical True Value</a> if the file exists and is a regular file, the <a href="#Canonical-False-Value">Canonical False Value</a> if the file or directory exists, but isn&#39;t a regular file, or <code>undef</code> if the file or directory doesn&#39;t exist.
 		</p>
 		<p>
 If given no arguments, it will operate on <code>$_</code>.
@@ -1507,7 +1710,7 @@ This belongs to <a href="http://perldoc.perl.org/perlop.html#Named-Unary-Operato
 		</p>
 		<h3>Description</h3>
 		<p>
-This is the directory filetest operator. FILE must be a filename, filehandle, dirhandle, or an expression that returns one of the preceding values. It returns <code>1</code> if the directory exists , <code>&quot;&quot;</code> if the file exists, but isn&#39;t a directory file, or <code>undef</code> if the file or directory doesn&#39;t exist.
+This is the directory filetest operator. FILE must be a filename, filehandle, dirhandle, or an expression that returns one of the preceding values. It returns the <a href="#Canonical-True-Value">Canonical True Value</a> if the directory exists , the <a href="#Canonical-False-Value">Canonical False Value</a> if the file exists, but isn&#39;t a directory file, or <code>undef</code> if the file or directory doesn&#39;t exist.
 		</p>
 		<p>
 If given no arguments, it will operate on <code>$_</code>.
@@ -1538,7 +1741,7 @@ This belongs to <a href="http://perldoc.perl.org/perlop.html#Named-Unary-Operato
 		</p>
 		<h3>Description</h3>
 		<p>
-This is the symbolic link filetest operator. FILE must be a filename, filehandle, dirhandle, or an expression that returns one of the preceding values. It returns <code>1</code> if the file or directory exists and is a symbolic link, <code>&quot;&quot;</code> if the file or directory exists, but isn&#39;t a symbolic link, or <code>undef</code> if the file or directory doesn&#39;t exist.
+This is the symbolic link filetest operator. FILE must be a filename, filehandle, dirhandle, or an expression that returns one of the preceding values. It returns the <a href="#Canonical-True-Value">Canonical True Value</a> if the file or directory exists and is a symbolic link, the <a href="#Canonical-False-Value">Canonical False Value</a> if the file or directory exists, but isn&#39;t a symbolic link, or <code>undef</code> if the file or directory doesn&#39;t exist.
 		</p>
 		<p>
 If given no arguments, it will operate on <code>$_</code>.
@@ -1569,7 +1772,7 @@ This belongs to <a href="http://perldoc.perl.org/perlop.html#Named-Unary-Operato
 		</p>
 		<h3>Description</h3>
 		<p>
-This is the pipe filetest operator. FILE must be a filename, filehandle, dirhandle, or an expression that returns one of the preceding values. It returns <code>1</code> if the file exists and is a pipe, <code>&quot;&quot;</code> if the file or directory exists, but isn&#39;t a pipe, or <code>undef</code> if the file or directory doesn&#39;t exist.
+This is the pipe filetest operator. FILE must be a filename, filehandle, dirhandle, or an expression that returns one of the preceding values. It returns the <a href="#Canonical-True-Value">Canonical True Value</a> if the file exists and is a pipe, the <a href="#Canonical-False-Value">Canonical False Value</a> if the file or directory exists, but isn&#39;t a pipe, or <code>undef</code> if the file or directory doesn&#39;t exist.
 		</p>
 		<p>
 If given no arguments, it will operate on <code>$_</code>.
@@ -1606,7 +1809,7 @@ This belongs to <a href="http://perldoc.perl.org/perlop.html#Named-Unary-Operato
 		</p>
 		<h3>Description</h3>
 		<p>
-This is the socket filetest operator. FILE must be a filename, filehandle, dirhandle, or an expression that returns one of the preceding values. It returns <code>1</code> if the file exists and is a socket, <code>&quot;&quot;</code> if the file or directory exists, but isn&#39;t a socket, or <code>undef</code> if the file or directory doesn&#39;t exist.
+This is the socket filetest operator. FILE must be a filename, filehandle, dirhandle, or an expression that returns one of the preceding values. It returns the <a href="#Canonical-True-Value">Canonical True Value</a> if the file exists and is a socket, the <a href="#Canonical-False-Value">Canonical False Value</a> if the file or directory exists, but isn&#39;t a socket, or <code>undef</code> if the file or directory doesn&#39;t exist.
 		</p>
 		<p>
 If given no arguments, it will operate on <code>$_</code>.
@@ -1637,7 +1840,7 @@ This belongs to <a href="http://perldoc.perl.org/perlop.html#Named-Unary-Operato
 		</p>
 		<h3>Description</h3>
 		<p>
-This is the block special filetest operator. FILE must be a filename, filehandle, dirhandle, or an expression that returns one of the preceding values. It returns <code>1</code> if the file exists and is a block special file, <code>&quot;&quot;</code> if the file or directory exists, but isn&#39;t a block special file, or <code>undef</code> if the file or directory doesn&#39;t exist.
+This is the block special filetest operator. FILE must be a filename, filehandle, dirhandle, or an expression that returns one of the preceding values. It returns the <a href="#Canonical-True-Value">Canonical True Value</a> if the file exists and is a block special file, the <a href="#Canonical-False-Value">Canonical False Value</a> if the file or directory exists, but isn&#39;t a block special file, or <code>undef</code> if the file or directory doesn&#39;t exist.
 		</p>
 		<p>
 If given no arguments, it will operate on <code>$_</code>.
@@ -1668,7 +1871,7 @@ This belongs to <a href="http://perldoc.perl.org/perlop.html#Named-Unary-Operato
 		</p>
 		<h3>Description</h3>
 		<p>
-This is the character special filetest operator. FILE must be a filename, filehandle, dirhandle, or an expression that returns one of the preceding values. It returns <code>1</code> if the file exists and is a character special file, <code>&quot;&quot;</code> if the file or directory exists, but isn&#39;t a character special file, or <code>undef</code> if the file or directory doesn&#39;t exist.
+This is the character special filetest operator. FILE must be a filename, filehandle, dirhandle, or an expression that returns one of the preceding values. It returns the <a href="#Canonical-True-Value">Canonical True Value</a> if the file exists and is a character special file, the <a href="#Canonical-False-Value">Canonical False Value</a> if the file or directory exists, but isn&#39;t a character special file, or <code>undef</code> if the file or directory doesn&#39;t exist.
 		</p>
 		<p>
 If given no arguments, it will operate on <code>$_</code>.
@@ -1699,7 +1902,7 @@ This belongs to <a href="http://perldoc.perl.org/perlop.html#Named-Unary-Operato
 		</p>
 		<h3>Description</h3>
 		<p>
-This is the socket filetest operator. FILE must be a filehandle or an expression that returns one. It returns <code>1</code> if the filehandle is opened to a tty or <code>undef</code> if it is not.
+This is the socket filetest operator. FILE must be a filehandle or an expression that returns one. It returns the <a href="#Canonical-True-Value">Canonical True Value</a> if the filehandle is opened to a tty or <code>undef</code> if it is not.
 		</p>
 		<p>
 If given no arguments, it will operate on <code>$_</code>.
@@ -1723,7 +1926,7 @@ This belongs to <a href="http://perldoc.perl.org/perlop.html#Named-Unary-Operato
 		</p>
 		<h3>Description</h3>
 		<p>
-This is the setuid filetest operator. FILE must be a filename, filehandle, dirhandle, or an expression that returns one of the preceding values. It returns <code>1</code> if the file exists and has its setuid set, <code>&quot;&quot;</code> if the file or directory exists, but its setuid isn&#39;t set, or <code>undef</code> if the file or directory doesn&#39;t exist.
+This is the setuid filetest operator. FILE must be a filename, filehandle, dirhandle, or an expression that returns one of the preceding values. It returns the <a href="#Canonical-True-Value">Canonical True Value</a> if the file exists and has its setuid set, the <a href="#Canonical-False-Value">Canonical False Value</a> if the file or directory exists, but its setuid isn&#39;t set, or <code>undef</code> if the file or directory doesn&#39;t exist.
 		</p>
 		<p>
 If given no arguments, it will operate on <code>$_</code>.
@@ -1754,7 +1957,7 @@ This belongs to <a href="http://perldoc.perl.org/perlop.html#Named-Unary-Operato
 		</p>
 		<h3>Description</h3>
 		<p>
-This is the setgid filetest operator. FILE must be a filename, filehandle, dirhandle, or an expression that returns one of the preceding values. It returns <code>1</code> if the file exists and has its setgid set, <code>&quot;&quot;</code> if the file or directory exists, but its setgid isn&#39;t set, or <code>undef</code> if the file or directory doesn&#39;t exist.
+This is the setgid filetest operator. FILE must be a filename, filehandle, dirhandle, or an expression that returns one of the preceding values. It returns the <a href="#Canonical-True-Value">Canonical True Value</a> if the file exists and has its setgid set, the <a href="#Canonical-False-Value">Canonical False Value</a> if the file or directory exists, but its setgid isn&#39;t set, or <code>undef</code> if the file or directory doesn&#39;t exist.
 		</p>
 		<p>
 If given no arguments, it will operate on <code>$_</code>.
@@ -1764,8 +1967,8 @@ If given the <code>_</code> special filehandle as an argument, it will use cache
 		</p>
 		<h3>Example</h3>
 		<pre>
-    if (defined -u &quot;/tmp/somefile&quot;) {
-        if (-u _) {
+    if (defined -g &quot;/tmp/somefile&quot;) {
+        if (-g _) {
             print &quot;somefile has setgid set\n&quot;;
         } else {
             print &quot;somefile dosn&#39;t have setgid set\n&quot;;
@@ -1785,7 +1988,7 @@ This belongs to <a href="http://perldoc.perl.org/perlop.html#Named-Unary-Operato
 		</p>
 		<h3>Description</h3>
 		<p>
-This is the sticky bit filetest operator. FILE must be a filename, filehandle, dirhandle, or an expression that returns one of the preceding values. It returns <code>1</code> if the file exists and has its sticky bit set, <code>&quot;&quot;</code> if the file or directory exists, but its sticky bit isn&#39;t set, or <code>undef</code> if the file or directory doesn&#39;t exist.
+This is the sticky bit filetest operator. FILE must be a filename, filehandle, dirhandle, or an expression that returns one of the preceding values. It returns the <a href="#Canonical-True-Value">Canonical True Value</a> if the file exists and has its sticky bit set, the <a href="#Canonical-False-Value">Canonical False Value</a> if the file or directory exists, but its sticky bit isn&#39;t set, or <code>undef</code> if the file or directory doesn&#39;t exist.
 		</p>
 		<p>
 If given no arguments, it will operate on <code>$_</code>.
@@ -1816,7 +2019,7 @@ This belongs to <a href="http://perldoc.perl.org/perlop.html#Named-Unary-Operato
 		</p>
 		<h3>Description</h3>
 		<p>
-This is the ASCII text filetest operator. FILE must be a filename, filehandle, or an expression that returns one of the preceding values. It returns <code>1</code> if the file exists and appears to be a text file, <code>&quot;&quot;</code> if the file or directory exists, but doesn&#39;t appear to be a text file, or <code>undef</code> if the file or directory doesn&#39;t exist.
+This is the ASCII text filetest operator. FILE must be a filename, filehandle, or an expression that returns one of the preceding values. It returns the <a href="#Canonical-True-Value">Canonical True Value</a> if the file exists and appears to be a text file, the <a href="#Canonical-False-Value">Canonical False Value</a> if the file or directory exists, but doesn&#39;t appear to be a text file, or <code>undef</code> if the file or directory doesn&#39;t exist.
 		</p>
 		<p>
 If X is a filename, it guesses the type of the file by reading the first block from the file. If the first block doesn&#39;t contain any nul characters (i.e. <code>\0</code>) and it contains fewer than thirty percent control characters or characters that have their high bits set, then it is considered an ASCII text file.
@@ -1836,7 +2039,7 @@ If given the <code>_</code> special filehandle as an argument, it will use cache
         if (-T _) {
             print &quot;somefile looks like a text file\n&quot;;
         } else {
-            print &quot;somefile lokks like a data file\n&quot;;
+            print &quot;somefile looks like a data file\n&quot;;
         }
     } else {
         print &quot;somefile doesn&#39;t exist\n&quot;;
@@ -1853,7 +2056,7 @@ This belongs to <a href="http://perldoc.perl.org/perlop.html#Named-Unary-Operato
 		</p>
 		<h3>Description</h3>
 		<p>
-This is the binary filetest operator. FILE must be a filename, filehandle, or an expression that returns one of the preceding values. It returns <code>1</code> if the file exists and appears to be a binary file, <code>&quot;&quot;</code> if the file or directory exists, but doesn&#39;t appear to be a binary file, or <code>undef</code> if the file or directory doesn&#39;t exist.
+This is the binary filetest operator. FILE must be a filename, filehandle, or an expression that returns one of the preceding values. It returns the <a href="#Canonical-True-Value">Canonical True Value</a> if the file exists and appears to be a binary file, the <a href="#Canonical-False-Value">Canonical False Value</a> if the file or directory exists, but doesn&#39;t appear to be a binary file, or <code>undef</code> if the file or directory doesn&#39;t exist.
 		</p>
 		<p>
 If X is a filename, it guesses the type of the file by reading the first block from the file. If the first block contains any nul characters (i.e. <code>\0</code>) or it contains more than thirty percent control characters or characters that have their high bits set, then it is considered a binary file.
@@ -1871,7 +2074,7 @@ If given the <code>_</code> special filehandle as an argument, it will use cache
 		<pre>
     if (defined -B &quot;/tmp/somefile&quot;) {
         if (-B _) {
-            print &quot;somefile lokks like a data file\n&quot;;
+            print &quot;somefile looks like a data file\n&quot;;
         } else {
             print &quot;somefile looks like a text file\n&quot;;
         }
@@ -1969,8 +2172,8 @@ Warning, different filesystems have different ideas about what the ctime is. In 
 		</p>
 		<h3>Example</h3>
 		<pre>
-    if (-A &quot;somefile&quot;) {
-        print &quot;it has been &quot;, -A _, &quot; days since somefile was accessed\n&quot;;
+    if (-C &quot;somefile&quot;) {
+        print &quot;it has been &quot;, -C _, &quot; days since somefile was accessed\n&quot;;
     } else {
         print &quot;somefile doesn&#39;t exist\n&quot;;
     }
@@ -1986,7 +2189,7 @@ This belongs to <a href="http://perldoc.perl.org/perlop.html#Relational-Operator
 		</p>
 		<h3>Description</h3>
 		<p>
-This is the numeric less than operator. It returns a true value if X is numerically less than Y or a false value if X is greater than or equal to Y.
+This is the numeric less than operator. It returns the <a href="#Canonical-True-Value">Canonical True Value</a> if X is numerically less than Y or the <a href="#Canonical-False-Value">Canonical False Value</a> if X is greater than or equal to Y.
 		</p>
 		<p>
 Both X and Y will be converted to numbers before the operation; if they cannot be converted they will turned into <code>0</code> (and a warning is thrown if <a href="http://perldoc.perl.org/warnings.html#">warnings</a> are turned on).
@@ -2014,7 +2217,7 @@ This belongs to <a href="http://perldoc.perl.org/perlop.html#Relational-Operator
 		</p>
 		<h3>Description</h3>
 		<p>
-This is the numeric greater than operator. It returns a true value if X is numerically greater than Y or a false value if X is less than or equal to Y.
+This is the numeric greater than operator. It returns the <a href="#Canonical-True-Value">Canonical True Value</a> if X is numerically greater than Y or the <a href="#Canonical-False-Value">Canonical False Value</a> if X is less than or equal to Y.
 		</p>
 		<p>
 Both X and Y will be converted to numbers before the operation; if they cannot be converted they will turned into <code>0</code> (and a warning is thrown if <a href="http://perldoc.perl.org/warnings.html#">warnings</a> are turned on).
@@ -2042,7 +2245,7 @@ This belongs to <a href="http://perldoc.perl.org/perlop.html#Relational-Operator
 		</p>
 		<h3>Description</h3>
 		<p>
-This is the numeric less than or equal to operator. It returns a true value if X is numerically less than or equal to Y or a false value if X is greater than to Y.
+This is the numeric less than or equal to operator. It returns the <a href="#Canonical-True-Value">Canonical True Value</a> if X is numerically less than or equal to Y or the <a href="#Canonical-False-Value">Canonical False Value</a> if X is greater than to Y.
 		</p>
 		<p>
 Both X and Y will be converted to numbers before the operation; if they cannot be converted they will turned into <code>0</code> (and a warning is thrown if <a href="http://perldoc.perl.org/warnings.html#">warnings</a> are turned on).
@@ -2070,7 +2273,7 @@ This belongs to <a href="http://perldoc.perl.org/perlop.html#Relational-Operator
 		</p>
 		<h3>Description</h3>
 		<p>
-This is the numeric less than or equal to operator. It returns a true value if X is numerically less than or equal to Y or a false value if X is greater than to Y.
+This is the numeric greater than or equal to operator. It returns the <a href="#Canonical-True-Value">Canonical True Value</a> if X is numerically greater than or equal to Y or the <a href="#Canonical-False-Value">Canonical False Value</a> if X is less than Y.
 		</p>
 		<p>
 Both X and Y will be converted to numbers before the operation; if they cannot be converted they will turned into <code>0</code> (and a warning is thrown if <a href="http://perldoc.perl.org/warnings.html#">warnings</a> are turned on).
@@ -2098,7 +2301,7 @@ This belongs to <a href="http://perldoc.perl.org/perlop.html#Relational-Operator
 		</p>
 		<h3>Description</h3>
 		<p>
-This is the lexical less than operator (also known as the string less than operator or the stringwise less than operator). It returns true if X is less than Y and false if X is greater than or equal to Y. The order of various characters is locale dependent. The default order is determined by the Unicode ordinal value (since Unicode contains the ASCII set as its first <code>127</code> characters, this order is the same as the ASCII order).
+This is the lexical less than operator (also known as the string less than operator or the stringwise less than operator). It returns the <a href="#Canonical-True-Value">Canonical True Value</a> if X is less than Y and the <a href="#Canonical-False-Value">Canonical False Value</a> if X is greater than or equal to Y. The order of various characters is locale dependent. The default order is determined by the Unicode ordinal value (since Unicode contains the ASCII set as its first <code>127</code> characters, this order is the same as the ASCII order).
 		</p>
 		<h3>Example</h3>
 		<pre>
@@ -2107,9 +2310,9 @@ This is the lexical less than operator (also known as the string less than opera
     }
 
     if (&quot;z&quot; lt &quot;a&quot;) {
-        print &quot;this should never be true (unless the local is weird)\n&quot;;
+        print &quot;this should never be true (unless the locale is weird)\n&quot;;
     } else {
-        print &quot;it should always be false (unless the local is weird)\n&quot;;
+        print &quot;it should always be false (unless the locale is weird)\n&quot;;
     }
 		</pre>
 		<h3>See also</h3>
@@ -2123,7 +2326,7 @@ This belongs to <a href="http://perldoc.perl.org/perlop.html#Relational-Operator
 		</p>
 		<h3>Description</h3>
 		<p>
-This is the lexical greater than operator (also known as the string greater than operator or the stringwise greater than operator). It returns true if X is greater than Y and false if X is less than or equal to Y. The order of various characters is locale dependent. The default order is determined by the Unicode ordinal value (since Unicode contains the ASCII set as its first <code>127</code> characters, this order is the same as the ASCII order).
+This is the lexical greater than operator (also known as the string greater than operator or the stringwise greater than operator). It returns the <a href="#Canonical-True-Value">Canonical True Value</a> if X is greater than Y and the <a href="#Canonical-False-Value">Canonical False Value</a> if X is less than or equal to Y. The order of various characters is locale dependent. The default order is determined by the Unicode ordinal value (since Unicode contains the ASCII set as its first <code>127</code> characters, this order is the same as the ASCII order).
 		</p>
 		<h3>Example</h3>
 		<pre>
@@ -2132,9 +2335,9 @@ This is the lexical greater than operator (also known as the string greater than
     }
 
     if (&quot;a&quot; gt &quot;z&quot;) {
-        print &quot;this should never be true (unless the local is weird)\n&quot;;
+        print &quot;this should never be true (unless the locale is weird)\n&quot;;
     } else {
-        print &quot;it should always be false (unless the local is weird)\n&quot;;
+        print &quot;it should always be false (unless the locale is weird)\n&quot;;
     }
 		</pre>
 		<h3>See also</h3>
@@ -2148,7 +2351,7 @@ This belongs to <a href="http://perldoc.perl.org/perlop.html#Relational-Operator
 		</p>
 		<h3>Description</h3>
 		<p>
-This is the lexical less than or equal to operator (also known as the string less than or equal to operator or the stringwise less than or equal to operator). It returns true if X is less than or equal to Y and false if X is greater than Y. The order of various characters is locale dependent. The default order is determined by the Unicode ordinal value (since Unicode contains the ASCII set as its first <code>127</code> characters, this order is the same as the ASCII order).
+This is the lexical less than or equal to operator (also known as the string less than or equal to operator or the stringwise less than or equal to operator). It returns the <a href="#Canonical-True-Value">Canonical True Value</a> if X is less than or equal to Y and the <a href="#Canonical-False-Value">Canonical False Value</a> if X is greater than Y. The order of various characters is locale dependent. The default order is determined by the Unicode ordinal value (since Unicode contains the ASCII set as its first <code>127</code> characters, this order is the same as the ASCII order).
 		</p>
 		<h3>Example</h3>
 		<pre>
@@ -2157,9 +2360,9 @@ This is the lexical less than or equal to operator (also known as the string les
     }
 
     if (&quot;z&quot; le &quot;a&quot;) {
-        print &quot;this should never be true (unless the local is weird)\n&quot;;
+        print &quot;this should never be true (unless the locale is weird)\n&quot;;
     } else {
-        print &quot;it should always be false (unless the local is weird)\n&quot;;
+        print &quot;it should always be false (unless the locale is weird)\n&quot;;
     }
 		</pre>
 		<h3>See also</h3>
@@ -2173,7 +2376,7 @@ This belongs to <a href="http://perldoc.perl.org/perlop.html#Relational-Operator
 		</p>
 		<h3>Description</h3>
 		<p>
-This is the lexical greater than or equal to operator (also known as the string greater than or equal to operator or the stringwise greater than or equal to operator). It returns true if X is greater than Y and false if X is less than or equal to Y. The order of various characters is locale dependent. The default order is determined by the Unicode ordinal value (since Unicode contains the ASCII set as its first <code>127</code> characters, this order is the same as the ASCII order).
+This is the lexical greater than or equal to operator (also known as the string greater than or equal to operator or the stringwise greater than or equal to operator). It returns the <a href="#Canonical-True-Value">Canonical True Value</a> if X is greater than Y and the <a href="#Canonical-False-Value">Canonical False Value</a> if X is less than or equal to Y. The order of various characters is locale dependent. The default order is determined by the Unicode ordinal value (since Unicode contains the ASCII set as its first <code>127</code> characters, this order is the same as the ASCII order).
 		</p>
 		<h3>Example</h3>
 		<pre>
@@ -2182,9 +2385,9 @@ This is the lexical greater than or equal to operator (also known as the string 
     }
 
     if (&quot;a&quot; ge &quot;z&quot;) {
-        print &quot;this should never be true (unless the local is weird)\n&quot;;
+        print &quot;this should never be true (unless the locale is weird)\n&quot;;
     } else {
-        print &quot;it should always be false (unless the local is weird)\n&quot;;
+        print &quot;it should always be false (unless the locale is weird)\n&quot;;
     }
 		</pre>
 		<h3>See also</h3>
@@ -2198,7 +2401,7 @@ This belongs to <a href="http://perldoc.perl.org/perlop.html#Equality-Operators"
 		</p>
 		<h3>Description</h3>
 		<p>
-This is the numeric equality operator. It returns true if X and Y evaluate as the same number.
+This is the numeric equality operator. It returns the <a href="#Canonical-True-Value">Canonical True Value</a> if X and Y evaluate as the same number and the <a href="#Canonical-False-Value">Canonical False Value</a> if they don&#39;t.
 		</p>
 		<p>
 Both X and Y will be converted to numbers before the operation; if they cannot be converted they will turned into <code>0</code> (and a warning is thrown if <a href="http://perldoc.perl.org/warnings.html#">warnings</a> are turned on).
@@ -2208,18 +2411,18 @@ Important note: the numeric equality operator should not be used with floating p
 		</p>
 		<pre>
     my $x = 0;
-    
+
     for (1 .. 10) {
         $x += .1;
     }
-    
+
     if ($x == 1) {
         print &quot;$x is one\n&quot;;
     } else {
         print &quot;oops, darn floating point numbers\n&quot;;
     }
-    
-    my $delta = 1e-15; #0.000000000000001
+
+    my $delta = 1e-15; # 0.000000000000001
     if (
         $x &lt; 1 + $delta and
         $x &gt; 1 - $delta
@@ -2244,7 +2447,7 @@ This belongs to <a href="http://perldoc.perl.org/perlop.html#Equality-Operators"
 		</p>
 		<h3>Description</h3>
 		<p>
-This is the numeric not equals operator. It returns true if X does not evaluate to the same numeric value as Y.
+This is the numeric not equals operator. It returns the <a href="#Canonical-True-Value">Canonical True Value</a> if X does not evaluate to the same numeric value as Y, and the <a href="#Canonical-False-Value">Canonical False Value</a> if it doesn&#39;t.
 		</p>
 		<p>
 Both X and Y will be converted to numbers before the operation; if they cannot be converted they will turned into <code>0</code> (and a warning is thrown if <a href="http://perldoc.perl.org/warnings.html#">warnings</a> are turned on).
@@ -2254,16 +2457,16 @@ Important note: the numeric equality operator should not be used with floating p
 		</p>
 		<pre>
     my $x = 0;
-    
+
     for (1 .. 10) {
         $x += .1;
     }
-    
+
     if ($x != 1) {
         print &quot;oops, darn floating point numbers\n&quot;;
     }
-    
-    my $delta = 1e-15; #0.000000000000001
+
+    my $delta = 1e-15; # 0.000000000000001
     if (
         $x &gt; 1 + $delta and
         $x &lt; 1 - $delta
@@ -2300,9 +2503,9 @@ Both X and Y will be converted to numbers before the operation; if they cannot b
 		</p>
 		<h3>Example</h3>
 		<pre>
-    my $x = 4 &lt;=&gt; 5; #x is now negative
-    my $y = 5 &lt;=&gt; 5; #y is now 0
-    my $z = 6 &lt;=&gt; 5; #z is now positive
+    my $x = 4 &lt;=&gt; 5; # x is now negative
+    my $y = 5 &lt;=&gt; 5; # y is now 0
+    my $z = 6 &lt;=&gt; 5; # z is now positive
 		</pre>
 		<h3>See also</h3>
 		<p>
@@ -2315,7 +2518,7 @@ This belongs to <a href="http://perldoc.perl.org/perlop.html#Equality-Operators"
 		</p>
 		<h3>Description</h3>
 		<p>
-This is the lexical equality operator (aka the string equality operator or the stringwise equality operator). It returns true if X and Y evaluate as the same string.
+This is the lexical equality operator (AKA the string equality operator or the stringwise equality operator). It returns true if X and Y evaluate as the same string.
 		</p>
 		<h3>Example</h3>
 		<pre>
@@ -2340,7 +2543,7 @@ This belongs to <a href="http://perldoc.perl.org/perlop.html#Equality-Operators"
 		</p>
 		<h3>Description</h3>
 		<p>
-This is the lexical not equals operator. (aka the string not equals operator or the stringwise not equals operator). It returns false if X and Y evaluate as the same string.
+This is the lexical not equals operator (AKA the string not equals operator or the stringwise not equals operator). It returns the <a href="#Canonical-False-Value">Canonical False Value</a> if X and Y evaluate as the same string, and the <a href="#Canonical-True-Value">Canonical True Value</a> if they don&#39;t.
 		</p>
 		<h3>Example</h3>
 		<pre>
@@ -2372,9 +2575,9 @@ This is the lexical comparison operator (also known as the string comparison ope
 		</pre>
 		<h3>Example</h3>
 		<pre>
-    my $x = &quot;a&quot; &lt;=&gt; &quot;b&quot;; #$x is now negative
-    my $y = &quot;b&quot; &lt;=&gt; &quot;b&quot;; #$x is now 0
-    my $z = &quot;c&quot; &lt;=&gt; &quot;b&quot;; #$x is now positive
+    my $x = &quot;a&quot; cmp &quot;b&quot;; #$x is now negative
+    my $y = &quot;b&quot; cmp &quot;b&quot;; #$x is now 0
+    my $z = &quot;c&quot; cmp &quot;b&quot;; #$x is now positive
 		</pre>
 		<h3>See also</h3>
 		<p>
@@ -2425,16 +2628,16 @@ If both operands are strings, they are considered character by character. The re
 		</p>
 		<h3>Example</h3>
 		<pre>
-    #0x4545          is 0b0000_0100_0000_0101_0000_0100_0000_0101
-    #0x00FF          is 0b0000_0000_0000_0000_1111_1111_1111_1111
-    #0x4545 &amp; 0x00FF is 0b0000_0000_0000_0000_0000_0100_0000_0101 or 0x0045
-    my $z = 0x4545 &amp; 0x00FF; #$z is now 0x0045
+    # 0x4545          is 0b0000_0100_0000_0101_0000_0100_0000_0101
+    # 0x00FF          is 0b0000_0000_0000_0000_1111_1111_1111_1111
+    # 0x4545 &amp; 0x00FF is 0b0000_0000_0000_0000_0000_0100_0000_0101 or 0x0045
+    my $z = 0x4545 &amp; 0x00FF; # $z is now 0x0045
 
-    #In ASCII (and UTF-8)
-    #&quot;a&quot;       is 0b0110_0001
-    #&quot;b&quot;       is 0b0110_0010
-    #&quot;a&quot; &amp; &quot;b&quot; is 0b0110_0000 or &quot;`&quot; 
-    my $x = &quot;a&quot; &amp; &quot;b&quot;; #$x is now &quot;`&quot;
+    # In ASCII (and UTF-8)
+    # &quot;a&quot;       is 0b0110_0001
+    # &quot;b&quot;       is 0b0110_0010
+    # &quot;a&quot; &amp; &quot;b&quot; is 0b0110_0000 or &quot;`&quot;
+    my $x = &quot;a&quot; &amp; &quot;b&quot;; # $x is now &quot;`&quot;
 		</pre>
 		<h3>See also</h3>
 		<p>
@@ -2465,16 +2668,16 @@ If both operands are strings, they are considered character by character. The re
 		</p>
 		<h3>Example</h3>
 		<pre>
-    #0x4545          is 0b0000_0100_0000_0101_0000_0100_0000_0101
-    #0x00FF          is 0b0000_0000_0000_0000_1111_1111_1111_1111
-    #0x4545 | 0x00FF is 0b0000_0100_0000_0101_1111_1111_1111_1111 or 0x45FF
-    my $y = 0x4545 | 0x00FF; #$y is now 0x45FF
+    # 0x4545          is 0b0000_0100_0000_0101_0000_0100_0000_0101
+    # 0x00FF          is 0b0000_0000_0000_0000_1111_1111_1111_1111
+    # 0x4545 | 0x00FF is 0b0000_0100_0000_0101_1111_1111_1111_1111 or 0x45FF
+    my $y = 0x4545 | 0x00FF; # $y is now 0x45FF
 
-    #In ASCII (and UTF-8)
-    #&quot;a&quot;       is 0b0110_0001
-    #&quot;b&quot;       is 0b0110_0010
-    #&quot;a&quot; | &quot;b&quot; is 0b0110_0011 or &quot;c&quot; 
-    my $x = &quot;a&quot; | &quot;b&quot;; #$x is now &quot;c&quot;
+    # In ASCII (and UTF-8)
+    # &quot;a&quot;       is 0b0110_0001
+    # &quot;b&quot;       is 0b0110_0010
+    # &quot;a&quot; | &quot;b&quot; is 0b0110_0011 or &quot;c&quot;
+    my $x = &quot;a&quot; | &quot;b&quot;; # $x is now &quot;c&quot;
 		</pre>
 		<h3>See also</h3>
 		<p>
@@ -2505,16 +2708,16 @@ If both operands are strings, they are considered character by character. The re
 		</p>
 		<h3>Example</h3>
 		<pre>
-    #0x4545          is 0b0000_0100_0000_0101_0000_0100_0000_0101
-    #0x00FF          is 0b0000_0000_0000_0000_1111_1111_1111_1111
-    #0x4545 ^ 0x00FF is 0b0000_0100_0000_0101_1111_1111_1111_1010 or 0x45BA
-    my $y = 0x4545 ^ 0x00FF; #$y is now 0x45BA
+    # 0x4545          is 0b0000_0100_0000_0101_0000_0100_0000_0101
+    # 0x00FF          is 0b0000_0000_0000_0000_1111_1111_1111_1111
+    # 0x4545 ^ 0x00FF is 0b0000_0100_0000_0101_1111_1111_1111_1010 or 0x45BA
+    my $y = 0x4545 ^ 0x00FF; # $y is now 0x45BA
 
-    #In ASCII (and UTF-8)
-    #&quot;a&quot;       is 0b0110_0001
-    #&quot;b&quot;       is 0b0110_0010
-    #&quot;a&quot; ^ &quot;b&quot; is 0b0000_0011 or &quot;\x{03}&quot; 
-    my $x = &quot;a&quot; ^ &quot;b&quot;; #$x is now &quot;\x{03}&quot;
+    # In ASCII (and UTF-8)
+    # &quot;a&quot;       is 0b0110_0001
+    # &quot;b&quot;       is 0b0110_0010
+    # &quot;a&quot; ^ &quot;b&quot; is 0b0000_0011 or &quot;\x{03}&quot;
+    my $x = &quot;a&quot; ^ &quot;b&quot;; # $x is now &quot;\x{03}&quot;
 		</pre>
 		<h3>See also</h3>
 		<p>
@@ -2539,7 +2742,7 @@ It binds more tightly than the low-precedence logical and operator:
 whereas:
 		</p>
 		<pre>
-    my $y = 5 and 4; # is equivalent to (my $x = 5) and 4;
+    my $y = 5 and 4; # is equivalent to (my $y = 5) and 4;
 		</pre>
 		<p>
 It is most commonly used in conditional statements such as <code>if</code>, <code>unless</code>, <code>while</code>.
@@ -2551,10 +2754,10 @@ It is most commonly used in conditional statements such as <code>if</code>, <cod
     my $y = 1;
     my $z = &quot;foo&quot;;
 
-    print $w &amp;&amp; $y, &quot;\n&quot;; #prints &quot;\n&quot;
-    print $x &amp;&amp; $y, &quot;\n&quot;; #prints &quot;0\n&quot;
-    print $y &amp;&amp; $z, &quot;\n&quot;; #prints &quot;foo\n&quot;
-    print $z &amp;&amp; $y, &quot;\n&quot;; #prints &quot;1\n&quot;
+    print $w &amp;&amp; $y, &quot;\n&quot;; # prints &quot;\n&quot;
+    print $x &amp;&amp; $y, &quot;\n&quot;; # prints &quot;0\n&quot;
+    print $y &amp;&amp; $z, &quot;\n&quot;; # prints &quot;foo\n&quot;
+    print $z &amp;&amp; $y, &quot;\n&quot;; # prints &quot;1\n&quot;
 		</pre>
 		<h3>See also</h3>
 		<p>
@@ -2579,14 +2782,14 @@ It binds more tightly than the low-precedence logical or operator:
 whereas:
 		</p>
 		<pre>
-    my $y = 5 or 4; # is equivalent to (my $x = 5) or 4;
+    my $y = 5 or 4; # is equivalent to (my $y = 5) or 4;
 		</pre>
 		<p>
 It is most commonly used in conditional statements such as <code>if</code>, <code>unless</code>, <code>while</code>. It was used in the recent past to create default values:
 		</p>
 		<pre>
     my %config = get_config();
-    #set $x to $config{x} unless it is false, in which case set it to 5
+    # Set $x to $config{x} unless it is false, in which case set it to 5
     my $x = $config{x} || 5;
 		</pre>
 		<p>
@@ -2599,12 +2802,12 @@ but this use has the drawback of not respecting a value of 0 or 0.0, since they 
     my $y = 1;
     my $z = &quot;foo&quot;;
 
-    print $w || $x, &quot;\n&quot;; #prints &quot;0\n&quot;;
-    print $x || $w, &quot;\n&quot;; #prints &quot;\n&quot;;
-    print $w || $y, &quot;\n&quot;; #prints &quot;1\n&quot;
-    print $x || $y, &quot;\n&quot;; #prints &quot;1\n&quot;
-    print $y || $z, &quot;\n&quot;; #prints &quot;1\n&quot;
-    print $z || $y, &quot;\n&quot;; #prints &quot;foo\n&quot;
+    print $w || $x, &quot;\n&quot;; # prints &quot;0\n&quot;;
+    print $x || $w, &quot;\n&quot;; # prints &quot;\n&quot;;
+    print $w || $y, &quot;\n&quot;; # prints &quot;1\n&quot;
+    print $x || $y, &quot;\n&quot;; # prints &quot;1\n&quot;
+    print $y || $z, &quot;\n&quot;; # prints &quot;1\n&quot;
+    print $z || $y, &quot;\n&quot;; # prints &quot;foo\n&quot;
 		</pre>
 		<h3>See also</h3>
 		<p>
@@ -2617,14 +2820,14 @@ This belongs to <a href="http://perldoc.perl.org/perlop.html#C-style-Logical-Def
 		</p>
 		<h3>Description</h3>
 		<p>
-This is the high-precedence logical defined-or. It returns X if X is defined, otherwise it returns Y. This operator is only available if you have enabled 5.10 features (using the <a href="http://perldoc.perl.org/feature.html#">feature</a> pragma or <code>use 5.10</code>).
+This is the high-precedence logical defined-or. It returns X if X is defined, otherwise it returns Y. This operator is only available if you have enabled 5.10 features (using the <a href="http://perldoc.perl.org/feature.html#">feature</a> pragma or <code>use 5.010</code>).
 		</p>
 		<p>
 It is most commonly used to create default values:
 		</p>
 		<pre>
     my %config = get_config();
-    #set $x to $config{x} if it is defined, otherwise set it to 5
+    # Set $x to $config{x} if it is defined, otherwise set it to 5
     my $x = $config{x} // 5;
 		</pre>
 		<h3>Example</h3>
@@ -2633,9 +2836,9 @@ It is most commonly used to create default values:
     my $y = 0;
     my $z = 5;
 
-    print $x // $y, &quot;\n&quot;; #prints 0
-    print $y // $z, &quot;\n&quot;; #prints 0
-    print $z // $y, &quot;\n&quot;; #prints 5
+    print $x // $y, &quot;\n&quot;; # prints 0
+    print $y // $z, &quot;\n&quot;; # prints 0
+    print $z // $y, &quot;\n&quot;; # prints 5
 		</pre>
 		<h3>See also</h3>
 		<p>
@@ -2654,28 +2857,28 @@ Depending on context, this is either the range operator (if it is list context) 
 The range operator creates a list starting with X and ending with Y (i.e. it is inclusive). If Y is less than X then an empty list is returned. If both X and Y are strings, then the auto-magical behavior of <a href="#X++">X++</a> is used to generate the list.
 		</p>
 		<p>
-The flip-flop operator returns false as long as X is false, once X becomes true it returns true until <em>after</em> Y is true, at which time it returns false. Each flip-flop operator keeps track of its own state separately from the other flip-flop operators.
+The flip-flop operator returns false as long as X is false, once X returns true the flip-flop returns true until <em>after</em> Y is true, at which time it returns false. Each flip-flop operator keeps track of its own state separately from the other flip-flop operators.
 		</p>
 		<p>
 Note: it is possible for both the X and Y tests to be true at the same time, in which case it will return true and then false on the next test.
 		</p>
 		<h3>Example</h3>
 		<pre>
-    my @list = 0 .. 5;     #@list is now (0, 1, 2, 3, 4, 5)
-    my @az   = &quot;a&quot; .. &quot;z&quot;; #@az is now the lowercase ASCII alphabet
+    my @list = 0 .. 5;     # @list is now (0, 1, 2, 3, 4, 5)
+    my @az   = &quot;a&quot; .. &quot;z&quot;; # @az is now the lowercase ASCII alphabet
 
-    prints &quot;4\n&quot;, &quot;5\n&quot;, &quot;6\n&quot;, &quot;7\n&quot;, and &quot;8\n&quot;
+    #prints &quot;4\n&quot;, &quot;5\n&quot;, &quot;6\n&quot;, &quot;7\n&quot;, and &quot;8\n&quot;
     for my $i (0 .. 10) {
-        #start printing when $i is 4 and stop after $i is 8
+        # Start printing when $i is 4 and stop after $i is 8
         if ($i == 4 .. $i == 8) {
             print &quot;$i\n&quot;;
         }
     }
 
-    #prints &quot;4\n&quot;
+    # Prints &quot;4\n&quot;
     for my $i (0 .. 10) {
-        #start printing when $i is 4 and stop after $i is 4
-        if ($i == 4 .. $i == 8) {
+        # Start printing when $i is 4 and stop after $i is 4
+        if ($i == 4 .. $i == 4) {
             print &quot;$i\n&quot;;
         }
     }
@@ -2701,21 +2904,21 @@ In scalar context it returns false as long as X is false, once X becomes true it
 		</p>
 		<h3>Example</h3>
 		<pre>
-    my @list = 0 ... 5;     #@list is now (0, 1, 2, 3, 4, 5)
-    my @az   = &quot;a&quot; ... &quot;z&quot;; #@az is now the lowercase ASCII alphabet
+    my @list = 0 ... 5;     # @list is now (0, 1, 2, 3, 4, 5)
+    my @az   = &quot;a&quot; ... &quot;z&quot;; # @az is now the lowercase ASCII alphabet
 
-    prints &quot;4\n&quot;, &quot;5\n&quot;, &quot;6\n&quot;, &quot;7\n&quot;, and &quot;8\n&quot;
+    #prints &quot;4\n&quot;, &quot;5\n&quot;, &quot;6\n&quot;, &quot;7\n&quot;, and &quot;8\n&quot;
     for my $i (0 ... 10) {
-        #start printing when $i is 4 and stop after $i is 8
+        # Start printing when $i is 4 and stop after $i is 8
         if ($i == 4 ... $i == 8) {
             print &quot;$i\n&quot;;
         }
     }
 
-    #prints &quot;4\n&quot;, &quot;5\n&quot;, &quot;6\n&quot;, &quot;7\n&quot;, &quot;8\n&quot;, &quot;9\n&quot;, and &quot;10\n&quot;
+    # Prints &quot;4\n&quot;, &quot;5\n&quot;, &quot;6\n&quot;, &quot;7\n&quot;, &quot;8\n&quot;, &quot;9\n&quot;, and &quot;10\n&quot;
     for my $i (0 ... 10) {
-        #start printing when $i is 4 and stop after $i is 4 a second time
-        if ($i == 4 ... $i == 8) {
+        # Start printing when $i is 4 and stop after $i is 4 a second time
+        if ($i == 4 ... $i == 4) {
             print &quot;$i\n&quot;;
         }
     }
@@ -2741,20 +2944,20 @@ The result of the operator is a valid lvalue (i.e. it can be assigned to). Note,
 		</p>
 		<h3>Example</h3>
 		<pre>
-    #simple implementation of max
+    # Simple implementation of max
     sub max {
         my ($m, $n) = @_;
         return $m &gt;= $n ? $m : $n;
     }
 
-    my $x = max 5, 4; #$x is now 5
-    my $y = max 4, 5; #$y is now 5
+    my $x = max 5, 4; # $x is now 5
+    my $y = max 4, 5; # $y is now 5
 
-    my @a = $x == $y ? (1, 2, 3) : (4, 5, 6); #@a is now (1, 2, 3)
-    my @b = $x != $y ? (1, 2, 3) : (4, 5, 6); #@b is now (4, 5, 6)
+    my @a = $x == $y ? (1, 2, 3) : (4, 5, 6); # @a is now (1, 2, 3)
+    my @b = $x != $y ? (1, 2, 3) : (4, 5, 6); # @b is now (4, 5, 6)
 
-    ($x == $y ? $x : $y) = 15; #$x is now 15
-    ($x == $y ? $x : $y) = 15; #$y is now 15
+    ($x == $y ? $x : $y) = 15; # $x is now 15
+    ($x == $y ? $x : $y) = 15; # $y is now 15
 		</pre>
 		<h3>See also</h3>
 		<p>
@@ -2771,21 +2974,22 @@ If X is a scalar, then this is the assignment operator. It assigns Y to X. The a
 		</p>
 		<pre>
     my $str = &quot;foobar&quot;;
-    (my $modified = $str) =~ s/foo/bar/; #the substitution affects $modified
+    (my $modified = $str) =~ s/foo/bar/; # $modified is now &quot;barbar&quot;
+                                         # $str is still &quot;foobar&quot;
 		</pre>
 		<p>
 If X is a list, then this is the list assignment operator and it provides list context to Y. The first item in the list Y is assigned to the first item in list X, the second to the second, and so on. If placed in scalar context, the return value of list assignment is the number of items in the second list. If placed in list context it returns the list X (after the assignment has taken place).
 		</p>
 		<h3>Example</h3>
 		<pre>
-    my $x = 5; #$x is now 5
-    my $y = 6; #$y is now 6
+    my $x = 5; # $x is now 5
+    my $y = 6; # $y is now 6
 
-    ($x, $y) = ($y, $x); #$x is now 6 and $y is now 5
+    ($x, $y) = ($y, $x); # $x is now 6 and $y is now 5
 
-    my $i = my $j = my $k = 10; #$i, $j, and $k are now all 10
+    my $i = my $j = my $k = 10; # $i, $j, and $k are now all 10
 
-    my $m = my ($n, $o) = (&quot;a&quot;, &quot;b&quot;, &quot;c&quot;) #$m is now 3
+    my $m = my ($n, $o) = (&quot;a&quot;, &quot;b&quot;, &quot;c&quot;); # $m is now 3
 		</pre>
 		<h2 id="X-**=-Y">X **= Y</h2>
 		<h3>Class</h3>
@@ -2807,7 +3011,7 @@ That is it raises the value X to the Yth power and then assigns the result to X.
     my $x = 2;
     my $y = 8;
 
-    $x **= $y; #$x is now 2 ** 8 or 256
+    $x **= $y; # $x is now 2 ** 8 or 256
 		</pre>
 		<h3>See also</h3>
 		<p>
@@ -2833,7 +3037,7 @@ That is it adds X and Y together and then assigns the result to X. This means th
     my $x = 2;
     my $y = 8;
 
-    $x += $y; #$x is now 2 + 8 or 10
+    $x += $y; # $x is now 2 + 8 or 10
 		</pre>
 		<h3>See also</h3>
 		<p>
@@ -2859,7 +3063,7 @@ That is it subtracts Y from X and then assigns the result to X. This means that 
     my $x = 2;
     my $y = 8;
 
-    $x -= $y; #$x is now 2 - 8 or -6
+    $x -= $y; # $x is now 2 - 8 or -6
 		</pre>
 		<h3>See also</h3>
 		<p>
@@ -2882,10 +3086,16 @@ That is it joins the strings X and Y and then assigns the result to X. This mean
 		</p>
 		<h3>Example</h3>
 		<pre>
+    my $x = &quot;foo&quot;;
+    my $y = &quot;bar&quot;;
+
+    $x .= $y; #$x is now &quot;foobar&quot;
+
+
     my $x = 2;
     my $y = 8;
 
-    $x .= $y; #$x is now 2 . 8 or &quot;28&quot;
+    $x .= $y; # $x is now 2 . 8 or &quot;28&quot;
 		</pre>
 		<h3>See also</h3>
 		<p>
@@ -2911,7 +3121,7 @@ That is it multiplies X by Y and then assigns the result to X. This means that X
     my $x = 2;
     my $y = 8;
 
-    $x *= $y; #$x is now 2 * 8 or 16
+    $x *= $y; # $x is now 2 * 8 or 16
 		</pre>
 		<h3>See also</h3>
 		<p>
@@ -2940,7 +3150,7 @@ Warning: If Y is 0 or evaluates to 0 the program will die with a message like <c
     my $x = 2;
     my $y = 8;
 
-    $x /= $y; #$x is now 2 / 8 or 0.25
+    $x /= $y; # $x is now 2 / 8 or 0.25
 		</pre>
 		<h3>See also</h3>
 		<p>
@@ -2969,7 +3179,7 @@ Warning: If Y is 0 or evaluates to 0 the program will die with a message like <c
     my $x = 2;
     my $y = 8;
 
-    $x %= $y; #$x is now 2 % 8 or 2
+    $x %= $y; # $x is now 2 % 8 or 2
 		</pre>
 		<h3>See also</h3>
 		<p>
@@ -2998,7 +3208,7 @@ Note: this only works for the scalar repetition operator; the list repetition op
     my $x = 2;
     my $y = 8;
 
-    $x x= $y; #$x is now 2 x 8 or &quot;22222222&quot;
+    $x x= $y; # $x is now 2 x 8 or &quot;22222222&quot;
 		</pre>
 		<h3>See also</h3>
 		<p>
@@ -3024,7 +3234,7 @@ That is it ands together X and Y and then assigns the result to X. This means th
     my $x = 2;
     my $y = 8;
 
-    $x &amp;= $y; #$x is now 2 &amp; 8 or 0
+    $x &amp;= $y; # $x is now 2 &amp; 8 or 0
 		</pre>
 		<h3>See also</h3>
 		<p>
@@ -3050,7 +3260,7 @@ That is it ors together X and Y and then assigns the result to X. This means tha
     my $x = 2;
     my $y = 8;
 
-    $x |= $y; #$x is now 2 &amp; 8 or 10
+    $x |= $y; #$x is now 2 | 8 or 10
 		</pre>
 		<h3>See also</h3>
 		<p>
@@ -3075,8 +3285,10 @@ That is it xors together X and Y and then assigns the result to X. This means th
 		<pre>
     my $x = 2;
     my $y = 8;
+    my $z = 7;
 
-    $x ^= $y; #$x is now 2 &amp; 8 or 10
+    $x ^= $y; # $x is now 0b0010 ^ 0b1000 or 0b1010 or 10
+    $x ^= $z; # $x is now 0b1010 ^ 0b0111 or 0b1101 or 13
 		</pre>
 		<h3>See also</h3>
 		<p>
@@ -3102,7 +3314,7 @@ That is it bit-shifts X Y places to the left and then assigns the result to X. T
     my $x = 2;
     my $y = 8;
 
-    $x &lt;&lt;= $y; #$x is now 2 &lt;&lt; 8 or 512
+    $x &lt;&lt;= $y; # $x is now 2 &lt;&lt; 8 or 512
 		</pre>
 		<h3>See also</h3>
 		<p>
@@ -3128,7 +3340,7 @@ That is it bit-shifts X Y places to the right and then assigns the result to X. 
     my $x = 8;
     my $y = 2;
 
-    $x &amp;= $y; #$x is now 8 &amp; 2 or 2
+    $x &gt;&gt;= $y; # $x is now 8 &gt;&gt; 2 or 2
 		</pre>
 		<h3>See also</h3>
 		<p>
@@ -3147,16 +3359,16 @@ This is the logical and assignment operator. It is equivalent to
     X = X &amp;&amp; Y
 		</pre>
 		<p>
-That is it assigns X to itself if X evaluates to true, otherwise it assigns Y to X. This means that X must be a valid lvalue (i.e. it must be something that can be assigned to).
+That is it assigns X to itself if X evaluates to false, otherwise it assigns Y to X. This means that X must be a valid lvalue (i.e. it must be something that can be assigned to).
 		</p>
 		<h3>Example</h3>
 		<pre>
     my $x = 2;
     my $y = 8;
 
-    $x &amp;&amp;= $y; #$x is now 2 &amp;&amp; 8 or 8
-    $x &amp;&amp;= 0;  #$x is now 8 &amp;&amp; 0 or 0
-    $x &amp;&amp;= 8;  #$x is now 0 &amp;&amp; 8 or 0
+    $x &amp;&amp;= $y; # $x is now 2 &amp;&amp; 8 or 8
+    $x &amp;&amp;= 0;  # $x is now 8 &amp;&amp; 0 or 0
+    $x &amp;&amp;= 8;  # $x is now 0 &amp;&amp; 8 or 0
 		</pre>
 		<h3>See also</h3>
 		<p>
@@ -3180,9 +3392,9 @@ That is it logically ors together X and Y and then assigns the result to X. This
 		<pre>
     my $x;
 
-    #intervening code that might set $x or might leave it undefined
+    # Intervening code that might set $x or might leave it undefined
 
-    $x ||= 10; #make sure $x gets set to a default value
+    $x ||= 10; # make sure $x gets set to a default value
 		</pre>
 		<p>
 This has a problem though: if <code>$x</code> is <code>0</code> or <code>&quot;&quot;</code> then it will get overwritten with <code>10</code>. The defined-or assignment operator (<a href="#X-//=-Y">X //= Y</a>) does not have this problem and should, generally, be used for this purpose instead. Of course, if you desire any false value be overwritten, then this is the right operator to use.
@@ -3193,10 +3405,9 @@ This has a problem though: if <code>$x</code> is <code>0</code> or <code>&quot;&
     my $y = 8;
     my $z;
 
-    $x ||= $y; #$x is now 2 || 8 or 2
-    $y ||= $x; #$y is now 8 || 2 or 8
-
-    my $z ||= $x + $y; #$z is now undef || (2 + 8) or 10
+    $x ||= $y;      # $x is now 2 || 8 or 2
+    $y ||= $x;      # $y is now 8 || 2 or 8
+    $z ||= $x + $y; # $z is now undef || (2 + 8) or 10
 		</pre>
 		<h3>See also</h3>
 		<p>
@@ -3223,9 +3434,9 @@ It is commonly used to ensure that a variable has a value:
 		<pre>
     my $x;
 
-    #intervening code that might set $x or might leave it undefined
+    # Intervening code that might set $x or might leave it undefined
 
-    $x //= 10; #make sure $x gets set to a default value
+    $x //= 10; # make sure $x gets set to a default value
 		</pre>
 		<h3>Example</h3>
 		<pre>
@@ -3233,8 +3444,8 @@ It is commonly used to ensure that a variable has a value:
     my $y = 8;
     my $z;
 
-    $x //= $y; #$x is now 2 // 8 or 2
-    $z //= $x; #$z is now undef // 2 or 2
+    $x //= $y; # $x is now 2 // 8 or 2
+    $z //= $x; # $z is now undef // 2 or 2
 		</pre>
 		<h3>See also</h3>
 		<p>
@@ -3278,9 +3489,9 @@ A trailing comma does not add a new element to a list, to the lists <code>(1,2,3
 		</p>
 		<h3>Example</h3>
 		<pre>
-    my @a = (1, 2, 3);          #@a is now (1, 2, 3)
-    my $x = (&quot;a&quot;, &quot;b&quot;, &quot;c&quot;);    #$x is now &quot;c&quot;
-    my $y = (++$x, ++$x, ++$x); #$y is now &quot;f&quot;
+    my @a = (1, 2, 3);          # @a is now (1, 2, 3)
+    my $x = (&quot;a&quot;, &quot;b&quot;, &quot;c&quot;);    # $x is now &quot;c&quot;
+    my $y = (++$x, ++$x, ++$x); # $y is now &quot;f&quot;
 		</pre>
 		<h3>See also</h3>
 		<p>
@@ -3307,21 +3518,21 @@ That statement is functionally identical to
 		</p>
 		<pre>
     my %hash = (
-        &quot;key1&quot;, &quot;value1&quot;, 
-        &quot;key2&quot;, &quot;value2&quot;, 
-        &quot;key3&quot;, &quot;value3&quot;, 
+        &quot;key1&quot;, &quot;value1&quot;,
+        &quot;key2&quot;, &quot;value2&quot;,
+        &quot;key3&quot;, &quot;value3&quot;,
     );
 		</pre>
 		<h3>Example</h3>
 		<pre>
-    #%x will contain the list (&quot;a&quot;, 1, &quot;b&quot;, 2, &quot;c&quot;, 3)
+    # %x will contain the list (&quot;a&quot;, 1, &quot;b&quot;, 2, &quot;c&quot;, 3)
     my %x = (
         a =&gt; 1,
         b =&gt; 2,
         c =&gt; 3,
     );
 
-    #%y will contain the list (&quot;key with spaces&quot;, 1, &quot;b&quot;, 1, &quot;c&quot;, 1)
+    # %y will contain the list (&quot;key with spaces&quot;, 1, &quot;b&quot;, 1, &quot;c&quot;, 1)
     my %y = (
         &quot;key with spaces&quot; =&gt; 1,
         b                 =&gt; 1,
@@ -3339,14 +3550,14 @@ This belongs to <a href="http://perldoc.perl.org/perlop.html#Logical-Not"><em>Lo
 		</p>
 		<h3>Description</h3>
 		<p>
-This is the low-precedence logical negation operator. It performs logical negation, i.e., &quot;not&quot;. It returns an empty string if X is true, otherwise it returns <code>1</code>. There is a high-precedence version: <code>!</code>.
+This is the low-precedence logical negation operator. It performs logical negation, i.e., &quot;not&quot;. It returns the <a href="#Canonical-False-Value">Canonical False Value</a> if X is true, otherwise it returns the <a href="#Canonical-True-Value">Canonical True Value</a>. There is a high-precedence version: <code>!</code>.
 		</p>
 		<h3>Example</h3>
 		<pre>
-    my $m = not 5;      #$m is now the empty string (&quot;&quot;)
-    my $n = not 0;      #$n is now 1
-    my $o = not &quot;&quot;;     #$o is now 1
-    my $p = not undef;  #$p is now 1
+    my $m = not 5;      # $m is now the empty string (&quot;&quot;)
+    my $n = not 0;      # $n is now 1
+    my $o = not &quot;&quot;;     # $o is now 1
+    my $p = not undef;  # $p is now 1
 		</pre>
 		<h3>See also</h3>
 		<p>
@@ -3365,13 +3576,13 @@ This is the low-precedence logical and operator. It evaluates X, and if it is fa
 It binds less tightly than the high-precedence logical and operator:
 		</p>
 		<pre>
-    my $y = 5 and 4; # is equivalent to (my $x = 5) and 4;
+    my $x = 5 and 4; # is equivalent to (my $x = 5) and 4;
 		</pre>
 		<p>
 whereas:
 		</p>
 		<pre>
-    my $x = 5 &amp;&amp; 4; # is equivalent to my $x = (5 &amp;&amp; 4);
+    my $y = 5 &amp;&amp; 4;  # is equivalent to my $y = (5 &amp;&amp; 4);
 		</pre>
 		<p>
 It is most commonly used in conditional statements such as <code>if</code>, <code>unless</code>, <code>while</code>. But it is also occasionally used for its short-circuiting affect:
@@ -3396,11 +3607,11 @@ is functionally the same as
     my $y = 1;
     my $z = &quot;foo&quot;;
 
-    #not the use of parentheses vs this example in &amp;&amp;
-    print(($w and $y), &quot;\n&quot;); #prints &quot;\n&quot;
-    print(($x and $y), &quot;\n&quot;); #prints &quot;0\n&quot;
-    print(($y and $z), &quot;\n&quot;); #prints &quot;foo\n&quot;
-    print(($z and $y), &quot;\n&quot;); #prints &quot;1\n&quot;
+    # Not the use of parentheses vs this example in &amp;&amp;
+    print(($w and $y), &quot;\n&quot;); # prints &quot;\n&quot;
+    print(($x and $y), &quot;\n&quot;); # prints &quot;0\n&quot;
+    print(($y and $z), &quot;\n&quot;); # prints &quot;foo\n&quot;
+    print(($z and $y), &quot;\n&quot;); # prints &quot;1\n&quot;
 		</pre>
 		<h3>See also</h3>
 		<p>
@@ -3419,13 +3630,13 @@ This is the low-precedence logical or operator. It evaluates X, and if it is tru
 It binds less tightly than the high-precedence logical or operator:
 		</p>
 		<pre>
-    my $y = 5 or 4; # is equivalent to (my $x = 5) or 4;
+    my $x = 5 or 4; # is equivalent to (my $x = 5) or 4;
 		</pre>
 		<p>
 whereas:
 		</p>
 		<pre>
-    my $x = 5 &amp;&amp; 4; # is equivalent to my $x = (5 || 4);
+    my $y = 5 || 4; # is equivalent to my $y = (5 || 4);
 		</pre>
 		<p>
 It is most commonly used in conditional statements such as <code>if</code>, <code>unless</code>, <code>while</code>. It is also often used for its short-circuiting behavior:
@@ -3444,7 +3655,7 @@ That code will not run the <code>die</code> unless the <code>open</code> fails (
     my $y = 1;
     my $z = &quot;foo&quot;;
 
-    #not the use of parentheses vs this example in ||
+    # Note the use of parentheses vs this example in ||
     print(($w or $x), &quot;\n&quot;); #prints &quot;0\n&quot;;
     print(($x or $w), &quot;\n&quot;); #prints &quot;\n&quot;;
     print(($w or $y), &quot;\n&quot;); #prints &quot;1\n&quot;
@@ -3467,10 +3678,10 @@ This is the low-precedence logical exclusive-or operator (there is no high-prece
 		</p>
 		<h3>Example</h3>
 		<pre>
-    my $m = (0 xor 0); #$m is now &quot;&quot;
-    my $n = (1 xor 0); #$n is now 1
-    my $o = (0 xor 1); #$o is now 1
-    my $p = (1 xor 1); #$p is now &quot;&quot;
+    my $m = (0 xor 0); # $m is now &quot;&quot;
+    my $n = (1 xor 0); # $n is now 1
+    my $o = (0 xor 1); # $o is now 1
+    my $p = (1 xor 1); # $p is now &quot;&quot;
 		</pre>
 		<h3>See also</h3>
 		<p>
@@ -3490,8 +3701,8 @@ This secret operator is the boolean conversion operator. It is made up of two lo
 		</p>
 		<h3>Example</h3>
 		<pre>
-    my $x = !!&quot;this is a true value&quot;; #$x is now true
-    my $y = !!0;                      #$y is now &quot;&quot; 
+    my $x = !!&quot;this is a true value&quot;; # $x is now true
+    my $y = !!0;                      # $y is now &quot;&quot;
 		</pre>
 		<h3>See also</h3>
 		<p>
@@ -3500,7 +3711,7 @@ This secret operator is the boolean conversion operator. It is made up of two lo
 		<h2 id="()=-X">()= X</h2>
 		<h3>Description</h3>
 		<p>
-This secret operator is the list assignment operator (aka the countof operator). It is made up of two items <code>()</code>, and <code>=</code>. In scalar context it returns the number of items in the list X. In list context it returns an empty list. It is useful when you have something that returns a list and you want to know the number of items in that list and don&#39;t care about the list&#39;s contents. It is needed because the comma operator returns the last item in the sequence rather than the number of items in the sequence when it is placed in scalar context.
+This secret operator is the list assignment operator (AKA the countof operator). It is made up of two items <code>()</code>, and <code>=</code>. In scalar context it returns the number of items in the list X. In list context it returns an empty list. It is useful when you have something that returns a list and you want to know the number of items in that list and don&#39;t care about the list&#39;s contents. It is needed because the comma operator returns the last item in the sequence rather than the number of items in the sequence when it is placed in scalar context.
 		</p>
 		<p>
 It works because the assignment operator returns the number of items available to be assigned when its left hand side has list context. In the following example there are five values in the list being assigned to the list <code>($x, $y, $z)</code>, so <code>$count</code> is assigned <code>5</code>.
@@ -3515,13 +3726,13 @@ The empty list (the <code>()</code> part of the secret operator) triggers this b
 		<pre>
     sub f { return qw/a b c d e/ }
 
-    my $count = ()= f();              #$count is now 5
+    my $count = ()= f();              # $count is now 5
 
     my $string = &quot;cat cat dog cat&quot;;
 
-    my $cats = ()= $string =~ /cat/g; #$cats is now 3
+    my $cats = ()= $string =~ /cat/g; # $cats is now 3
 
-    print scalar( ()= f() ), &quot;\n&quot;;    #prints &quot;5\n&quot;
+    print scalar( ()= f() ), &quot;\n&quot;;    # prints &quot;5\n&quot;
 		</pre>
 		<h3>See also</h3>
 		<p>
@@ -3539,7 +3750,7 @@ With the addition of the Smart match operator, this secret operator is even more
 		<pre>
     my @a = qw/a b c d/;
 
-    print ~~@a, &quot;\n&quot;; #prints 4
+    print ~~@a, &quot;\n&quot;; # prints 4
 		</pre>
 		<h3>See also</h3>
 		<p>
@@ -3571,15 +3782,22 @@ Notice how the <code>while</code> loop is closed by the closing brace we added a
 		</p>
 		<h3>Example</h3>
 		<pre>
-    # count unique lines in the file FOO
+    # Count unique lines in the file FOO
     perl -nle &#39;$seen{$_}++ }{ print &quot;$_ =&gt; $seen{$_}&quot; for keys %seen&#39; FOO
 
-    # sum all of the lines until the user types control-d
+    # Sum all of the lines until the user types control-d
     perl -nle &#39;$sum += $_ }{ print $sum&#39;
 		</pre>
 		<h3>See also</h3>
 		<p>
 <a href="http://perldoc.perl.org/perlrun.html#">perlrun</a> and <a href="http://perldoc.perl.org/perlsyn.html#">perlsyn</a>
 		</p>
-	</body>
-</html>
+		<h1>NOTES</h1>
+		<h2 id="Canonical-True-Value">Canonical True Value</h2>
+		<p>
+The canonical true value is a tri-value, that is it contains a floating point number (<code>1.0</code>), integer (<code>1</code>), and string (<code>&quot;1&quot;</code>). It is possible, but inadvisable, to change its value. Which of the three value gets used in an expression depends on how the value is used (e.g. if the expression expects a string then the string value will be used).
+		</p>
+		<h2 id="Canonical-False-Value">Canonical False Value</h2>
+		<p>
+The canonical false value is a tri-value, that is it contains a floating point number (<code>0.0</code>), integer (<code>0</code>), and string (<code>&quot;&quot;</code>). It is possible, but inadvisable, to change its value. Which of the three value gets used in an expression depends on how the value is used (e.g. if the expression expects a string then the string value will be used).
+		</p>
