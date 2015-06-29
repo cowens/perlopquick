@@ -565,9 +565,10 @@ This belongs to L<perlop/I/O Operators>.
 
 =head3 Description
 
-When the readline operator (<>) is empty, it is the magic readline operator.
-It reads from C<STDIN> or files passed as an argument to the program much in the
-same way classic Unix filter programs (eg grep, sed, awk, etc.) do.
+When the readline operator (<>) is empty, it is the magic readline operator
+(also called the null filehandle readline operator).  It reads from C<STDIN> or
+files passed as an argument to the program much in the same way classic Unix
+filter programs (eg grep, sed, awk, etc.) do.
 
 When first called in a program, if nothing is currently in C<@ARGV>, and the
 C<ARGV> filehandle is not open, it will C<push> "-" onto @ARGV before
@@ -581,7 +582,13 @@ then open the file named by C<$ARGV> using the two argument version of C<open>
 (this means the string "-", as added to C<@ARGV> above, will open STDIN, not
 the file named "-") and store the resulting filehandle in C<ARGV>.  If there
 are no more elements in C<@ARGV> when the current file ends, it will return
-C<undef>.
+C<undef> (if in scalar context).
+
+In list context, it returns a list of all of the remaining records based on
+the contents to input record separator (<$/>).
+
+In scalar context, it returns the next record based on the contents to input
+record separator (<$/>) or C<undef> if there are no more records.
 
 There is special magic for the magic readline operator when it is called from
 inside of the test portion of a C<while> loop.  All of the following
@@ -628,12 +635,16 @@ This belongs to L<perlop/I/O Operators>.
 
 =head3 Description
 
-This is the readline operator (<>). It reads from the filehandle given to it
-until the input record separator is satisfied or the end of the file is
-reached and returns the string it read.
+When what is between "<" and ">" is a bareword filehandle (eg C<STDIN>), a
+lexical filehandle created with the C<open> function, or a simple scalar
+variable containing the name of a bareword filehandle, typeglob (C<*STDIN>),
+or a reference to a typeglob (C<\*STDIN>), it is the readline operator.
 
-The filehandle may be a bareword filehandle (like STDIN) or a lexical
-filehandle (ie a scalar variable) created by calling the C<open> function.
+In list context, it returns the remaining contents of the file in
+chunks as determined by the input record separator (C<$/>).
+
+In scalar context, it returns the next record from the file as determined by
+the input record separator (C<$/>) or C<undef> if there are no more records.
 
 There is special magic for the readline operator when it is called from
 inside of the test portion of a C<while> loop.  All of the following
@@ -651,6 +662,62 @@ different variable, and it will test for definedness rather than truthiness.
 
 	my $filename = "/etc/passwd";
 
+	local $/ = "\n"; # this is the default, but best to be certain
+
+	open my $fh, "<", $filename or die "could not open $filename: $!";
+
+	while (my $record = <$fh>) {
+		# $record contains the next record from /etc/passwd
+	}
+
+	fseek $fh, 0, 0; # rewind the file
+
+	my $record1 = <$fh>; #reads the first record from /etc/passwd
+	my $record2 = <$fh>; #reads the second record from /etc/passwd
+
+=head3 See also
+
+L<perlvar/$/>, L<perlfunc/open>, L<perlfunc/readline>, and
+L<perlop/I/O Operators>
+
+=head2 <GLOB>
+
+=head3 Class
+
+This belongs to L<perlop/I/O Operators>.
+
+=head3 Description
+
+When what is between "<" and ">" is a bareword filehandle (eg C<STDIN>), a
+lexical filehandle created with the C<open> function, or a simple scalar
+variable containing the name of a bareword filehandle, typeglob (C<*STDIN>),
+or a reference to a typeglob (C<\*STDIN>), it is the glob operator.
+
+In list context, the glob operator returns a list of filename expansions from
+the GLOB expression such as the standard Unix shell (/bin/csh) would do.
+
+In scalar context, it iterates over the such a list returning undef when there
+are no more matching files.
+
+There is special magic for the glob operator when it is called from
+inside of the test portion of a C<while> loop.  All of the following
+statements are syntactically equivalent:
+
+    while (</etc/*>) { ... }
+    while ($_ = </etc/*>) { ... }
+    while (defined($_ = </etc/*>)) { ... }
+
+That is, when the glob operator is used in a while loop, it will
+return its value to the default variable (C<$_>) unless you assign it a
+different variable, and it will test for definedness rather than truthiness.
+
+=head3 Example
+
+	# @files contains the list of files and directories in /etc.
+	my @files = </etc/*>;
+
+	my $filename = "/etc/passwd";
+
 	open my $fh, "<", $filename or die "could not open $filename: $!";
 
 	while (my $record = <$fh>) {
@@ -659,8 +726,7 @@ different variable, and it will test for definedness rather than truthiness.
 
 =head3 See also
 
-L<perlvar/$/>, L<perlfunc/open>, L<perlfunc/readline>, and
-L<perlop/I/O Operators>
+L<perlfunc/glob> and L<perlop/I/O Operators>
 
 =head2 X->[Y]
 
