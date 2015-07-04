@@ -221,6 +221,120 @@ L<perlop/Quote and Quote-like Operators>.
 L<E<quot>XE<quot>>, L</'X'>, L</qq(X)>, L<perlvar/$">,
 and L<perlop/Quote and Quote-like Operators>
 
+=head2 <<X
+
+=head3 Class
+
+This belongs to L<perlop/Terms and List Operators (Leftward)> and
+L<perlop/Quote and Quote-like Operators>.
+
+=head3 Description
+
+This is the heredoc operator.  It makes the lines after the current one up
+to the next line that contains only X into an interpolating string.
+
+X must be made of only a-z, A-Z, 0-9, or _.
+
+To use other characters see L</E<lt>E<lt>E<quot>XE<quot>>.
+
+=head3 Example
+
+    # $s will hold "this is all part\nof the string\n"
+    my $s = <<END_OF_STRING;
+    this is all part
+    of the string
+    END_OF_STRING
+
+    # prints 'debug:\n\t$s is [this is all part\nof the string\n]\nend debug\n'
+    print "debug:\n", <<END_OF_STRING, "end debug\n";
+    	\$s is [$s]
+    END_OF_STRING
+
+=head3 See Also
+
+L<E<quot>XE<quot>>, L<E<lt>E<lt>E<quot>XE<quot>>, and
+L<perlop/Quote and Quote-like Operators>
+
+=head2 <<"X"
+
+=head3 Class
+
+This belongs to L<perlop/Terms and List Operators (Leftward)> and
+L<perlop/Quote and Quote-like Operators>.
+
+=head3 Description
+
+This is the double quote heredoc operator.  It makes the lines after the
+current one up to the next line that contains only X into an interpolating
+string.
+
+X itself will be treated as a non-interpolating string, so the only escapes
+that work are C<\"> and C<\\>.
+
+=head3 Example
+
+    # $x will hold "this is all part\nof the string\n"
+    my $x = <<"END OF STRING";
+    this is all part
+    of the string
+    END OF STRING
+
+    # prints 'debug:\n\t$s is [this is all part\nof the string\n]\nend debug\n'
+    print "debug:\n", <<"END OF STRING", "end debug\n";
+    	\$x is [$x]
+    END OF STRING
+
+    # $y will hold "foo\nbar\n"
+    my $y = <<"\'foo\\foo\tfoo\"$foo";
+    foo
+    bar
+    \'foo\foo\tfoo"$foo
+
+=head3 See Also
+
+L<E<quot>XE<quot>>, L<E<lt>E<lt>X>, and
+L<perlop/Quote and Quote-like Operators>
+
+=head2 <<'X'
+
+=head3 Class
+
+This belongs to L<perlop/Terms and List Operators (Leftward)> and
+L<perlop/Quote and Quote-like Operators>.
+
+=head3 Description
+
+This is the single quote heredoc operator.  It makes the lines after the
+current one up to the next line that contains only X into a non-interpolating
+string.
+
+X itself will be treated as a non-interpolating string, so the only escapes
+that work are C<\'> and C<\\>.
+
+=head3 Example
+
+    # $x will hold "this is all part\nof the string\n"
+    my $x = <<'END OF STRING';
+    this is all part
+    of the string
+    END OF STRING
+
+    # prints "debug:\n\t\$s is [$s]\nend debug\n'
+    print "debug:\n", <<"END OF STRING", "end debug\n";
+    	\$x is [$x]
+    END OF STRING
+
+    # $y will hold "foo\nbar\n"
+    my $y = <<"\'foo\\foo\tfoo\"$foo";
+    foo
+    bar
+    'foo\foo\tfoo\"$foo
+
+=head3 See Also
+
+L<E<quot>XE<quot>>, L<E<lt>E<lt>X>, and
+L<perlop/Quote and Quote-like Operators>
+
 =head2 `X`
 
 =head3 Class

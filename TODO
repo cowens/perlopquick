@@ -4,7 +4,7 @@ m?X?    - generalized match operator
 s/X/Y/  - substitution operator
 tr/X/Y/ - transliteration operator
 y/X/Y/  - transliteration operator
-<<X     - heredoc operator
+<<`X`   - backtick heredoc operator
 ~~      - smartmatch (currently documented, but poorly)
 qx      - doesn't interpolate if delimiter is '
 qr      - doesn't interpolate if delimiter is '
